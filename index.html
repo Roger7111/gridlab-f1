@@ -1979,6 +1979,56 @@ function switchSectionExtended(id) {
   }
 }
 
+// ── Super Times ──────────────────────────────────────────────
+var _superTimesChart = null;
+function renderSuperTimes() {
+  var st = D.super_times || {};
+  var circuits = st.circuits || [];
+  var drivers  = st.drivers  || {};
+  if (!circuits.length) {
+    var el = document.getElementById('s-supertimes');
+    if (el) el.innerHTML = '<p style="color:var(--txt-dim);padding:32px">Dati non disponibili.</p>';
+    return;
+  }
+  var COLORS = ['#e10600','#00D7B6','#FF8000','#3671C6','#d8b766','#9B1B30','#27F4D2','#B6BABD','#FF87B7','#00A19C'];
+  var drvKeys = Object.keys(drivers);
+  var datasets = drvKeys.map(function(drv, i) {
+    return {
+      label: (typeof NM !== 'undefined' && NM[drv]) || drv,
+      data: drivers[drv],
+      borderColor: COLORS[i % COLORS.length],
+      backgroundColor: COLORS[i % COLORS.length] + '22',
+      tension: 0.3, fill: false, pointRadius: 5, pointHoverRadius: 7, borderWidth: 2, spanGaps: true
+    };
+  });
+  var ctx = document.getElementById('superTimesChart');
+  if (!ctx) return;
+  if (_superTimesChart) _superTimesChart.destroy();
+  _superTimesChart = new Chart(ctx, {
+    type: 'line',
+    data: { labels: circuits, datasets: datasets },
+    options: {
+      responsive: true, maintainAspectRatio: false, animation: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: { callbacks: { label: function(c) { var v=c.parsed.y; return c.dataset.label+': '+(v===null?'N/D':v===0?'FASTEST':'+'+v.toFixed(3)+'%'); } } }
+      },
+      scales: {
+        x: { ticks: { color: '#8b97ad' }, grid: { color: '#2a3142' } },
+        y: { reverse: true, ticks: { color: '#8b97ad', callback: function(v){ return '+'+v.toFixed(2)+'%'; } }, grid: { color: '#2a3142' } }
+      }
+    }
+  });
+  var leg = document.getElementById('superTimesLegend');
+  if (leg) {
+    leg.innerHTML = drvKeys.map(function(drv, i) {
+      var vals = (drivers[drv]||[]).filter(function(v){return v!==null;});
+      var avg = vals.length ? (vals.reduce(function(a,b){return a+b;},0)/vals.length).toFixed(3) : 'N/D';
+      return '<span style="display:inline-flex;align-items:center;gap:5px;font-size:12px"><span style="width:20px;height:3px;background:'+COLORS[i%COLORS.length]+';display:inline-block;border-radius:2px"></span><span>'+((typeof NM!=='undefined'&&NM[drv])||drv)+' (media +'+avg+'%)</span></span>';
+    }).join('');
+  }
+}
+
 </script>
 
 

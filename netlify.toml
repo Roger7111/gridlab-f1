@@ -1,0 +1,8 @@
+[build]
+  functions = "netlify/functions"
+
+[functions]
+  node_bundler = "esbuild"
+
+[functions."send-preview"]
+  schedule = "0 14 * * 6"

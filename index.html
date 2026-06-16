@@ -363,6 +363,8 @@ footer p{color:var(--mut);font-size:12px;margin-bottom:5px;max-width:880px}
     <div class="tab" data-s="teamdev">📊 Sviluppo</div>
     <div class="tab" data-s="gridfinish">🏁 Griglia→Arrivo</div>
     <div class="tab" data-s="reliability">🔧 Affidabilità</div>
+    <div class="tab" data-s="constbattle">⚔️ Costruttori</div>
+    <div class="tab" data-s="tyresimu">🏎️ Strategia</div>
     <div class="tab tab-gold" data-s="accesso">★ Accesso</div>
   </div>
 </div></header>
@@ -1982,6 +1984,8 @@ function switchSectionExtended(id) {
     if (id==='teamdev')    renderTeamDev();
     if (id==='gridfinish') renderGridFinish();
     if (id==='reliability') renderReliability();
+    if (id==='constbattle') renderConstBattle();
+    if (id==='tyresimu')   renderTyreSimu();
   }
 }
 
@@ -2216,6 +2220,166 @@ function renderReliability() {
   }
 }
 
+
+// ── Constructor Battle ────────────────────────────────────────
+var _constBattleChart = null;
+function renderConstBattle() {
+  var cb = D.constructor_battle || {};
+  var rounds = cb.rounds || [];
+  var teams  = cb.teams  || {};
+  if (!rounds.length) return;
+  var TEAM_COLORS = {
+    'Mercedes':'#00D7B6','Ferrari':'#e8002d','McLaren':'#FF8000','Red Bull Racing':'#3671C6',
+    'Audi':'#e40045','Alpine':'#FF87B7','Williams':'#00a0de','Racing Bulls':'#6692FF',
+    'Haas F1 Team':'#B6BABD','Aston Martin':'#358C75','Cadillac':'#444'
+  };
+  var datasets = Object.keys(teams).map(function(t) {
+    return {
+      label: t, data: teams[t],
+      borderColor: TEAM_COLORS[t] || '#8b97ad',
+      backgroundColor: (TEAM_COLORS[t] || '#8b97ad') + '22',
+      tension: 0.3, fill: false, pointRadius: 3, borderWidth: 2
+    };
+  });
+  var ctx = document.getElementById('constBattleChart');
+  if (!ctx) return;
+  if (_constBattleChart) _constBattleChart.destroy();
+  _constBattleChart = new Chart(ctx, {
+    type: 'line', data: { labels: rounds, datasets: datasets },
+    options: {
+      responsive: true, maintainAspectRatio: false, animation: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: { callbacks: { label: function(c){ return c.dataset.label+': '+c.parsed.y+' pt'; } } }
+      },
+      scales: {
+        x: { ticks:{color:'#8b97ad',maxRotation:40}, grid:{color:'#2a3142'} },
+        y: { ticks:{color:'#8b97ad'}, grid:{color:'#2a3142'},
+          title:{display:true,text:'Punti costruttori',color:'#8b97ad',font:{size:11}} }
+      }
+    }
+  });
+  var leg = document.getElementById('constBattleLegend');
+  if (leg) {
+    var tkeys = Object.keys(teams);
+    leg.innerHTML = tkeys.map(function(t) {
+      var c = TEAM_COLORS[t] || '#8b97ad';
+      var last = teams[t][teams[t].length-1] || 0;
+      return '<span style="display:inline-flex;align-items:center;gap:5px;font-size:12px">'
+        +'<span style="width:20px;height:3px;background:'+c+';display:inline-block;border-radius:2px"></span>'
+        +'<span>'+t+' ('+last+' pt)</span></span>';
+    }).join('');
+  }
+}
+
+// ── Tyre Strategy Simulator ───────────────────────────────────
+var _tyreSimuChart = null;
+function runTyreSimu() {
+  var totalLaps = parseInt(document.getElementById('ts-laps').value) || 57;
+  var baseLap   = parseFloat(document.getElementById('ts-laptime').value) || 92;
+  var pitLoss   = parseFloat(document.getElementById('ts-pitloss').value) || 22;
+  var degRate   = parseFloat(document.getElementById('ts-deg').value) || 0.08;
+
+  // Compound delta vs Soft (secondi per giro)
+  var COMPOUNDS = { 'Soft': 0, 'Medium': 0.4, 'Hard': 0.9 };
+
+  function simStrategy(strategy) {
+    // strategy = [{compound, from, to}, ...]
+    var total = 0;
+    var pitCount = strategy.length - 1;
+    strategy.forEach(function(stint, si) {
+      var len = stint.to - stint.from;
+      var cDelta = COMPOUNDS[stint.compound] || 0;
+      for (var lap = 0; lap < len; lap++) {
+        total += baseLap + cDelta + degRate * lap;
+      }
+      if (si < pitCount) total += pitLoss;
+    });
+    return Math.round(total * 10) / 10;
+  }
+
+  function buildStrategies(n) {
+    var comps = ['Soft','Medium','Hard'];
+    var strategies = [];
+    var lapStep = Math.floor(totalLaps / n);
+    // Genera varianti compound
+    for (var c1 = 0; c1 < comps.length; c1++) {
+      for (var c2 = 0; c2 < comps.length; c2++) {
+        if (n === 2 && c1 === c2) continue;
+        if (n === 3) {
+          for (var c3 = 0; c3 < comps.length; c3++) {
+            var stints = [
+              {compound: comps[c1], from:0, to: lapStep},
+              {compound: comps[c2], from: lapStep, to: lapStep*2},
+              {compound: comps[c3], from: lapStep*2, to: totalLaps}
+            ];
+            strategies.push({ label: comps[c1][0]+'-'+comps[c2][0]+'-'+comps[c3][0], stints: stints });
+          }
+        } else {
+          var stints = [
+            {compound: comps[c1], from:0, to: lapStep},
+            {compound: comps[c2], from: lapStep, to: totalLaps}
+          ];
+          strategies.push({ label: comps[c1][0]+'-'+comps[c2][0], stints: stints });
+        }
+      }
+    }
+    return strategies;
+  }
+
+  var allStrats = [
+    { label:'1-stop', items: buildStrategies(2).slice(0,4) },
+    { label:'2-stop', items: buildStrategies(3).slice(0,6) }
+  ];
+
+  // Calcola tempo totale per ogni variante
+  var plotData = [];
+  allStrats.forEach(function(group) {
+    group.items.forEach(function(s) {
+      var t = simStrategy(s.stints);
+      plotData.push({ label: group.label+' '+s.label, time: t });
+    });
+  });
+  plotData.sort(function(a,b){return a.time - b.time;});
+  var minTime = plotData[0].time;
+
+  var ctx = document.getElementById('tyreSimuChart');
+  if (!ctx) return;
+  if (_tyreSimuChart) _tyreSimuChart.destroy();
+  _tyreSimuChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: plotData.map(function(d){return d.label;}),
+      datasets: [{
+        data: plotData.map(function(d){return Math.round((d.time - minTime)*10)/10;}),
+        backgroundColor: plotData.map(function(d,i){return i===0?'#00D7B6cc':'#3671C688';}),
+        borderRadius: 4
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false, animation: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: { callbacks: {
+          label: function(c){ return '+'+c.parsed.y.toFixed(1)+'s vs ottimale (tot: '+plotData[c.dataIndex].time.toFixed(1)+'s)'; }
+        }}
+      },
+      scales: {
+        x: { ticks:{color:'#8b97ad',maxRotation:45,font:{size:11}}, grid:{color:'#2a3142'} },
+        y: { ticks:{color:'#8b97ad',callback:function(v){return '+'+v+'s';}}, grid:{color:'#2a3142'},
+          title:{display:true,text:'Gap vs strategia ottimale (s)',color:'#8b97ad',font:{size:11}} }
+      }
+    }
+  });
+  var res = document.getElementById('tyreSimuResult');
+  if (res) {
+    res.innerHTML = '<span style="color:#00D7B6;font-weight:700">Ottimale: '+plotData[0].label+'</span>'
+      +' — tempo totale stimato: '+plotData[0].time.toFixed(1)+'s'
+      +' <span style="color:var(--txt-dim)">('+Math.floor(plotData[0].time/60)+"'"+Math.round(plotData[0].time%60)+'")</span>';
+  }
+}
+function renderTyreSimu() { runTyreSimu(); }
+
 </script>
 
 
@@ -2248,6 +2412,36 @@ function renderReliability() {
   <p style="color:var(--txt-dim);font-size:13px;margin-bottom:16px">Ritiri per team nella stagione 2026. Meccanici = problema tecnico, Incidente = collisione/off-track.</p>
   <div style="position:relative;height:320px"><canvas id="reliabilityChart"></canvas></div>
   <div id="reliabilityTable" style="margin-top:20px;overflow-x:auto"></div>
+</div>
+
+
+<div class="section" id="s-constbattle">
+  <h2 class="section-title">⚔️ Battle Costruttori — Punti per Round</h2>
+  <p style="color:var(--txt-dim);font-size:13px;margin-bottom:16px">Punti costruttori cumulativi gara per gara (incluse sprint). S = Sprint.</p>
+  <div style="position:relative;height:380px"><canvas id="constBattleChart"></canvas></div>
+  <div id="constBattleLegend" style="display:flex;flex-wrap:wrap;gap:10px;margin-top:16px"></div>
+</div>
+
+<div class="section" id="s-tyresimu">
+  <h2 class="section-title">🏎️ Simulatore Strategia Gomme</h2>
+  <p style="color:var(--txt-dim);font-size:13px;margin-bottom:12px">Confronta strategie 1-stop / 2-stop / 3-stop. Scegli il numero di giri totali e i pit stop.</p>
+  <div style="display:flex;flex-wrap:wrap;gap:16px;margin-bottom:16px;align-items:flex-end">
+    <label style="font-size:13px;color:var(--txt-dim)">Giri totali<br>
+      <input id="ts-laps" type="number" value="57" min="30" max="80" style="width:80px;padding:6px;background:var(--card);border:1px solid var(--line);color:var(--txt);border-radius:6px;font-size:14px">
+    </label>
+    <label style="font-size:13px;color:var(--txt-dim)">Tempo base lap (s)<br>
+      <input id="ts-laptime" type="number" value="92" min="60" max="130" step="0.1" style="width:90px;padding:6px;background:var(--card);border:1px solid var(--line);color:var(--txt);border-radius:6px;font-size:14px">
+    </label>
+    <label style="font-size:13px;color:var(--txt-dim)">Perdita pit stop (s)<br>
+      <input id="ts-pitloss" type="number" value="22" min="15" max="30" style="width:80px;padding:6px;background:var(--card);border:1px solid var(--line);color:var(--txt);border-radius:6px;font-size:14px">
+    </label>
+    <label style="font-size:13px;color:var(--txt-dim)">Degrado/giro (s)<br>
+      <input id="ts-deg" type="number" value="0.08" min="0.01" max="0.5" step="0.01" style="width:80px;padding:6px;background:var(--card);border:1px solid var(--line);color:var(--txt);border-radius:6px;font-size:14px">
+    </label>
+    <button onclick="runTyreSimu()" style="padding:8px 18px;background:var(--acc2);color:#000;border:none;border-radius:6px;font-size:13px;font-weight:700;cursor:pointer">▶ Calcola</button>
+  </div>
+  <div style="position:relative;height:340px"><canvas id="tyreSimuChart"></canvas></div>
+  <div id="tyreSimuResult" style="margin-top:16px;font-size:13px"></div>
 </div>
 
 <!-- PWA Install Banner -->

@@ -2274,14 +2274,79 @@ function renderConstBattle() {
 
 // ── Tyre Strategy Simulator ───────────────────────────────────
 var _tyreSimuChart = null;
+function _tyreParams() {
+  // Legge parametri da D.tyre_strategy (auto-deriving) oppure dai campi manuali
+  var ts = (typeof D !== 'undefined' && D.tyre_strategy) ? D.tyre_strategy : null;
+  var manual = document.getElementById('ts-override-open') && document.getElementById('ts-override-open').open;
+  if (ts && !manual) {
+    var c = ts.compounds || {};
+    var soft   = c.SOFT   || c.Soft   || {};
+    var medium = c.MEDIUM || c.Medium || {};
+    var hard   = c.HARD   || c.Hard   || {};
+    return {
+      totalLaps: ts.total_laps || 57,
+      baseLap:   ts.base_lap   || 92,
+      pitLoss:   ts.pit_loss   || 22,
+      compounds: {
+        'Soft':   { delta: 0,                             deg: soft.deg_per_lap   || 0.08 },
+        'Medium': { delta: medium.delta_vs_soft || 0.5,   deg: medium.deg_per_lap || 0.06 },
+        'Hard':   { delta: hard.delta_vs_soft   || 1.0,   deg: hard.deg_per_lap   || 0.04 }
+      },
+      source: ts.source || 'estimate'
+    };
+  }
+  // Manual override
+  var degS = parseFloat(document.getElementById('ts-deg-soft').value)   || 0.08;
+  var degM = parseFloat(document.getElementById('ts-deg-med').value)    || 0.06;
+  var degH = parseFloat(document.getElementById('ts-deg-hard').value)   || 0.04;
+  return {
+    totalLaps: parseInt(document.getElementById('ts-laps').value)     || 57,
+    baseLap:   parseFloat(document.getElementById('ts-laptime').value) || 92,
+    pitLoss:   parseFloat(document.getElementById('ts-pitloss').value) || 22,
+    compounds: {
+      'Soft':   { delta: 0,                                                          deg: degS },
+      'Medium': { delta: parseFloat(document.getElementById('ts-delta-med').value) || 0.5, deg: degM },
+      'Hard':   { delta: parseFloat(document.getElementById('ts-delta-hard').value) || 1.0, deg: degH }
+    },
+    source: 'manual'
+  };
+}
+
+function _populateTyreInputs() {
+  var ts = (typeof D !== 'undefined' && D.tyre_strategy) ? D.tyre_strategy : null;
+  if (!ts) return;
+  var c = ts.compounds || {};
+  var soft   = c.SOFT   || c.Soft   || {};
+  var medium = c.MEDIUM || c.Medium || {};
+  var hard   = c.HARD   || c.Hard   || {};
+  var set = function(id, v) { var el=document.getElementById(id); if(el && v!=null) el.value=v; };
+  set('ts-laps', ts.total_laps);
+  set('ts-laptime', ts.base_lap ? ts.base_lap.toFixed(3) : null);
+  set('ts-pitloss', ts.pit_loss);
+  set('ts-deg-soft', (soft.deg_per_lap||0.08).toFixed(3));
+  set('ts-deg-med',  (medium.deg_per_lap||0.06).toFixed(3));
+  set('ts-deg-hard', (hard.deg_per_lap||0.04).toFixed(3));
+  set('ts-delta-med',  (medium.delta_vs_soft||0.5).toFixed(2));
+  set('ts-delta-hard', (hard.delta_vs_soft||1.0).toFixed(2));
+  // Source badge
+  var badge = document.getElementById('ts-source-badge');
+  if (badge) {
+    var isFP2 = ts.source && ts.source.startsWith('fp2');
+    badge.innerHTML = isFP2
+      ? '<span style="background:#00D7B620;color:#00D7B6;padding:3px 10px;border-radius:12px;font-size:12px">📊 Da FP2 reale</span>'
+      : '<span style="background:#f1a94420;color:#f1a944;padding:3px 10px;border-radius:12px;font-size:12px">📐 Stima circuito</span>';
+  }
+}
+
 function runTyreSimu() {
-  var totalLaps = parseInt(document.getElementById('ts-laps').value) || 57;
-  var baseLap   = parseFloat(document.getElementById('ts-laptime').value) || 92;
-  var pitLoss   = parseFloat(document.getElementById('ts-pitloss').value) || 22;
-  var degRate   = parseFloat(document.getElementById('ts-deg').value) || 0.08;
+  _populateTyreInputs();
+  var p = _tyreParams();
+  var totalLaps = p.totalLaps;
+  var baseLap   = p.baseLap;
+  var pitLoss   = p.pitLoss;
 
   // Compound delta vs Soft (secondi per giro)
-  var COMPOUNDS = { 'Soft': 0, 'Medium': 0.4, 'Hard': 0.9 };
+  var COMPOUNDS = p.compounds;
 
   function simStrategy(strategy) {
     // strategy = [{compound, from, to}, ...]
@@ -2289,9 +2354,11 @@ function runTyreSimu() {
     var pitCount = strategy.length - 1;
     strategy.forEach(function(stint, si) {
       var len = stint.to - stint.from;
-      var cDelta = COMPOUNDS[stint.compound] || 0;
+      var cInfo = COMPOUNDS[stint.compound] || {delta:0, deg:0.08};
+      var cDelta = cInfo.delta;
+      var cDeg   = cInfo.deg;
       for (var lap = 0; lap < len; lap++) {
-        total += baseLap + cDelta + degRate * lap;
+        total += baseLap + cDelta + cDeg * lap;
       }
       if (si < pitCount) total += pitLoss;
     });
@@ -2378,7 +2445,35 @@ function runTyreSimu() {
       +' <span style="color:var(--txt-dim)">('+Math.floor(plotData[0].time/60)+"'"+Math.round(plotData[0].time%60)+'")</span>';
   }
 }
-function renderTyreSimu() { runTyreSimu(); }
+function renderTyreSimu() {
+  _populateTyreInputs();
+  // Mostra summary auto-params
+  var ts = (typeof D !== 'undefined' && D.tyre_strategy) ? D.tyre_strategy : null;
+  var summary = document.getElementById('ts-auto-summary');
+  if (summary && ts) {
+    var c = ts.compounds || {};
+    var fmt = function(v,d){ return v!=null ? parseFloat(v).toFixed(d) : '—'; };
+    var card = function(label,val,col){
+      return '<div style="background:var(--card);border:1px solid var(--line);border-radius:8px;padding:8px 14px;min-width:100px">'
+        +'<div style="font-size:10px;color:var(--txt-dim);margin-bottom:2px">'+label+'</div>'
+        +'<div style="font-size:14px;font-weight:700;color:'+(col||'var(--txt)')+'">'+val+'</div>'
+        +'</div>';
+    };
+    var soft   = c.SOFT||c.Soft||{};
+    var medium = c.MEDIUM||c.Medium||{};
+    var hard   = c.HARD||c.Hard||{};
+    summary.innerHTML =
+      card('Giri', ts.total_laps, '#00D7B6')
+      +card('Base lap', fmt(ts.base_lap,3)+'s', '#00D7B6')
+      +card('Pit loss', fmt(ts.pit_loss,0)+'s', '#00D7B6')
+      +card('Soft deg/lap', fmt(soft.deg_per_lap,3)+'s', '#e8534a')
+      +card('Med deg/lap',  fmt(medium.deg_per_lap,3)+'s', '#f1c544')
+      +card('Hard deg/lap', fmt(hard.deg_per_lap,3)+'s', '#e0e0e0')
+      +card('Δ Med vs S',   (medium.delta_vs_soft>=0?'+':'')+fmt(medium.delta_vs_soft,2)+'s', '#f1c544')
+      +card('Δ Hard vs S',  (hard.delta_vs_soft>=0?'+':'')+fmt(hard.delta_vs_soft,2)+'s', '#e0e0e0');
+  }
+  runTyreSimu();
+}
 
 </script>
 
@@ -2424,22 +2519,45 @@ function renderTyreSimu() { runTyreSimu(); }
 
 <div class="section" id="s-tyresimu">
   <h2 class="section-title">🏎️ Simulatore Strategia Gomme</h2>
-  <p style="color:var(--txt-dim);font-size:13px;margin-bottom:12px">Confronta strategie 1-stop / 2-stop / 3-stop. Scegli il numero di giri totali e i pit stop.</p>
-  <div style="display:flex;flex-wrap:wrap;gap:16px;margin-bottom:16px;align-items:flex-end">
-    <label style="font-size:13px;color:var(--txt-dim)">Giri totali<br>
-      <input id="ts-laps" type="number" value="57" min="30" max="80" style="width:80px;padding:6px;background:var(--card);border:1px solid var(--line);color:var(--txt);border-radius:6px;font-size:14px">
-    </label>
-    <label style="font-size:13px;color:var(--txt-dim)">Tempo base lap (s)<br>
-      <input id="ts-laptime" type="number" value="92" min="60" max="130" step="0.1" style="width:90px;padding:6px;background:var(--card);border:1px solid var(--line);color:var(--txt);border-radius:6px;font-size:14px">
-    </label>
-    <label style="font-size:13px;color:var(--txt-dim)">Perdita pit stop (s)<br>
-      <input id="ts-pitloss" type="number" value="22" min="15" max="30" style="width:80px;padding:6px;background:var(--card);border:1px solid var(--line);color:var(--txt);border-radius:6px;font-size:14px">
-    </label>
-    <label style="font-size:13px;color:var(--txt-dim)">Degrado/giro (s)<br>
-      <input id="ts-deg" type="number" value="0.08" min="0.01" max="0.5" step="0.01" style="width:80px;padding:6px;background:var(--card);border:1px solid var(--line);color:var(--txt);border-radius:6px;font-size:14px">
-    </label>
-    <button onclick="runTyreSimu()" style="padding:8px 18px;background:var(--acc2);color:#000;border:none;border-radius:6px;font-size:13px;font-weight:700;cursor:pointer">▶ Calcola</button>
-  </div>
+  <p style="color:var(--txt-dim);font-size:13px;margin-bottom:8px">Confronta strategie 1-stop / 2-stop. Parametri derivati automaticamente dai dati FP2.</p>
+  <div id="ts-source-badge" style="margin-bottom:14px"></div>
+
+  <!-- Riepilogo auto-params leggibile -->
+  <div id="ts-auto-summary" style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:14px"></div>
+
+  <!-- Override manuale collassabile -->
+  <details id="ts-override-open" style="margin-bottom:16px;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:12px">
+    <summary style="cursor:pointer;font-size:13px;color:var(--txt-dim);font-weight:600;list-style:none">⚙️ Override manuale parametri</summary>
+    <div style="display:flex;flex-wrap:wrap;gap:14px;margin-top:14px;align-items:flex-end">
+      <label style="font-size:12px;color:var(--txt-dim)">Giri totali<br>
+        <input id="ts-laps" type="number" value="57" min="30" max="80" style="width:74px;padding:5px;background:var(--bg);border:1px solid var(--line);color:var(--txt);border-radius:6px;font-size:13px">
+      </label>
+      <label style="font-size:12px;color:var(--txt-dim)">Base lap (s)<br>
+        <input id="ts-laptime" type="number" value="92" min="60" max="130" step="0.001" style="width:84px;padding:5px;background:var(--bg);border:1px solid var(--line);color:var(--txt);border-radius:6px;font-size:13px">
+      </label>
+      <label style="font-size:12px;color:var(--txt-dim)">Pit loss (s)<br>
+        <input id="ts-pitloss" type="number" value="22" min="15" max="35" style="width:70px;padding:5px;background:var(--bg);border:1px solid var(--line);color:var(--txt);border-radius:6px;font-size:13px">
+      </label>
+      <div style="width:100%;height:0;border-top:1px solid var(--line)"></div>
+      <label style="font-size:12px;color:#e8534a">Soft deg/lap (s)<br>
+        <input id="ts-deg-soft" type="number" value="0.08" min="0" max="1" step="0.001" style="width:74px;padding:5px;background:var(--bg);border:1px solid var(--line);color:var(--txt);border-radius:6px;font-size:13px">
+      </label>
+      <label style="font-size:12px;color:#f1c544">Medium deg/lap (s)<br>
+        <input id="ts-deg-med" type="number" value="0.06" min="0" max="1" step="0.001" style="width:74px;padding:5px;background:var(--bg);border:1px solid var(--line);color:var(--txt);border-radius:6px;font-size:13px">
+      </label>
+      <label style="font-size:12px;color:#e0e0e0">Hard deg/lap (s)<br>
+        <input id="ts-deg-hard" type="number" value="0.04" min="0" max="1" step="0.001" style="width:74px;padding:5px;background:var(--bg);border:1px solid var(--line);color:var(--txt);border-radius:6px;font-size:13px">
+      </label>
+      <label style="font-size:12px;color:#f1c544">Δ Medium vs Soft (s)<br>
+        <input id="ts-delta-med" type="number" value="0.5" min="-1" max="3" step="0.01" style="width:74px;padding:5px;background:var(--bg);border:1px solid var(--line);color:var(--txt);border-radius:6px;font-size:13px">
+      </label>
+      <label style="font-size:12px;color:#e0e0e0">Δ Hard vs Soft (s)<br>
+        <input id="ts-delta-hard" type="number" value="1.0" min="-1" max="3" step="0.01" style="width:74px;padding:5px;background:var(--bg);border:1px solid var(--line);color:var(--txt);border-radius:6px;font-size:13px">
+      </label>
+    </div>
+  </details>
+
+  <button onclick="runTyreSimu()" style="padding:8px 22px;background:var(--acc2);color:#000;border:none;border-radius:6px;font-size:13px;font-weight:700;cursor:pointer;margin-bottom:16px">▶ Calcola</button>
   <div style="position:relative;height:340px"><canvas id="tyreSimuChart"></canvas></div>
   <div id="tyreSimuResult" style="margin-top:16px;font-size:13px"></div>
 </div>

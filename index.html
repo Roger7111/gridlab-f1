@@ -360,6 +360,9 @@ footer p{color:var(--mut);font-size:12px;margin-bottom:5px;max-width:880px}
     <div class="tab" data-s="safetycar">🚗 SC</div>
     <div class="tab" data-s="ers">⚡ ERS</div>
     <div class="tab" data-s="supertimes">⏱️ Super Times</div>
+    <div class="tab" data-s="teamdev">📊 Sviluppo</div>
+    <div class="tab" data-s="gridfinish">🏁 Griglia→Arrivo</div>
+    <div class="tab" data-s="reliability">🔧 Affidabilità</div>
     <div class="tab tab-gold" data-s="accesso">★ Accesso</div>
   </div>
 </div></header>
@@ -1976,6 +1979,9 @@ function switchSectionExtended(id) {
     if (id==='safetycar') renderSafetyCar();
     if (id==='ers')       renderERS();
     if (id==='supertimes') renderSuperTimes();
+    if (id==='teamdev')    renderTeamDev();
+    if (id==='gridfinish') renderGridFinish();
+    if (id==='reliability') renderReliability();
   }
 }
 
@@ -2029,6 +2035,187 @@ function renderSuperTimes() {
   }
 }
 
+
+// ── Team Development ─────────────────────────────────────────
+var _teamDevChart = null;
+function renderTeamDev() {
+  var td = D.team_development || {};
+  var circuits = td.circuits || [];
+  var teams = td.teams || {};
+  if (!circuits.length) return;
+  var TEAM_COLORS = {
+    'Mercedes':'#00D7B6','Ferrari':'#e8002d','McLaren':'#FF8000','Red Bull Racing':'#3671C6',
+    'Audi':'#e40045','Alpine':'#FF87B7','Williams':'#00a0de','Racing Bulls':'#6692FF',
+    'Haas F1 Team':'#B6BABD','Aston Martin':'#358C75','Cadillac':'#ffffff'
+  };
+  var drvKeys = Object.keys(teams);
+  var datasets = drvKeys.map(function(t) {
+    return {
+      label: t, data: teams[t],
+      borderColor: TEAM_COLORS[t] || '#8b97ad',
+      backgroundColor: (TEAM_COLORS[t] || '#8b97ad') + '22',
+      tension: 0.3, fill: false, pointRadius: 4, borderWidth: 2, spanGaps: true
+    };
+  });
+  var ctx = document.getElementById('teamDevChart');
+  if (!ctx) return;
+  if (_teamDevChart) _teamDevChart.destroy();
+  _teamDevChart = new Chart(ctx, {
+    type: 'line', data: { labels: circuits, datasets: datasets },
+    options: {
+      responsive: true, maintainAspectRatio: false, animation: false,
+      plugins: { legend: { display: false },
+        tooltip: { callbacks: { label: function(c){ return c.dataset.label+': pos media '+c.parsed.y.toFixed(1); } } }
+      },
+      scales: {
+        x: { ticks: { color:'#8b97ad' }, grid: { color:'#2a3142' } },
+        y: { reverse: true, min: 1,
+          ticks: { color:'#8b97ad', callback: function(v){ return 'P'+v; } },
+          grid: { color:'#2a3142' },
+          title: { display: true, text: 'Pos. media (più basso = meglio)', color:'#8b97ad', font:{size:11} }
+        }
+      }
+    }
+  });
+  var leg = document.getElementById('teamDevLegend');
+  if (leg) {
+    leg.innerHTML = drvKeys.map(function(t) {
+      var c = TEAM_COLORS[t] || '#8b97ad';
+      var vals = (teams[t]||[]).filter(function(v){return v!==null;});
+      var avg = vals.length ? (vals.reduce(function(a,b){return a+b;},0)/vals.length).toFixed(1) : 'N/D';
+      return '<span style="display:inline-flex;align-items:center;gap:5px;font-size:12px"><span style="width:20px;height:3px;background:'+c+';display:inline-block;border-radius:2px"></span><span>'+t+' (media P'+avg+')</span></span>';
+    }).join('');
+  }
+}
+
+// ── Grid → Finish ─────────────────────────────────────────────
+var _gridFinishChart = null;
+function renderGridFinish() {
+  var gf = D.grid_finish || [];
+  if (!gf.length) return;
+  var TEAM_COLORS = {
+    'Mercedes':'#00D7B6','Ferrari':'#e8002d','McLaren':'#FF8000','Red Bull Racing':'#3671C6',
+    'Audi':'#e40045','Alpine':'#FF87B7','Williams':'#00a0de','Racing Bulls':'#6692FF',
+    'Haas F1 Team':'#B6BABD','Aston Martin':'#358C75','Cadillac':'#ffffff'
+  };
+  // Un dataset per team
+  var byTeam = {};
+  gf.forEach(function(d) {
+    byTeam[d.team] = byTeam[d.team] || [];
+    byTeam[d.team].push({ x: d.grid, y: d.finish, driver: d.driver, race: d.race, gained: d.gained });
+  });
+  var datasets = Object.keys(byTeam).map(function(t) {
+    return {
+      label: t, data: byTeam[t],
+      backgroundColor: (TEAM_COLORS[t] || '#8b97ad') + 'cc',
+      borderColor: TEAM_COLORS[t] || '#8b97ad',
+      pointRadius: 5, pointHoverRadius: 8
+    };
+  });
+  // Linea diagonale (griglia = arrivo)
+  datasets.push({
+    label: 'Diagonale', data: [{x:1,y:1},{x:22,y:22}],
+    borderColor: '#ffffff33', borderDash: [5,5],
+    pointRadius: 0, borderWidth: 1, type: 'line', fill: false, tension: 0
+  });
+  var ctx = document.getElementById('gridFinishChart');
+  if (!ctx) return;
+  if (_gridFinishChart) _gridFinishChart.destroy();
+  _gridFinishChart = new Chart(ctx, {
+    type: 'scatter', data: { datasets: datasets },
+    options: {
+      responsive: true, maintainAspectRatio: false, animation: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: { callbacks: {
+          label: function(c) {
+            var d = c.raw;
+            var g = d.gained > 0 ? '+'+d.gained : d.gained;
+            return (d.driver||'') + ' ' + (d.race||'').replace(' Grand Prix','') + ' | Griglia: P'+d.x+' → Arrivo: P'+d.y+' ('+g+')';
+          }
+        }}
+      },
+      scales: {
+        x: { min:1, max:22, reverse: false,
+          ticks: { color:'#8b97ad', callback: function(v){ return 'P'+v; } },
+          grid: { color:'#2a3142' },
+          title: { display: true, text: 'Posizione griglia', color:'#8b97ad', font:{size:11} }
+        },
+        y: { min:1, max:22, reverse: true,
+          ticks: { color:'#8b97ad', callback: function(v){ return 'P'+v; } },
+          grid: { color:'#2a3142' },
+          title: { display: true, text: 'Posizione arrivo', color:'#8b97ad', font:{size:11} }
+        }
+      }
+    }
+  });
+  var info = document.getElementById('gridFinishInfo');
+  if (info) {
+    var gained = gf.filter(function(d){return d.gained>0;}).length;
+    var lost = gf.filter(function(d){return d.gained<0;}).length;
+    var same = gf.filter(function(d){return d.gained===0;}).length;
+    info.innerHTML = 'Su '+gf.length+' arrivi classificati: <span style="color:#00D7B6">'+gained+' guadagnati</span> · <span style="color:#e10600">'+lost+' persi</span> · '+same+' invariati';
+  }
+}
+
+// ── Reliability ───────────────────────────────────────────────
+var _reliabilityChart = null;
+function renderReliability() {
+  var rel = D.reliability || [];
+  if (!rel.length) return;
+  var TEAM_COLORS = {
+    'Mercedes':'#00D7B6','Ferrari':'#e8002d','McLaren':'#FF8000','Red Bull Racing':'#3671C6',
+    'Audi':'#e40045','Alpine':'#FF87B7','Williams':'#00a0de','Racing Bulls':'#6692FF',
+    'Haas F1 Team':'#B6BABD','Aston Martin':'#358C75','Cadillac':'#ffffff'
+  };
+  var labels = rel.map(function(t){return t.team;});
+  var ctx = document.getElementById('reliabilityChart');
+  if (!ctx) return;
+  if (_reliabilityChart) _reliabilityChart.destroy();
+  _reliabilityChart = new Chart(ctx, {
+    type: 'bar', 
+    data: {
+      labels: labels,
+      datasets: [
+        { label: 'Meccanici', data: rel.map(function(t){return t.dnf_mech;}), backgroundColor: '#e10600cc', stack: 'dnf' },
+        { label: 'Incidente', data: rel.map(function(t){return t.dnf_incident;}), backgroundColor: '#FF8000cc', stack: 'dnf' },
+        { label: 'Altro', data: rel.map(function(t){return t.dnf_other;}), backgroundColor: '#8b97adcc', stack: 'dnf' }
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false, animation: false,
+      plugins: {
+        legend: { labels: { color:'#e8ecf3', font:{size:12} } },
+        tooltip: { callbacks: {
+          afterBody: function(items) {
+            var idx = items[0].dataIndex;
+            return 'Tasso DNF: '+rel[idx].dnf_rate+'%  ('+rel[idx].dnf_total+'/'+rel[idx].races+' partenze)';
+          }
+        }}
+      },
+      scales: {
+        x: { ticks:{color:'#8b97ad',maxRotation:40}, grid:{color:'#2a3142'}, stacked: true },
+        y: { ticks:{color:'#8b97ad',stepSize:1}, grid:{color:'#2a3142'}, stacked: true,
+          title:{display:true,text:'N° ritiri',color:'#8b97ad',font:{size:11}} }
+      }
+    }
+  });
+  // Tabella
+  var tbl = document.getElementById('reliabilityTable');
+  if (tbl) {
+    var rows = rel.map(function(t) {
+      var c = TEAM_COLORS[t.team] || '#8b97ad';
+      return '<tr><td style="padding:6px 10px"><span style="display:inline-block;width:10px;height:10px;background:'+c+';border-radius:2px;margin-right:6px"></span>'+t.team+'</td>'
+        +'<td style="padding:6px 10px;text-align:center">'+t.races/2+'</td>'
+        +'<td style="padding:6px 10px;text-align:center;color:#e10600">'+t.dnf_mech+'</td>'
+        +'<td style="padding:6px 10px;text-align:center;color:#FF8000">'+t.dnf_incident+'</td>'
+        +'<td style="padding:6px 10px;text-align:center">'+t.dnf_total+'</td>'
+        +'<td style="padding:6px 10px;text-align:center;color:'+(t.dnf_rate>20?'#e10600':t.dnf_rate>10?'#FF8000':'#00D7B6')+'">'+t.dnf_rate+'%</td></tr>';
+    }).join('');
+    tbl.innerHTML = '<table style="width:100%;border-collapse:collapse;font-size:13px"><thead><tr style="color:var(--txt-dim);border-bottom:1px solid var(--line)"><th style="padding:6px 10px;text-align:left">Team</th><th style="padding:6px 10px">GP</th><th style="padding:6px 10px">Mec.</th><th style="padding:6px 10px">Inc.</th><th style="padding:6px 10px">Tot.</th><th style="padding:6px 10px">Tasso</th></tr></thead><tbody>'+rows+'</tbody></table>';
+  }
+}
+
 </script>
 
 
@@ -2039,6 +2226,28 @@ function renderSuperTimes() {
     <canvas id="superTimesChart"></canvas>
   </div>
   <div id="superTimesLegend" style="display:flex;flex-wrap:wrap;gap:10px;margin-top:16px"></div>
+</div>
+
+
+<div class="section" id="s-teamdev">
+  <h2 class="section-title">📊 Sviluppo Team — Posizione Media per Gara</h2>
+  <p style="color:var(--txt-dim);font-size:13px;margin-bottom:16px">Posizione media dei piloti per team in ogni gara (esclusi DNF). Più in basso = meglio.</p>
+  <div style="position:relative;height:360px"><canvas id="teamDevChart"></canvas></div>
+  <div id="teamDevLegend" style="display:flex;flex-wrap:wrap;gap:10px;margin-top:16px"></div>
+</div>
+
+<div class="section" id="s-gridfinish">
+  <h2 class="section-title">🏁 Griglia → Arrivo</h2>
+  <p style="color:var(--txt-dim);font-size:13px;margin-bottom:16px">Posizione di partenza vs posizione di arrivo. Sotto la diagonale = guadagnato posizioni. Sopra = perso.</p>
+  <div style="position:relative;height:400px"><canvas id="gridFinishChart"></canvas></div>
+  <div id="gridFinishInfo" style="margin-top:12px;font-size:12px;color:var(--txt-dim)"></div>
+</div>
+
+<div class="section" id="s-reliability">
+  <h2 class="section-title">🔧 Affidabilità — DNF per Team</h2>
+  <p style="color:var(--txt-dim);font-size:13px;margin-bottom:16px">Ritiri per team nella stagione 2026. Meccanici = problema tecnico, Incidente = collisione/off-track.</p>
+  <div style="position:relative;height:320px"><canvas id="reliabilityChart"></canvas></div>
+  <div id="reliabilityTable" style="margin-top:20px;overflow-x:auto"></div>
 </div>
 
 <!-- PWA Install Banner -->

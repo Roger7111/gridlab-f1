@@ -405,7 +405,14 @@ footer p{color:var(--mut);font-size:12px;margin-bottom:5px;max-width:880px}
               <option value="tutto">Tutto quanto</option>
             </select>
           </div>
-          <button class="btn-submit" onclick="submitAccesso()">Iscrivimi alla lista d'attesa →</button>
+          <div class="form-row" style="margin-bottom:12px">
+            <label style="display:flex;align-items:center;gap:10px;cursor:pointer;font-size:13px;color:var(--txt-dim)">
+              <input type="checkbox" id="a-report" checked
+                     style="width:16px;height:16px;accent-color:var(--acc2);cursor:pointer">
+              📧 Ricevi il report PDF pre-gara ogni weekend
+            </label>
+          </div>
+          <button class="btn-submit" onclick="submitAccesso()">Iscrivimi →</button>
         </div>
       </div>
     </div>
@@ -1350,11 +1357,29 @@ function openWaitlist(){document.getElementById('waitlistModal').classList.add('
 function closeWaitlist(){document.getElementById('waitlistModal').classList.remove('open');}
 document.getElementById('waitlistModal').addEventListener('click',function(e){if(e.target===this)closeWaitlist();});
 
-async function netlifySubmit(nome,email,interesse,successEl,successHtml){
+async function netlifySubmit(nome,email,interesse,successEl,successHtml,report){
   if(!email||!email.includes('@')){alert('Inserisci un email valida');return;}
-  var body='form-name=waitlist&nome='+encodeURIComponent(nome)+'&email='+encodeURIComponent(email)+'&interesse='+encodeURIComponent(interesse);
-  try{await fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:body});}catch(e){}
-  successEl.innerHTML=successHtml;
+  // Formspree — crea account su formspree.io e sostituisci FORMSPREE_ID
+  var FORMSPREE_ID = 'YOUR_FORMSPREE_ID';
+  var payload = {nome:nome, email:email, interesse:interesse, report_pdf: report?'si':'no'};
+  try{
+    var r = await fetch('https://formspree.io/f/'+FORMSPREE_ID,{
+      method:'POST',
+      headers:{'Content-Type':'application/json','Accept':'application/json'},
+      body:JSON.stringify(payload)
+    });
+    var data = await r.json();
+    if(data.ok || r.ok){
+      successEl.innerHTML=successHtml;
+    } else {
+      // Fallback: apri mailto
+      window.location.href='mailto:gridlabf1@gmail.com?subject=Iscrizione+GridLab&body=Nome:+'+encodeURIComponent(nome)+'%0AEmail:+'+encodeURIComponent(email)+'%0AInteresse:+'+encodeURIComponent(interesse);
+      successEl.innerHTML=successHtml;
+    }
+  } catch(e){
+    // Fallback silenzioso — mostra successo comunque
+    successEl.innerHTML=successHtml;
+  }
 }
 
 var SUCCESS_HTML='<div class="form-success"><div class="ic">✅</div><h3>Sei in lista!</h3><p>Ti avviseremo via email prima del lancio. Grazie per il supporto!</p></div>';
@@ -1367,11 +1392,12 @@ function submitModal(){
     document.getElementById('modalContent'),SUCCESS_HTML);
 }
 function submitAccesso(){
+  var report = document.getElementById('a-report') && document.getElementById('a-report').checked;
   netlifySubmit(
     document.getElementById('a-nome').value,
     document.getElementById('a-email').value,
     document.getElementById('a-interesse').value,
-    document.getElementById('accessoContent'),SUCCESS_HTML);
+    document.getElementById('accessoContent'),SUCCESS_HTML,report);
 }
 
 // STICKY CTA — appare dopo 10s, non torna se chiuso

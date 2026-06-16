@@ -2339,7 +2339,6 @@ function _populateTyreInputs() {
 }
 
 function runTyreSimu() {
-  _populateTyreInputs();
   var p = _tyreParams();
   var totalLaps = p.totalLaps;
   var baseLap   = p.baseLap;
@@ -2446,22 +2445,47 @@ function runTyreSimu() {
   }
 }
 function renderTyreSimu() {
-  _populateTyreInputs();
-  // Mostra summary auto-params
   var ts = (typeof D !== 'undefined' && D.tyre_strategy) ? D.tyre_strategy : null;
+  var isFP2 = ts && ts.source && ts.source.startsWith('fp2');
+
+  // Badge sorgente
+  var badge = document.getElementById('ts-source-badge');
+  if (badge) {
+    badge.innerHTML = isFP2
+      ? '<span style="background:#00D7B620;color:#00D7B6;padding:3px 10px;border-radius:12px;font-size:12px">📊 Da FP2 reale</span>'
+      : '<span style="background:#f1a94420;color:#f1a944;padding:3px 10px;border-radius:12px;font-size:12px">⏳ In attesa di FP2</span>';
+  }
+
+  // Se non abbiamo FP2 reali, mostra placeholder e basta
+  if (!isFP2) {
+    var chart = document.getElementById('tyreSimuChart');
+    var result = document.getElementById('tyreSimuResult');
+    var summary = document.getElementById('ts-auto-summary');
+    var controls = document.getElementById('ts-controls');
+    if (chart) chart.style.display = 'none';
+    if (result) result.innerHTML = '';
+    if (summary) summary.innerHTML = '';
+    if (controls) controls.style.display = 'none';
+    var placeholder = document.getElementById('ts-placeholder');
+    if (placeholder) placeholder.style.display = 'block';
+    return;
+  }
+
+  // FP2 disponibile — popola e simula
+  _populateTyreInputs();
+  var c = ts.compounds || {};
+  var fmt = function(v,d){ return v!=null ? parseFloat(v).toFixed(d) : '—'; };
+  var card = function(label,val,col){
+    return '<div style="background:var(--card);border:1px solid var(--line);border-radius:8px;padding:8px 14px;min-width:100px">'
+      +'<div style="font-size:10px;color:var(--txt-dim);margin-bottom:2px">'+label+'</div>'
+      +'<div style="font-size:14px;font-weight:700;color:'+(col||'var(--txt)')+'">'+val+'</div>'
+      +'</div>';
+  };
+  var soft   = c.SOFT||c.Soft||{};
+  var medium = c.MEDIUM||c.Medium||{};
+  var hard   = c.HARD||c.Hard||{};
   var summary = document.getElementById('ts-auto-summary');
-  if (summary && ts) {
-    var c = ts.compounds || {};
-    var fmt = function(v,d){ return v!=null ? parseFloat(v).toFixed(d) : '—'; };
-    var card = function(label,val,col){
-      return '<div style="background:var(--card);border:1px solid var(--line);border-radius:8px;padding:8px 14px;min-width:100px">'
-        +'<div style="font-size:10px;color:var(--txt-dim);margin-bottom:2px">'+label+'</div>'
-        +'<div style="font-size:14px;font-weight:700;color:'+(col||'var(--txt)')+'">'+val+'</div>'
-        +'</div>';
-    };
-    var soft   = c.SOFT||c.Soft||{};
-    var medium = c.MEDIUM||c.Medium||{};
-    var hard   = c.HARD||c.Hard||{};
+  if (summary) {
     summary.innerHTML =
       card('Giri', ts.total_laps, '#00D7B6')
       +card('Base lap', fmt(ts.base_lap,3)+'s', '#00D7B6')
@@ -2472,6 +2496,12 @@ function renderTyreSimu() {
       +card('Δ Med vs S',   (medium.delta_vs_soft>=0?'+':'')+fmt(medium.delta_vs_soft,2)+'s', '#f1c544')
       +card('Δ Hard vs S',  (hard.delta_vs_soft>=0?'+':'')+fmt(hard.delta_vs_soft,2)+'s', '#e0e0e0');
   }
+  var chart = document.getElementById('tyreSimuChart');
+  var controls = document.getElementById('ts-controls');
+  var placeholder = document.getElementById('ts-placeholder');
+  if (chart) chart.style.display = '';
+  if (controls) controls.style.display = '';
+  if (placeholder) placeholder.style.display = 'none';
   runTyreSimu();
 }
 
@@ -2525,6 +2555,15 @@ function renderTyreSimu() {
   <!-- Riepilogo auto-params leggibile -->
   <div id="ts-auto-summary" style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:14px"></div>
 
+  <!-- Placeholder quando FP2 non disponibili -->
+  <div id="ts-placeholder" style="display:none;text-align:center;padding:60px 20px;background:var(--card);border-radius:12px;border:1px dashed var(--line)">
+    <div style="font-size:40px;margin-bottom:12px">🏁</div>
+    <div style="font-size:16px;font-weight:700;margin-bottom:8px">Dati FP2 non ancora disponibili</div>
+    <div style="font-size:13px;color:var(--txt-dim)">Il simulatore sarà calibrato automaticamente dopo le Prove Libere 2.<br>Scarica i dati FP2 con <code style="background:var(--bg);padding:2px 6px;border-radius:4px">python scarica.py</code> e rigenera la previsione.</div>
+  </div>
+
+  <!-- Controlli — nascosti finché non c'è FP2 -->
+  <div id="ts-controls">
   <!-- Override manuale collassabile -->
   <details id="ts-override-open" style="margin-bottom:16px;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:12px">
     <summary style="cursor:pointer;font-size:13px;color:var(--txt-dim);font-weight:600;list-style:none">⚙️ Override manuale parametri</summary>
@@ -2556,8 +2595,9 @@ function renderTyreSimu() {
       </label>
     </div>
   </details>
-
   <button onclick="runTyreSimu()" style="padding:8px 22px;background:var(--acc2);color:#000;border:none;border-radius:6px;font-size:13px;font-weight:700;cursor:pointer;margin-bottom:16px">▶ Calcola</button>
+  </div><!-- /ts-controls -->
+
   <div style="position:relative;height:340px"><canvas id="tyreSimuChart"></canvas></div>
   <div id="tyreSimuResult" style="margin-top:16px;font-size:13px"></div>
 </div>

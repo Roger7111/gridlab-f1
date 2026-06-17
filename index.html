@@ -454,7 +454,7 @@ footer p{color:var(--mut);font-size:12px;margin-bottom:5px;max-width:880px}
   <p class="lead">P(vittoria), P(podio) e punti attesi — generata dopo le qualifiche reali.</p>
   <div class="premium-wrap">
     <div class="card"><table>
-      <thead><tr><th>Pos</th><th>Pilota</th><th>P(Vince)</th><th>P(Podio)</th><th class="hide-sm">Punti attesi</th><th class="hide-sm">P(Punti)</th></tr></thead>
+      <thead><tr><th>Pos</th><th>Pilota</th><th>P(Vince)</th><th class="hide-sm" title="Quote Polymarket normalizzate — confronto con il modello">Mercato</th><th>P(Podio)</th><th class="hide-sm">Punti attesi</th><th class="hide-sm" title="Intervallo P10–P90 della posizione finale prevista">Range pos.</th></tr></thead>
       <tbody id="raceGrid"></tbody>
     </table></div>
     <div class="premium-lock" id="lockGara">
@@ -1456,12 +1456,42 @@ function renderQuali(){
 // GARA
 function renderGara(){
   var rp=D.race_prediction||[];var mx=rp.length?rp[0].p_win:0.4;
+  var df=D.driver_form||{};
   document.getElementById('raceGrid').innerHTML=rp.map(function(r,i){
-    return '<tr><td class="pos '+pc(i+1)+'">'+(i+1)+'</td>'+drvCell(r.driver,r.team)+
+    // delta modello vs mercato
+    var mktHtml='<td class="hide-sm" style="text-align:center;font-size:12px;color:var(--mut)">—</td>';
+    if(r.mkt_prob && r.mkt_prob>0){
+      var delta=Math.round((r.p_win-r.mkt_prob)*100);
+      var sign=delta>0?'+':'';
+      var col=delta>3?'#4ade80':delta<-3?'#f87171':'var(--mut)';
+      var arrow=delta>3?'▲ ':delta<-3?'▼ ':'';
+      mktHtml='<td class="hide-sm" style="text-align:center;font-size:12px"><span style="color:var(--mut)">'+pct(r.mkt_prob)+'</span><br><span style="color:'+col+';font-size:11px;font-weight:600">'+arrow+sign+delta+'pp</span></td>';
+    }
+    // range posizione P10–P90
+    var rangeHtml='<td class="hide-sm" style="text-align:center;font-size:12px;color:var(--mut)">—</td>';
+    if(r.pos_p10 && r.pos_p90){
+      rangeHtml='<td class="hide-sm" style="text-align:center;font-size:12px;color:var(--mut);font-variant-numeric:tabular-nums">P'+r.pos_p10+'–P'+r.pos_p90+'</td>';
+    }
+    // form ultimi 3 GP
+    var form=df[r.driver]||{};
+    var formDots='';
+    if(form.positions){
+      formDots=' <span style="font-size:10px;letter-spacing:1px;margin-left:4px">'+form.positions.map(function(p){
+        if(p===null)return '<span style="color:#ef6060" title="DNF">✕</span>';
+        if(p===1)return '<span style="color:var(--gold)" title="P'+p+'">●</span>';
+        if(p<=3)return '<span style="color:#a78bfa" title="P'+p+'">●</span>';
+        if(p<=10)return '<span style="color:var(--acc)" title="P'+p+'">●</span>';
+        return '<span style="color:var(--mut)" title="P'+p+'">●</span>';
+      }).join('')+'</span>';
+    }
+    return '<tr><td class="pos '+pc(i+1)+'">'+(i+1)+'</td>'+
+      '<td><div class="drv"><div class="bar" style="background:'+tc(r.team)+'"></div>'+
+      '<div class="dname" style="cursor:pointer" onclick="openModal(\''+r.driver+'\')">'+r.driver+formDots+'</div></div></td>'+
       '<td><div class="pbar">'+pb(r.p_win,mx)+'<span class="pct">'+pct(r.p_win)+'</span></div></td>'+
+      mktHtml+
       '<td><div class="pbar">'+pb(r.p_podio,1)+'<span class="pct">'+pct(r.p_podio)+'</span></div></td>'+
       '<td class="hide-sm" style="font-variant-numeric:tabular-nums;font-weight:600">'+r.exp_pts.toFixed(1)+'</td>'+
-      '<td class="hide-sm"><div class="pbar">'+pb(r.p_points,1)+'<span class="pct">'+pct(r.p_points)+'</span></div></td></tr>';
+      rangeHtml+'</tr>';
   }).join('');
   if(!rp.length)document.getElementById('lockGara').style.display='flex';
 }

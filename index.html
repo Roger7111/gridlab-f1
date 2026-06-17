@@ -47,7 +47,7 @@ tbody tr:last-child td{border-bottom:none}tbody tr:hover{background:var(--panel2
 .fascia{font-variant-numeric:tabular-nums;font-weight:600;font-size:13px}
 /* PREMIUM */
 .premium-wrap{position:relative}
-.premium-lock{position:absolute;inset:0;background:rgba(11,14,20,.88);backdrop-filter:blur(5px);border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:32px;z-index:10}
+.premium-lock{position:absolute;inset:0;background:rgba(11,14,20,.88);backdrop-filter:blur(5px);border-radius:14px;display:none;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:32px;z-index:10}
 .premium-lock .icon{font-size:32px;margin-bottom:10px}
 .premium-lock h3{font-size:17px;margin-bottom:8px;color:var(--premium)}
 .premium-lock p{color:var(--mut);font-size:13px;max-width:480px;margin-bottom:14px}
@@ -841,7 +841,7 @@ footer p{color:var(--mut);font-size:12px;margin-bottom:5px;max-width:880px}
 <script src="data/previsione.js"></script>
 <script>
 const D = window.GRIDLAB_DATA || {};
-const TC = {'Mercedes':'#00D7B6','Ferrari':'#E8002D','McLaren':'#FF8000','Red Bull Racing':'#3671C6','Aston Martin':'#229971','Alpine':'#0093CC','Audi':'#9B1B30','Racing Bulls':'#6C8FF0','Williams':'#1868DB','Haas F1 Team':'#9aa0a6','Cadillac':'#C8A95B'};
+const TC = {'Mercedes':'#00D7B6','Ferrari':'#E8002D','McLaren':'#FF8000','Red Bull Racing':'#3671C6','Aston Martin':'#229971','Alpine':'#0093CC','Audi':'#9B1B30','Racing Bulls':'#6C8FF0','Williams':'#1868DB','Haas F1 Team':'#9aa0a6','Cadillac':'#C8A95B'}; // MASTER team colors — unica fonte di verita'
 const NM = {ANT:'Antonelli',RUS:'Russell',LEC:'Leclerc',HAM:'Hamilton',NOR:'Norris',PIA:'Piastri',VER:'Verstappen',HAD:'Hadjar',HUL:'Hülkenberg',COL:'Colapinto',GAS:'Gasly',BOR:'Bortoleto',LIN:'Lindblad',OCO:'Ocon',BEA:'Bearman',SAI:'Sainz',LAW:'Lawson',ALB:'Albon',ALO:'Alonso',PER:'Pérez',BOT:'Bottas',STR:'Stroll'};
 const CIRC = {'power':'Power ⚡','aero':'Aerodinamico 🔽','balanced':'Bilanciato ⚖️','street':'Cittadino 🏙️','monaco':'Monaco 🎲'};
 function nm(c){return NM[c]||c;}
@@ -1051,7 +1051,7 @@ function openPF(drv){
   var info = ds.find(function(r){return r.driver===drv;}) || {};
   var rp = (D.race_prediction||[]).find(function(r){return r.driver===drv;}) || {};
   var h2h_data = D.h2h || {};
-  var col = ''+({'Mercedes':'#00D7B6','Ferrari':'#E8002D','McLaren':'#FF8000','Red Bull Racing':'#3671C6','Aston Martin':'#229971','Alpine':'#0093CC','Audi':'#9B1B30','Racing Bulls':'#6C8FF0','Williams':'#1868DB','Haas F1 Team':'#9aa0a6','Cadillac':'#C8A95B'}[info.team]||'#888');
+  var col = tc(info.team);
   document.getElementById('pfTeamBar').style.background = col;
   document.getElementById('pfName').textContent = nm(drv)+' · '+drv;
   document.getElementById('pfTeam').textContent = info.team||'—';
@@ -1528,6 +1528,7 @@ function renderTitolo(){
   }
   document.getElementById('champPiloti').innerHTML=champRows(c.piloti,'driver');
   document.getElementById('champCostruttori').innerHTML=champRows(c.costruttori,'team');
+  document.getElementById('lockTitolo').style.display=(c.piloti&&c.piloti.length)?'none':'flex';
 }
 
 // H2H
@@ -1545,6 +1546,7 @@ function renderH2H(){
       }).join('')+'</tr>';
   }).join('');
   document.getElementById('h2hTable').innerHTML=head+body;
+  document.getElementById('lockH2H').style.display=drvs.length?'none':'flex';
 }
 
 // FANTAF1
@@ -1557,6 +1559,7 @@ function renderFanta(){
       '<td class="hide-sm"><div class="pbar">'+pb(r.p_podio,1)+'<span class="pct">'+pct(r.p_podio)+'</span></div></td>'+
       '<td class="hide-sm"><div class="pbar">'+pb(r.p_points,1)+'<span class="pct">'+pct(r.p_points)+'</span></div></td></tr>';
   }).join('');
+  document.getElementById('lockFanta').style.display=f.length?'none':'flex';
 }
 
 // PASSO
@@ -1573,6 +1576,7 @@ function renderPasso(){
       '<td class="pace-effect hide-sm">'+(te!=null?'+'+te.toFixed(3)+'s':'—')+'</td>'+
       '<td class="hide-sm" style="color:var(--mut);font-size:12px">'+r.laps+'</td></tr>';
   }).join('');
+  document.getElementById('lockPasso').style.display=drvs.length?'none':'flex';
 }
 
 
@@ -2155,11 +2159,7 @@ function renderTeamDev() {
   var circuits = td.circuits || [];
   var teams = td.teams || {};
   if (!circuits.length) return;
-  var TEAM_COLORS = {
-    'Mercedes':'#00D7B6','Ferrari':'#e8002d','McLaren':'#FF8000','Red Bull Racing':'#3671C6',
-    'Audi':'#e40045','Alpine':'#FF87B7','Williams':'#00a0de','Racing Bulls':'#6692FF',
-    'Haas F1 Team':'#B6BABD','Aston Martin':'#358C75','Cadillac':'#ffffff'
-  };
+  var TEAM_COLORS = TC; // usa il master TC — unica fonte colori
   var drvKeys = Object.keys(teams);
   var datasets = drvKeys.map(function(t) {
     return {
@@ -2205,11 +2205,7 @@ var _gridFinishChart = null;
 function renderGridFinish() {
   var gf = D.grid_finish || [];
   if (!gf.length) return;
-  var TEAM_COLORS = {
-    'Mercedes':'#00D7B6','Ferrari':'#e8002d','McLaren':'#FF8000','Red Bull Racing':'#3671C6',
-    'Audi':'#e40045','Alpine':'#FF87B7','Williams':'#00a0de','Racing Bulls':'#6692FF',
-    'Haas F1 Team':'#B6BABD','Aston Martin':'#358C75','Cadillac':'#ffffff'
-  };
+  var TEAM_COLORS = TC; // usa il master TC — unica fonte colori
   // Un dataset per team
   var byTeam = {};
   gf.forEach(function(d) {
@@ -2275,11 +2271,7 @@ var _reliabilityChart = null;
 function renderReliability() {
   var rel = D.reliability || [];
   if (!rel.length) return;
-  var TEAM_COLORS = {
-    'Mercedes':'#00D7B6','Ferrari':'#e8002d','McLaren':'#FF8000','Red Bull Racing':'#3671C6',
-    'Audi':'#e40045','Alpine':'#FF87B7','Williams':'#00a0de','Racing Bulls':'#6692FF',
-    'Haas F1 Team':'#B6BABD','Aston Martin':'#358C75','Cadillac':'#ffffff'
-  };
+  var TEAM_COLORS = TC; // usa il master TC — unica fonte colori
   var labels = rel.map(function(t){return t.team;});
   var ctx = document.getElementById('reliabilityChart');
   if (!ctx) return;
@@ -2336,11 +2328,7 @@ function renderConstBattle() {
   var rounds = cb.rounds || [];
   var teams  = cb.teams  || {};
   if (!rounds.length) return;
-  var TEAM_COLORS = {
-    'Mercedes':'#00D7B6','Ferrari':'#e8002d','McLaren':'#FF8000','Red Bull Racing':'#3671C6',
-    'Audi':'#e40045','Alpine':'#FF87B7','Williams':'#00a0de','Racing Bulls':'#6692FF',
-    'Haas F1 Team':'#B6BABD','Aston Martin':'#358C75','Cadillac':'#444'
-  };
+  var TEAM_COLORS = TC; // usa il master TC — unica fonte colori
   var datasets = Object.keys(teams).map(function(t) {
     return {
       label: t, data: teams[t],
@@ -2693,32 +2681,4 @@ function renderTyreSimu() {
         <input id="ts-deg-med" type="number" value="0.06" min="0" max="1" step="0.001" style="width:74px;padding:5px;background:var(--bg);border:1px solid var(--line);color:var(--txt);border-radius:6px;font-size:13px">
       </label>
       <label style="font-size:12px;color:#e0e0e0">Hard deg/lap (s)<br>
-        <input id="ts-deg-hard" type="number" value="0.04" min="0" max="1" step="0.001" style="width:74px;padding:5px;background:var(--bg);border:1px solid var(--line);color:var(--txt);border-radius:6px;font-size:13px">
-      </label>
-      <label style="font-size:12px;color:#f1c544">Δ Medium vs Soft (s)<br>
-        <input id="ts-delta-med" type="number" value="0.5" min="-1" max="3" step="0.01" style="width:74px;padding:5px;background:var(--bg);border:1px solid var(--line);color:var(--txt);border-radius:6px;font-size:13px">
-      </label>
-      <label style="font-size:12px;color:#e0e0e0">Δ Hard vs Soft (s)<br>
-        <input id="ts-delta-hard" type="number" value="1.0" min="-1" max="3" step="0.01" style="width:74px;padding:5px;background:var(--bg);border:1px solid var(--line);color:var(--txt);border-radius:6px;font-size:13px">
-      </label>
-    </div>
-  </details>
-  <button onclick="runTyreSimu()" style="padding:8px 22px;background:var(--acc2);color:#000;border:none;border-radius:6px;font-size:13px;font-weight:700;cursor:pointer;margin-bottom:16px">▶ Calcola</button>
-  </div><!-- /ts-controls -->
-
-  <div style="position:relative;height:340px"><canvas id="tyreSimuChart"></canvas></div>
-  <div id="tyreSimuResult" style="margin-top:16px;font-size:13px"></div>
-</div>
-
-<!-- PWA Install Banner -->
-<div id="pwa-banner" style="display:none">
-  <div style="font-size:22px">🏎️</div>
-  <div class="pwa-text">
-    <strong>Installa GridLab</strong>
-    <span>Accesso rapido + funziona offline</span>
-  </div>
-  <button class="btn-install" onclick="pwaInstall()">Installa</button>
-  <button class="btn-close" onclick="pwaDismiss()">✕</button>
-</div>
-</body>
-</html>
+        <input id="ts-deg-hard" type="number" value="0.04" min="0" max="1" step="0.001" style="width:74px;padding:5px;background:var(--bg);border:1px

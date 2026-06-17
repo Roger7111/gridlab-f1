@@ -1490,7 +1490,7 @@ function renderGara(){
       '<td class="hide-sm"><div class="pbar">'+pb(r.p_podio,1)+'<span class="pct">'+pct(r.p_podio)+'</span></div></td>'+
       '<td class="hide-sm" style="font-variant-numeric:tabular-nums;font-weight:600">'+r.exp_pts.toFixed(1)+'</td></tr>';
   }).join('');
-  if(!rp.length)document.getElementById('lockGara').style.display='flex';
+  document.getElementById('lockGara').style.display=rp.length?'none':'flex';
 }
 
 // CLASSIFICA

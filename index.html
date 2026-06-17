@@ -1486,7 +1486,7 @@ function renderGara(){
     }
     return '<tr><td class="pos '+pc(i+1)+'">'+(i+1)+'</td>'+
       '<td><div class="drv"><div class="bar" style="background:'+tc(r.team)+'"></div>'+
-      '<div class="dname" style="cursor:pointer" onclick="openModal(\''+r.driver+'\')">'+r.driver+formDots+'</div></div></td>'+
+      '<div><div class="dname" style="cursor:pointer" onclick="openPF(\''+r.driver+'\')">'+nm(r.driver)+' <span class="dcode">'+r.driver+'</span>'+formDots+'</div><div class="team-sm">'+r.team+'</div></div></div></td>'+
       '<td><div class="pbar">'+pb(r.p_win,mx)+'<span class="pct">'+pct(r.p_win)+'</span></div></td>'+
       mktHtml+
       '<td><div class="pbar">'+pb(r.p_podio,1)+'<span class="pct">'+pct(r.p_podio)+'</span></div></td>'+

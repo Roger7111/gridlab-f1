@@ -2,7 +2,7 @@ const CACHE = 'gridlab-v1';
 const STATIC = [
   '/',
   '/index.html',
-  '/data/previsione.json',
+  '/data/previsione.js',
   '/manifest.json'
 ];
 

@@ -454,7 +454,7 @@ footer p{color:var(--mut);font-size:12px;margin-bottom:5px;max-width:880px}
   <p class="lead">P(vittoria), P(podio) e punti attesi — generata dopo le qualifiche reali.</p>
   <div class="premium-wrap">
     <div class="card"><table>
-      <thead><tr><th>Pos</th><th>Pilota</th><th>P(Vince)</th><th class="hide-sm" title="Quote Polymarket normalizzate — confronto con il modello">Mercato</th><th>P(Podio)</th><th class="hide-sm">Punti attesi</th><th class="hide-sm" title="Intervallo P10–P90 della posizione finale prevista">Range pos.</th></tr></thead>
+      <thead><tr><th>Pos</th><th>Pilota</th><th>Modello</th><th title="Quote Polymarket — confronto col modello">Mercato</th><th class="hide-sm">P(Podio)</th><th class="hide-sm">Punti att.</th></tr></thead>
       <tbody id="raceGrid"></tbody>
     </table></div>
     <div class="premium-lock" id="lockGara">
@@ -1458,40 +1458,37 @@ function renderGara(){
   var rp=D.race_prediction||[];var mx=rp.length?rp[0].p_win:0.4;
   var df=D.driver_form||{};
   document.getElementById('raceGrid').innerHTML=rp.map(function(r,i){
-    // delta modello vs mercato
-    var mktHtml='<td class="hide-sm" style="text-align:center;font-size:12px;color:var(--mut)">—</td>';
-    if(r.mkt_prob && r.mkt_prob>0){
-      var delta=Math.round((r.p_win-r.mkt_prob)*100);
-      var sign=delta>0?'+':'';
-      var col=delta>3?'#4ade80':delta<-3?'#f87171':'var(--mut)';
-      var arrow=delta>3?'▲ ':delta<-3?'▼ ':'';
-      mktHtml='<td class="hide-sm" style="text-align:center;font-size:12px"><span style="color:var(--mut)">'+pct(r.mkt_prob)+'</span><br><span style="color:'+col+';font-size:11px;font-weight:600">'+arrow+sign+delta+'pp</span></td>';
-    }
-    // range posizione P10–P90
-    var rangeHtml='<td class="hide-sm" style="text-align:center;font-size:12px;color:var(--mut)">—</td>';
-    if(r.pos_p10 && r.pos_p90){
-      rangeHtml='<td class="hide-sm" style="text-align:center;font-size:12px;color:var(--mut);font-variant-numeric:tabular-nums">P'+r.pos_p10+'–P'+r.pos_p90+'</td>';
-    }
-    // form ultimi 3 GP
+    // form dots ultimi 3 GP
     var form=df[r.driver]||{};
-    var formDots='';
-    if(form.positions){
-      formDots=' <span style="font-size:10px;letter-spacing:1px;margin-left:4px">'+form.positions.map(function(p){
-        if(p===null)return '<span style="color:#ef6060" title="DNF">✕</span>';
-        if(p===1)return '<span style="color:var(--gold)" title="P'+p+'">●</span>';
-        if(p<=3)return '<span style="color:#a78bfa" title="P'+p+'">●</span>';
-        if(p<=10)return '<span style="color:var(--acc)" title="P'+p+'">●</span>';
-        return '<span style="color:var(--mut)" title="P'+p+'">●</span>';
+    var dots='';
+    if(form.positions&&form.positions.length){
+      dots='<span style="font-size:9px;margin-left:5px;letter-spacing:2px">'+form.positions.map(function(p){
+        if(p===null)return '<span style="color:#ef6060">✕</span>';
+        if(p===1)return '<span style="color:var(--gold)">●</span>';
+        if(p<=3)return '<span style="color:#a78bfa">●</span>';
+        if(p<=10)return '<span style="color:var(--acc)">●</span>';
+        return '<span style="color:var(--mut)">●</span>';
       }).join('')+'</span>';
+    }
+    // colonna modello: p_win + range P10-P90
+    var rangeStr='';
+    if(r.pos_p10&&r.pos_p90){rangeStr='<br><span style="font-size:10px;color:var(--mut)">P'+r.pos_p10+'–P'+r.pos_p90+'</span>';}
+    // colonna mercato: quota + delta
+    var mktCell='<td style="text-align:center;font-size:12px;color:var(--mut)">—</td>';
+    if(r.mkt_prob&&r.mkt_prob>0){
+      var d=Math.round((r.p_win-r.mkt_prob)*100);
+      var sign=d>0?'+':'';
+      var col=d>3?'#4ade80':d<-3?'#f87171':'var(--mut)';
+      mktCell='<td style="text-align:center;font-size:12px"><span style="color:var(--mut)">'+pct(r.mkt_prob)+'</span><br><span style="color:'+col+';font-size:10px;font-weight:700">'+sign+d+'pp</span></td>';
     }
     return '<tr><td class="pos '+pc(i+1)+'">'+(i+1)+'</td>'+
       '<td><div class="drv"><div class="bar" style="background:'+tc(r.team)+'"></div>'+
-      '<div><div class="dname" style="cursor:pointer" onclick="openPF(\''+r.driver+'\')">'+nm(r.driver)+' <span class="dcode">'+r.driver+'</span>'+formDots+'</div><div class="team-sm">'+r.team+'</div></div></div></td>'+
-      '<td><div class="pbar">'+pb(r.p_win,mx)+'<span class="pct">'+pct(r.p_win)+'</span></div></td>'+
-      mktHtml+
-      '<td><div class="pbar">'+pb(r.p_podio,1)+'<span class="pct">'+pct(r.p_podio)+'</span></div></td>'+
-      '<td class="hide-sm" style="font-variant-numeric:tabular-nums;font-weight:600">'+r.exp_pts.toFixed(1)+'</td>'+
-      rangeHtml+'</tr>';
+      '<div><div class="dname">'+nm(r.driver)+' <span class="dcode">'+r.driver+'</span>'+dots+'</div>'+
+      '<div class="team-sm">'+r.team+'</div></div></div></td>'+
+      '<td><div class="pbar">'+pb(r.p_win,mx)+'<span class="pct">'+pct(r.p_win)+'</span></div>'+rangeStr+'</td>'+
+      mktCell+
+      '<td class="hide-sm"><div class="pbar">'+pb(r.p_podio,1)+'<span class="pct">'+pct(r.p_podio)+'</span></div></td>'+
+      '<td class="hide-sm" style="font-variant-numeric:tabular-nums;font-weight:600">'+r.exp_pts.toFixed(1)+'</td></tr>';
   }).join('');
   if(!rp.length)document.getElementById('lockGara').style.display='flex';
 }

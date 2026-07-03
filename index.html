@@ -430,10 +430,19 @@ footer p{color:var(--mut);font-size:12px;margin-bottom:5px;max-width:880px}
 
 <!-- QUALIFICA -->
 <div class="section active" id="s-qualifica">
-  <h2>Griglia prevista — Qualifica</h2>
-  <p class="lead">Previsione probabilistica pre-weekend. La <b>fascia 80%</b> mostra l'incertezza reale.</p>
+  <!-- SPRINT QUALIFYING (solo weekend Sprint: mostrato via JS se formato==='sprint') -->
+  <div id="sprintBlock" style="display:none;margin-bottom:28px">
+    <h2 id="sprintTitle">Sprint Qualifying — Previsione <span class="badge badge-sprint">Sprint</span></h2>
+    <p class="lead" id="sprintLead">Weekend Sprint: la SQ del venerdì decide la griglia della Sprint del sabato.</p>
+    <div class="card"><table>
+      <thead><tr id="sprintHead"><th>Pos</th><th>Pilota</th><th class="hide-sm">Fascia 80%</th><th>P(Pole)</th><th class="hide-sm">P(Top 3)</th><th>P(SQ3)</th></tr></thead>
+      <tbody id="sprintGrid"></tbody>
+    </table></div>
+  </div>
+  <h2 id="qualiTitle">Griglia prevista — Qualifica</h2>
+  <p class="lead" id="qualiLead">Previsione probabilistica pre-weekend. La <b>fascia 80%</b> mostra l'incertezza reale.</p>
   <div class="card"><table>
-    <thead><tr><th>Pos</th><th>Pilota</th><th class="hide-sm">Fascia 80%</th><th>P(Pole)</th><th class="hide-sm">P(Top 3)</th><th>P(Q3)</th></tr></thead>
+    <thead><tr id="qualiHead"><th>Pos</th><th>Pilota</th><th class="hide-sm">Fascia 80%</th><th>P(Pole)</th><th class="hide-sm">P(Top 3)</th><th>P(Q3)</th></tr></thead>
     <tbody id="qualiGrid"></tbody>
   </table></div>
   <div class="share-row" id="shareRow">
@@ -450,11 +459,12 @@ footer p{color:var(--mut);font-size:12px;margin-bottom:5px;max-width:880px}
 
 <!-- GARA -->
 <div class="section" id="s-gara">
-  <h2>Previsione Gara</h2>
-  <p class="lead">P(vittoria), P(podio) e punti attesi — generata dopo le qualifiche reali.</p>
+  <h2 id="garaTitle">Previsione Gara</h2>
+  <p class="lead" id="garaLead">P(vittoria), P(podio) e punti attesi — generata dopo le qualifiche reali.</p>
   <div class="premium-wrap">
     <div class="card"><table>
-      <thead><tr><th>Pos</th><th>Pilota</th><th>Modello</th><th title="Quote Polymarket — confronto col modello">Mercato</th><th class="hide-sm">P(Podio)</th><th class="hide-sm">Punti att.</th></tr></thead>
+      <!-- Colonna "Mercato/Quote Polymarket" disattivata: area scommesse chiusa in attesa di validazione legale (D.L. 87/2018) -->
+      <thead><tr id="garaHead"><th>Pos</th><th>Pilota</th><th>Modello</th><th class="hide-sm">P(Podio)</th><th class="hide-sm">Punti att.</th></tr></thead>
       <tbody id="raceGrid"></tbody>
     </table></div>
     <div class="premium-lock" id="lockGara">
@@ -838,7 +848,7 @@ footer p{color:var(--mut);font-size:12px;margin-bottom:5px;max-width:880px}
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
-<script src="data/previsione.js"></script>
+<script>document.write('<script src="data/previsione.js?_=' + Date.now() + '"><\/script>');</script>
 <script>
 const D = window.GRIDLAB_DATA || {};
 const TC = {'Mercedes':'#00D7B6','Ferrari':'#E8002D','McLaren':'#FF8000','Red Bull Racing':'#3671C6','Aston Martin':'#229971','Alpine':'#0093CC','Audi':'#9B1B30','Racing Bulls':'#6C8FF0','Williams':'#1868DB','Haas F1 Team':'#9aa0a6','Cadillac':'#C8A95B'}; // MASTER team colors — unica fonte di verita'
@@ -1436,6 +1446,7 @@ function renderHero(){
   var h='';
   if(lead)h+='<div class="chip"><div class="lbl">Leader campionato</div><div class="val">'+nm(lead.driver)+' · '+lead.punti+' pt</div></div>';
   if(g)h+='<div class="chip"><div class="lbl">Pole favorito</div><div class="val">'+nm(g.driver)+' · '+pct(g.p_pole)+'</div></div>';
+  if(D.formato==='sprint'){var sq=(D.sq_griglia||[])[0];h+='<div class="chip"><div class="lbl">Formato</div><div class="val" style="color:#6ecf7f">Weekend Sprint'+(sq?(' · SQ: '+nm(sq.driver)):'')+'</div></div>';}
   h+='<div class="chip"><div class="lbl">Gare disputate</div><div class="val">'+(done.gp||0)+' GP · '+(done.sprint||0)+' Sprint</div></div>';
   h+='<div class="chip"><div class="lbl">Simulazioni MC</div><div class="val">'+((D.n_sim||0).toLocaleString('it'))+'</div></div>';
   document.getElementById('heroChips').innerHTML=h;
@@ -1443,8 +1454,81 @@ function renderHero(){
 
 // QUALIFICA
 function renderQuali(){
+  var title=document.getElementById('qualiTitle');
+  var lead=document.getElementById('qualiLead');
+  var head=document.getElementById('qualiHead');
+  var real=D.quali_reale && D.griglia_reale && D.griglia_reale.length;
+  if(real){
+    // mappa pilota -> posizione prevista dal modello (per il confronto)
+    var proj={}; (D.griglia||[]).forEach(function(r){proj[r.driver]=r.pos;});
+    var projPole=(D.griglia&&D.griglia[0])?D.griglia[0].driver:'—';
+    if(title) title.innerHTML='Qualifica — Risultato reale <span style="color:#39d98a">✓</span>';
+    if(lead)  lead.innerHTML='Classifica reale della qualifica (best giro valido). Previsione pre-quali: pole <b>'+projPole+'</b>.';
+    if(head)  head.innerHTML='<th>Pos</th><th>Pilota</th><th class="hide-sm">Gap pole</th><th>Previsto</th><th class="hide-sm">Δ</th>';
+    document.getElementById('qualiGrid').innerHTML=D.griglia_reale.map(function(r){
+      var gap=(r.gap&&r.gap>0)?('+'+Number(r.gap).toFixed(3)):'<b>POLE</b>';
+      var pp=proj[r.driver];
+      var delta=(pp!=null)?(pp-r.pos):null;            // >0 = meglio del previsto
+      var dtxt=(delta==null)?'—':(delta>0?('▲'+delta):(delta<0?('▼'+(-delta)):'='));
+      var dcol=(delta==null||delta===0)?'var(--mut)':(delta>0?'#39d98a':'#ff6b6b');
+      return '<tr style="cursor:pointer" onclick="openPF(\''+r.driver+'\')">'+
+        '<td class="pos '+pc(r.pos)+'">'+r.pos+'</td>'+drvCell(r.driver,r.team)+
+        '<td class="fascia hide-sm">'+gap+'</td>'+
+        '<td style="color:var(--mut)">'+(pp!=null?('P'+pp):'—')+'</td>'+
+        '<td class="hide-sm" style="color:'+dcol+';font-weight:600">'+dtxt+'</td></tr>';
+    }).join('');
+    return;
+  }
+  // reset header (proiezione pre-quali)
+  if(title) title.textContent=(D.formato==='sprint')?'Griglia prevista — Qualifica GP (sabato)':'Griglia prevista — Qualifica';
+  if(lead)  lead.innerHTML=(D.formato==='sprint')
+    ?'Previsione per la <b>qualifica del GP</b> (sabato pomeriggio), che decide la griglia della gara di domenica. La <b>fascia 80%</b> mostra l\'incertezza reale.'
+    :'Previsione probabilistica pre-weekend. La <b>fascia 80%</b> mostra l\'incertezza reale.';
+  if(head)  head.innerHTML='<th>Pos</th><th>Pilota</th><th class="hide-sm">Fascia 80%</th><th>P(Pole)</th><th class="hide-sm">P(Top 3)</th><th>P(Q3)</th>';
   var g=D.griglia||[];
   document.getElementById('qualiGrid').innerHTML=g.map(function(r){
+    return '<tr style="cursor:pointer" onclick="openPF(\''+r.driver+'\')">' + '<td class="pos '+pc(r.pos)+'">'+r.pos+'</td>'+drvCell(r.driver,r.team)+
+      '<td class="fascia hide-sm">'+r.fascia+'</td>'+
+      '<td><div class="pbar">'+pb(r.p_pole,0.4)+'<span class="pct">'+pct(r.p_pole)+'</span></div></td>'+
+      '<td class="hide-sm"><div class="pbar">'+pb(r.p_top3,1)+'<span class="pct">'+pct(r.p_top3)+'</span></div></td>'+
+      '<td><div class="pbar">'+pb(r.p_q3,1)+'<span class="pct">'+pct(r.p_q3)+'</span></div></td></tr>';
+  }).join('');
+}
+
+// SPRINT QUALIFYING (solo weekend Sprint)
+function renderSprint(){
+  var blk=document.getElementById('sprintBlock');
+  if(!blk) return;
+  if(D.formato!=='sprint'||!(D.sq_griglia||[]).length){blk.style.display='none';return;}
+  blk.style.display='block';
+  var title=document.getElementById('sprintTitle');
+  var lead=document.getElementById('sprintLead');
+  var head=document.getElementById('sprintHead');
+  var real=D.sq_reale && D.sq_griglia_reale && D.sq_griglia_reale.length;
+  if(real){
+    var proj={}; (D.sq_griglia||[]).forEach(function(r){proj[r.driver]=r.pos;});
+    var projPole=(D.sq_griglia&&D.sq_griglia[0])?D.sq_griglia[0].driver:'—';
+    if(title) title.innerHTML='Sprint Qualifying — Risultato reale <span style="color:#39d98a">✓</span> <span class="badge badge-sprint">Sprint</span>';
+    if(lead)  lead.innerHTML='Griglia reale della Sprint del sabato (best giro valido). Previsione pre-SQ: pole <b>'+projPole+'</b>.';
+    if(head)  head.innerHTML='<th>Pos</th><th>Pilota</th><th class="hide-sm">Gap pole</th><th>Previsto</th><th class="hide-sm">Δ</th>';
+    document.getElementById('sprintGrid').innerHTML=D.sq_griglia_reale.map(function(r){
+      var gap=(r.gap&&r.gap>0)?('+'+Number(r.gap).toFixed(3)):'<b>POLE</b>';
+      var pp=proj[r.driver];
+      var delta=(pp!=null)?(pp-r.pos):null;            // >0 = meglio del previsto
+      var dtxt=(delta==null)?'—':(delta>0?('▲'+delta):(delta<0?('▼'+(-delta)):'='));
+      var dcol=(delta==null||delta===0)?'var(--mut)':(delta>0?'#39d98a':'#ff6b6b');
+      return '<tr style="cursor:pointer" onclick="openPF(\''+r.driver+'\')">'+
+        '<td class="pos '+pc(r.pos)+'">'+r.pos+'</td>'+drvCell(r.driver,r.team)+
+        '<td class="fascia hide-sm">'+gap+'</td>'+
+        '<td style="color:var(--mut)">'+(pp!=null?('P'+pp):'—')+'</td>'+
+        '<td class="hide-sm" style="color:'+dcol+';font-weight:600">'+dtxt+'</td></tr>';
+    }).join('');
+    return;
+  }
+  if(title) title.innerHTML='Sprint Qualifying — Previsione <span class="badge badge-sprint">Sprint</span>';
+  if(lead)  lead.innerHTML='Weekend Sprint: la SQ del venerdì decide la griglia della <b>Sprint del sabato</b>. Qualifica GP e gara lunga più sotto.';
+  if(head)  head.innerHTML='<th>Pos</th><th>Pilota</th><th class="hide-sm">Fascia 80%</th><th>P(Pole)</th><th class="hide-sm">P(Top 3)</th><th>P(SQ3)</th>';
+  document.getElementById('sprintGrid').innerHTML=(D.sq_griglia||[]).map(function(r){
     return '<tr style="cursor:pointer" onclick="openPF(\''+r.driver+'\')">' + '<td class="pos '+pc(r.pos)+'">'+r.pos+'</td>'+drvCell(r.driver,r.team)+
       '<td class="fascia hide-sm">'+r.fascia+'</td>'+
       '<td><div class="pbar">'+pb(r.p_pole,0.4)+'<span class="pct">'+pct(r.p_pole)+'</span></div></td>'+
@@ -1457,6 +1541,32 @@ function renderQuali(){
 function renderGara(){
   var rp=D.race_prediction||[];var mx=rp.length?rp[0].p_win:0.4;
   var df=D.driver_form||{};
+  var gtitle=document.getElementById('garaTitle');
+  var glead=document.getElementById('garaLead');
+  var ghead=document.getElementById('garaHead');
+  if(D.gara_reale && D.arrivo_reale && D.arrivo_reale.length){
+    var pred={}; rp.forEach(function(r,i){pred[r.driver]=i+1;});
+    if(gtitle) gtitle.innerHTML='Gara — Risultato reale <span style="color:#39d98a">✓</span>';
+    if(glead)  glead.innerHTML='Ordine d\'arrivo reale. Δ = confronto con la previsione pre-gara.';
+    if(ghead)  ghead.innerHTML='<th>Pos</th><th>Pilota</th><th class="hide-sm">Stato</th><th>Previsto</th><th class="hide-sm">Δ</th>';
+    document.getElementById('raceGrid').innerHTML=D.arrivo_reale.map(function(r){
+      var pp=pred[r.driver];
+      var delta=(pp!=null&&!r.dnf)?(pp-r.pos):null;       // >0 = meglio del previsto
+      var dtxt=r.dnf?'DNF':(delta==null?'—':(delta>0?('▲'+delta):(delta<0?('▼'+(-delta)):'=')));
+      var dcol=r.dnf?'#ef6060':((delta==null||delta===0)?'var(--mut)':(delta>0?'#39d98a':'#ff6b6b'));
+      return '<tr style="cursor:pointer" onclick="openPF(\''+r.driver+'\')">'+
+        '<td class="pos '+pc(r.pos)+'">'+r.pos+'</td>'+drvCell(r.driver,r.team)+
+        '<td class="hide-sm" style="color:'+(r.dnf?'#ef6060':'var(--mut)')+'">'+(r.dnf?'DNF':'arrivato')+'</td>'+
+        '<td style="color:var(--mut)">'+(pp!=null?('P'+pp):'—')+'</td>'+
+        '<td class="hide-sm" style="color:'+dcol+';font-weight:600">'+dtxt+'</td></tr>';
+    }).join('');
+    document.getElementById('lockGara').style.display='none';
+    return;
+  }
+  // reset header (previsione gara pre-arrivo)
+  if(gtitle) gtitle.textContent='Previsione Gara';
+  if(glead)  glead.innerHTML='P(vittoria), P(podio) e punti attesi, generata dopo le qualifiche reali.';
+  if(ghead)  ghead.innerHTML='<th>Pos</th><th>Pilota</th><th>Modello</th><th class="hide-sm">P(Podio)</th><th class="hide-sm">Punti att.</th>';
   document.getElementById('raceGrid').innerHTML=rp.map(function(r,i){
     // form dots ultimi 3 GP
     var form=df[r.driver]||{};
@@ -1473,20 +1583,13 @@ function renderGara(){
     // colonna modello: p_win + range P10-P90
     var rangeStr='';
     if(r.pos_p10&&r.pos_p90){rangeStr='<br><span style="font-size:10px;color:var(--mut)">P'+r.pos_p10+'–P'+r.pos_p90+'</span>';}
-    // colonna mercato: quota + delta
-    var mktCell='<td style="text-align:center;font-size:12px;color:var(--mut)">—</td>';
-    if(r.mkt_prob&&r.mkt_prob>0){
-      var d=Math.round((r.p_win-r.mkt_prob)*100);
-      var sign=d>0?'+':'';
-      var col=d>3?'#4ade80':d<-3?'#f87171':'var(--mut)';
-      mktCell='<td style="text-align:center;font-size:12px"><span style="color:var(--mut)">'+pct(r.mkt_prob)+'</span><br><span style="color:'+col+';font-size:10px;font-weight:700">'+sign+d+'pp</span></td>';
-    }
+    // colonna mercato (Quote Polymarket): DISATTIVATA — area scommesse chiusa
+    // in attesa di validazione legale (D.L. 87/2018). Riattivare header + mktCell insieme.
     return '<tr><td class="pos '+pc(i+1)+'">'+(i+1)+'</td>'+
       '<td><div class="drv"><div class="bar" style="background:'+tc(r.team)+'"></div>'+
       '<div><div class="dname">'+nm(r.driver)+' <span class="dcode">'+r.driver+'</span>'+dots+'</div>'+
       '<div class="team-sm">'+r.team+'</div></div></div></td>'+
       '<td><div class="pbar">'+pb(r.p_win,mx)+'<span class="pct">'+pct(r.p_win)+'</span></div>'+rangeStr+'</td>'+
-      mktCell+
       '<td class="hide-sm"><div class="pbar">'+pb(r.p_podio,1)+'<span class="pct">'+pct(r.p_podio)+'</span></div></td>'+
       '<td class="hide-sm" style="font-variant-numeric:tabular-nums;font-weight:600">'+r.exp_pts.toFixed(1)+'</td></tr>';
   }).join('');
@@ -1689,7 +1792,7 @@ function renderModello(){
 function stat(n,u,l,s,cls){return '<div class="stat"><div class="num '+cls+'">'+n+'<span style="font-size:18px">'+u+'</span></div><div class="lbl">'+l+'</div><div class="sub">'+s+'</div></div>';}
 
 // INIT
-renderHero();renderQuali();renderGara();renderClassifica();
+renderHero();renderQuali();renderSprint();renderGara();renderClassifica();
 renderTitolo();renderH2H();renderFanta();renderPasso();
 renderStorico();renderModello();renderAccCards();renderCalendario();renderDelta();
 if(Object.keys(ESE_SCENARIOS).length){renderEseCards();setEseScenario("asciutto");}
@@ -1705,6 +1808,26 @@ if ('serviceWorker' in navigator) {
     });
   });
 }
+
+// ===== AUTO-REFRESH: ricarica le tab quando esce una nuova previsione (fine sessione) =====
+(function(){
+  var _loaded = (window.GRIDLAB_DATA||{}).generato_at || (window.GRIDLAB_DATA||{}).aggiornato;
+  function _check(){
+    fetch('data/previsione.json?_=' + Date.now(), {cache:'no-store'})
+      .then(function(r){ return r.json(); })
+      .then(function(j){
+        var now = j.generato_at || j.aggiornato;
+        if (_loaded && now && now !== _loaded){
+          console.log('[auto-refresh] nuova previsione:', now, '— ricarico le tab');
+          location.reload();
+        }
+      }).catch(function(){});
+  }
+  setInterval(_check, 90000);                                   // ogni 90 secondi
+  document.addEventListener('visibilitychange', function(){     // e al ritorno sulla tab
+    if (!document.hidden) _check();
+  });
+})();
 
 window.addEventListener('beforeinstallprompt', function(e) {
   e.preventDefault();

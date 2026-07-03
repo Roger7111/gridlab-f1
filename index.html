@@ -439,6 +439,15 @@ footer p{color:var(--mut);font-size:12px;margin-bottom:5px;max-width:880px}
       <tbody id="sprintGrid"></tbody>
     </table></div>
   </div>
+  <!-- SPRINT RACE (solo weekend Sprint: mostrato via JS se c'è la previsione) -->
+  <div id="sprintRaceBlock" style="display:none;margin-bottom:28px">
+    <h2 id="sprintRaceTitle">Previsione Sprint Race (sabato) <span class="badge badge-sprint">Sprint</span></h2>
+    <p class="lead" id="sprintRaceLead">P(vittoria), P(podio) e punti attesi (8/7/6/5/4/3/2/1) dalla griglia reale della Sprint Qualifying.</p>
+    <div class="card"><table>
+      <thead><tr id="sprintRaceHead"><th>Pos</th><th>Pilota</th><th>P(Vittoria)</th><th class="hide-sm">P(Podio)</th><th>Punti att.</th></tr></thead>
+      <tbody id="sprintRaceGrid"></tbody>
+    </table></div>
+  </div>
   <h2 id="qualiTitle">Griglia prevista — Qualifica</h2>
   <p class="lead" id="qualiLead">Previsione probabilistica pre-weekend. La <b>fascia 80%</b> mostra l'incertezza reale.</p>
   <div class="card"><table>
@@ -1537,6 +1546,23 @@ function renderSprint(){
   }).join('');
 }
 
+// SPRINT RACE (previsione sprint del sabato, da griglia SQ reale)
+function renderSprintRace(){
+  var blk=document.getElementById('sprintRaceBlock');
+  if(!blk) return;
+  var sp=D.sprint_prediction||[];
+  if(D.formato!=='sprint'||!sp.length){blk.style.display='none';return;}
+  blk.style.display='block';
+  var mx=sp.length?sp[0].p_win:0.4;
+  document.getElementById('sprintRaceGrid').innerHTML=sp.map(function(r){
+    return '<tr style="cursor:pointer" onclick="openPF(\''+r.driver+'\')">'+
+      '<td class="pos '+pc(r.pos)+'">'+r.pos+'</td>'+drvCell(r.driver,r.team)+
+      '<td><div class="pbar">'+pb(r.p_win,mx)+'<span class="pct">'+pct(r.p_win)+'</span></div></td>'+
+      '<td class="hide-sm"><div class="pbar">'+pb(r.p_podio,1)+'<span class="pct">'+pct(r.p_podio)+'</span></div></td>'+
+      '<td style="font-weight:600">'+r.exp_pts.toFixed(1)+'</td></tr>';
+  }).join('');
+}
+
 // GARA
 function renderGara(){
   var rp=D.race_prediction||[];var mx=rp.length?rp[0].p_win:0.4;
@@ -1792,7 +1818,7 @@ function renderModello(){
 function stat(n,u,l,s,cls){return '<div class="stat"><div class="num '+cls+'">'+n+'<span style="font-size:18px">'+u+'</span></div><div class="lbl">'+l+'</div><div class="sub">'+s+'</div></div>';}
 
 // INIT
-renderHero();renderQuali();renderSprint();renderGara();renderClassifica();
+renderHero();renderQuali();renderSprint();renderSprintRace();renderGara();renderClassifica();
 renderTitolo();renderH2H();renderFanta();renderPasso();
 renderStorico();renderModello();renderAccCards();renderCalendario();renderDelta();
 if(Object.keys(ESE_SCENARIOS).length){renderEseCards();setEseScenario("asciutto");}

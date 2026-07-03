@@ -442,7 +442,7 @@ footer p{color:var(--mut);font-size:12px;margin-bottom:5px;max-width:880px}
   <!-- SPRINT RACE (solo weekend Sprint: mostrato via JS se c'è la previsione) -->
   <div id="sprintRaceBlock" style="display:none;margin-bottom:28px">
     <h2 id="sprintRaceTitle">Previsione Sprint Race (sabato) <span class="badge badge-sprint">Sprint</span></h2>
-    <p class="lead" id="sprintRaceLead">P(vittoria), P(podio) e punti attesi (8/7/6/5/4/3/2/1) dalla griglia reale della Sprint Qualifying.</p>
+    <p class="lead" id="sprintRaceLead">Ordinata per <b>posizione attesa</b> del modello (media della distribuzione). P(vittoria), P(podio) e punti attesi (8/7/6/5/4/3/2/1) dalla griglia reale della Sprint Qualifying.</p>
     <div class="card"><table>
       <thead><tr id="sprintRaceHead"><th>Pos</th><th>Pilota</th><th>P(Vittoria)</th><th class="hide-sm">P(Podio)</th><th>Punti att.</th></tr></thead>
       <tbody id="sprintRaceGrid"></tbody>
@@ -1591,7 +1591,7 @@ function renderGara(){
   }
   // reset header (previsione gara pre-arrivo)
   if(gtitle) gtitle.textContent='Previsione Gara';
-  if(glead)  glead.innerHTML='P(vittoria), P(podio) e punti attesi, generata dopo le qualifiche reali.';
+  if(glead)  glead.innerHTML='Ordinata per <b>posizione attesa</b> del modello. P(vittoria), P(podio) e punti attesi; range P10–P90 sotto la barra.';
   if(ghead)  ghead.innerHTML='<th>Pos</th><th>Pilota</th><th>Modello</th><th class="hide-sm">P(Podio)</th><th class="hide-sm">Punti att.</th>';
   document.getElementById('raceGrid').innerHTML=rp.map(function(r,i){
     // form dots ultimi 3 GP

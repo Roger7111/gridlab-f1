@@ -1,0 +1,78 @@
+evento,tipo,driver,codice,prob_raw,prob_novig,volume,data
+F1 Constructors' Champion,champ_costruttori,Mercedes,,0.855,0.8559,871887.7815489958,2025-12-09
+F1 Constructors' Champion,champ_costruttori,Ferrari,,0.1125,0.1126,577553.0823700019,2025-12-09
+F1 Constructors' Champion,champ_costruttori,McLaren,,0.0065,0.0065,1635501.7807839927,2025-12-09
+F1 Constructors' Champion,champ_costruttori,Red Bull Racing,,0.0045,0.0045,738485.4181969989,2025-12-09
+F1 Constructors' Champion,champ_costruttori,Racing Bulls,,0.0045,0.0045,3013783.2846688926,2025-12-09
+F1 Constructors' Champion,champ_costruttori,Williams,,0.0035,0.0035,3701648.336069922,2025-12-09
+F1 Constructors' Champion,champ_costruttori,Aston Martin,,0.0025,0.0025,3028835.876286986,2025-12-09
+F1 Constructors' Champion,champ_costruttori,Haas,,0.0025,0.0025,3186256.612710963,2025-12-09
+F1 Constructors' Champion,champ_costruttori,Audi,,0.0025,0.0025,3077134.141027002,2025-12-09
+F1 Constructors' Champion,champ_costruttori,Alpine,,0.0025,0.0025,3205755.1910129683,2025-12-09
+F1 Constructors' Champion,champ_costruttori,Cadillac,,0.0025,0.0025,3571985.291052842,2025-12-09
+F1 Drivers' Champion,champ_piloti,Kimi Antonelli,ANT,0.5845,0.5883,3639653.8412849824,2025-12-09
+F1 Drivers' Champion,champ_piloti,George Russell,RUS,0.185,0.1862,2347563.2671399903,2025-12-09
+F1 Drivers' Champion,champ_piloti,Lewis Hamilton,HAM,0.13,0.1309,4946390.5302999215,2025-12-09
+F1 Drivers' Champion,champ_piloti,Charles Leclerc,LEC,0.028,0.0282,4041846.2611680212,2025-12-09
+F1 Drivers' Champion,champ_piloti,Max Verstappen,VER,0.0245,0.0247,2954586.2588569936,2025-12-09
+F1 Drivers' Champion,champ_piloti,Lando Norris,NOR,0.0095,0.0096,2835816.1955230027,2025-12-09
+F1 Drivers' Champion,champ_piloti,Oscar Piastri,PIA,0.0045,0.0045,2923208.156307008,2025-12-09
+F1 Drivers' Champion,champ_piloti,Isack Hadjar,HAD,0.0025,0.0025,8895603.422225337,2025-12-09
+F1 Drivers' Champion,champ_piloti,Lance Stroll,STR,0.0025,0.0025,11588079.493774662,2025-12-09
+F1 Drivers' Champion,champ_piloti,Esteban Ocon,OCO,0.0025,0.0025,8783456.759696385,2025-12-09
+F1 Drivers' Champion,champ_piloti,Arvid Lindblad,LIN,0.0025,0.0025,11388278.609126283,2025-12-09
+F1 Drivers' Champion,champ_piloti,Sergio Pérez,PER,0.0025,0.0025,10878652.761138324,2025-12-09
+F1 Drivers' Champion,champ_piloti,Fernando Alonso,ALO,0.0015,0.0015,8898504.29795969,2025-12-09
+F1 Drivers' Champion,champ_piloti,Oliver Bearman,BEA,0.0015,0.0015,12152316.945555432,2025-12-09
+F1 Drivers' Champion,champ_piloti,Nico Hülkenberg,HUL,0.0015,0.0015,8065894.079534632,2025-12-09
+F1 Drivers' Champion,champ_piloti,Gabriel Bortoleto,BOR,0.0015,0.0015,10839168.517450012,2025-12-09
+F1 Drivers' Champion,champ_piloti,Pierre Gasly,GAS,0.0015,0.0015,10909712.06343152,2025-12-09
+F1 Drivers' Champion,champ_piloti,Franco Colapinto,COL,0.0015,0.0015,11863588.952519162,2025-12-09
+F1 Drivers' Champion,champ_piloti,Liam Lawson,LAW,0.0015,0.0015,10612973.990793204,2025-12-09
+F1 Drivers' Champion,champ_piloti,Alexander Albon,ALB,0.0015,0.0015,11761281.268012011,2025-12-09
+F1 Drivers' Champion,champ_piloti,Carlos Sainz Jr.,SAI,0.0015,0.0015,10983030.57826618,2025-12-09
+F1 Drivers' Champion,champ_piloti,Valtteri Bottas,BOT,0.0015,0.0015,12121624.623809692,2025-12-09
+Belgian Grand Prix: Driver Winner,vincitore_gara,Kimi Antonelli,ANT,0.415,0.4146,3086.3176209999997,2026-06-20
+Belgian Grand Prix: Driver Winner,vincitore_gara,George Russell,RUS,0.205,0.2048,2089.6903129999996,2026-06-20
+Belgian Grand Prix: Driver Winner,vincitore_gara,Charles Leclerc,LEC,0.14,0.1399,4559.461616000001,2026-06-20
+Belgian Grand Prix: Driver Winner,vincitore_gara,Lewis Hamilton,HAM,0.115,0.1149,1967.9156920000005,2026-06-20
+Belgian Grand Prix: Driver Winner,vincitore_gara,Max Verstappen,VER,0.048,0.048,5135.212133999999,2026-06-20
+Belgian Grand Prix: Driver Winner,vincitore_gara,Lando Norris,NOR,0.0315,0.0315,2903.3829919999994,2026-06-20
+Belgian Grand Prix: Driver Winner,vincitore_gara,Oscar Piastri,PIA,0.0215,0.0215,4203.069836,2026-06-20
+Belgian Grand Prix: Driver Winner,vincitore_gara,Isack Hadjar,HAD,0.008,0.008,1778.922422,2026-06-20
+Belgian Grand Prix: Driver Winner,vincitore_gara,Fernando Alonso,ALO,0.0015,0.0015,473.406,2026-06-20
+Belgian Grand Prix: Driver Winner,vincitore_gara,Alexander Albon,ALB,0.0015,0.0015,841.3304880000001,2026-06-20
+Belgian Grand Prix: Driver Winner,vincitore_gara,Sergio Perez,PER,0.0015,0.0015,563.676,2026-06-20
+Belgian Grand Prix: Driver Winner,vincitore_gara,Esteban Ocon,OCO,0.0015,0.0015,519.75,2026-06-20
+Belgian Grand Prix: Driver Winner,vincitore_gara,Franco Colapinto,COL,0.0015,0.0015,445.966,2026-06-20
+Belgian Grand Prix: Driver Winner,vincitore_gara,Carlos Sainz Jr.,SAI,0.0015,0.0015,501.68999999999994,2026-06-20
+Belgian Grand Prix: Driver Winner,vincitore_gara,Nico Hulkenberg,HUL,0.0015,0.0015,494.6,2026-06-20
+Belgian Grand Prix: Driver Winner,vincitore_gara,Oliver Bearman,BEA,0.0015,0.0015,762.3736379999999,2026-06-20
+Belgian Grand Prix: Driver Winner,vincitore_gara,Arvid Lindblad,LIN,0.0015,0.0015,462.08,2026-06-20
+Belgian Grand Prix: Driver Winner,vincitore_gara,Lance Stroll,STR,0.0015,0.0015,567.326,2026-06-20
+Belgian Grand Prix: Driver Winner,vincitore_gara,Pierre Gasly,GAS,0.0005,0.0005,829.1720479999999,2026-06-20
+Belgian Grand Prix: Driver Winner,vincitore_gara,Gabriel Bortoleto,BOR,0.0005,0.0005,485.91,2026-06-20
+Belgian Grand Prix: Driver Winner,vincitore_gara,Valtteri Bottas,BOT,0.0005,0.0005,1266.460039,2026-06-20
+Belgian Grand Prix: Driver Winner,vincitore_gara,Liam Lawson,LAW,0.0005,0.0005,574.18,2026-06-20
+Hungarian Grand Prix: Driver Winner,vincitore_gara,Kimi Antonelli,ANT,0.415,0.3676,1239.8107810000001,2026-06-27
+Hungarian Grand Prix: Driver Winner,vincitore_gara,George Russell,RUS,0.21,0.186,941.1772399999999,2026-06-27
+Hungarian Grand Prix: Driver Winner,vincitore_gara,Lewis Hamilton,HAM,0.165,0.1461,1499.4555199999998,2026-06-27
+Hungarian Grand Prix: Driver Winner,vincitore_gara,Charles Leclerc,LEC,0.11,0.0974,1000.5609299999999,2026-06-27
+Hungarian Grand Prix: Driver Winner,vincitore_gara,Oscar Piastri,PIA,0.09,0.0797,1501.6549559999999,2026-06-27
+Hungarian Grand Prix: Driver Winner,vincitore_gara,Max Verstappen,VER,0.08,0.0709,952.624325,2026-06-27
+Hungarian Grand Prix: Driver Winner,vincitore_gara,Lando Norris,NOR,0.04,0.0354,788.1499769999999,2026-06-27
+Hungarian Grand Prix: Driver Winner,vincitore_gara,Isack Hadjar,HAD,0.005,0.0044,769.0250000000001,2026-06-27
+Hungarian Grand Prix: Driver Winner,vincitore_gara,Liam Lawson,LAW,0.0035,0.0031,618.476,2026-06-27
+Hungarian Grand Prix: Driver Winner,vincitore_gara,Arvid Lindblad,LIN,0.003,0.0027,632.476,2026-06-27
+Hungarian Grand Prix: Driver Winner,vincitore_gara,Pierre Gasly,GAS,0.002,0.0018,767.025,2026-06-27
+Hungarian Grand Prix: Driver Winner,vincitore_gara,Fernando Alonso,ALO,0.0005,0.0004,463.475,2026-06-27
+Hungarian Grand Prix: Driver Winner,vincitore_gara,Alexander Albon,ALB,0.0005,0.0004,461.475,2026-06-27
+Hungarian Grand Prix: Driver Winner,vincitore_gara,Gabriel Bortoleto,BOR,0.0005,0.0004,497.83500000000004,2026-06-27
+Hungarian Grand Prix: Driver Winner,vincitore_gara,Sergio Perez,PER,0.0005,0.0004,473.14500000000004,2026-06-27
+Hungarian Grand Prix: Driver Winner,vincitore_gara,Esteban Ocon,OCO,0.0005,0.0004,499.83500000000004,2026-06-27
+Hungarian Grand Prix: Driver Winner,vincitore_gara,Franco Colapinto,COL,0.0005,0.0004,513.835,2026-06-27
+Hungarian Grand Prix: Driver Winner,vincitore_gara,Carlos Sainz Jr.,SAI,0.0005,0.0004,513.835,2026-06-27
+Hungarian Grand Prix: Driver Winner,vincitore_gara,Nico Hulkenberg,HUL,0.0005,0.0004,497.83500000000004,2026-06-27
+Hungarian Grand Prix: Driver Winner,vincitore_gara,Valtteri Bottas,BOT,0.0005,0.0004,438.475,2026-06-27
+Hungarian Grand Prix: Driver Winner,vincitore_gara,Oliver Bearman,BEA,0.0005,0.0004,438.475,2026-06-27
+Hungarian Grand Prix: Driver Winner,vincitore_gara,Lance Stroll,STR,0.0005,0.0004,461.985,2026-06-27

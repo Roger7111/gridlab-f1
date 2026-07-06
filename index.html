@@ -651,6 +651,7 @@ footer p{color:var(--mut);font-size:12px;margin-bottom:5px;max-width:880px}
   <h2>Accuratezza del Modello</h2>
   <p class="lead">Previsione generata <b>prima</b> di ogni gara, confrontata col risultato reale. Mai modificata a posteriori.</p>
   <div class="stat-grid" id="accStats"></div>
+  <p id="accVerify" style="font-size:13px;color:var(--mut);margin:-6px 0 18px"></p>
   <h2 style="margin-bottom:3px">Gare — Previsto vs Reale</h2>
   <p class="lead" style="margin-bottom:10px">Vincitore previsto (max P(vittoria)) vs vincitore reale. Verde = top-3 previsto coincide col reale.</p>
   <div class="acc-cards" id="raceAccCards"></div>
@@ -1785,7 +1786,7 @@ function renderAccCards(){
     var winIcon = r.win_hit ? '🎯' : r.podium_hit ? '🔵' : '❌';
     return '<div class="acc-card '+cls+'">'+
       '<div class="acc-overlap">'+overlap+'<span>/3</span></div>'+
-      '<div class="acc-card-race">'+r.race+(r.date?' · <span>'+r.date+'</span>':'')+'</div>'+
+      '<div class="acc-card-race">'+r.race+(r.date?' · <span>'+r.date+'</span>':'')+(r.source==='frozen'?' ❄':'')+(r.mae_clean!=null?' · <span title="errore medio posizioni, DNF esclusi">MAE '+r.mae_clean+'</span>':'')+'</div>'+
       '<div class="acc-card-winner">'+
         '<span class="win-icon">'+winIcon+'</span>'+
         '<div class="win-names">'+
@@ -1800,16 +1801,19 @@ function renderAccCards(){
 
 // MODELLO
 function renderModello(){
-  var ma=D.model_accuracy||{};var race=ma.race||{};var quali=ma.quali||{};
+  var ma=D.model_accuracy||{};var race=ma.race||{};var quali=ma.quali||{};var sc=ma.scorecard||{};
   document.getElementById('accStats').innerHTML=
     stat(race.win_pct||0,'%','Vittorie previste',(race.win_hits||0)+'/'+(race.total||0)+' gare','num-yellow')+
-    stat(race.podium_pct||0,'%','Podi previsti','vincitore nel top-3 modello','num-green')+
     stat(quali.pole_pct||0,'%','Pole previste',(quali.pole_hits||0)+'/'+(quali.total||0)+' qualifiche','num-green')+
-    stat(quali.top3_pct||0,'%','Pole nel top-3',(quali.top3_hits||0)+'/'+(quali.total||0),'num-yellow');
+    stat(sc.mae_clean_avg!=null?sc.mae_clean_avg:'—','','MAE medio (no DNF)','posizioni di errore per pilota','num-green')+
+    stat(sc.spearman_avg!=null?sc.spearman_avg:'—','','Spearman medio','correlazione ordine d\'arrivo (1=perfetto)','num-yellow');
+  var vf=document.getElementById('accVerify');
+  if(vf) vf.innerHTML=(sc.frozen_count?('❄ '+sc.frozen_count+(sc.frozen_count===1?' previsione congelata':' previsioni congelate')+' pre-evento con hash SHA256 — '):'')+
+    '<a href="'+(sc.verify_url||'#')+'" target="_blank" rel="noopener" style="color:var(--acc)">verifica il track record su GitHub →</a>';
   function accRow(r,pk,ak,hk){
     var hit=r[hk];
-    return '<div class="acc-row"><div class="acc-race">'+r.race+(r.date?'<span style="color:var(--mut);font-size:11px;margin-left:5px">'+r.date+'</span>':'')+'</div>'+
-      '<div class="acc-pred">prev: <b>'+nm(r[pk])+'</b></div>'+
+    return '<div class="acc-row"><div class="acc-race">'+r.race+(r.date?'<span style="color:var(--mut);font-size:11px;margin-left:5px">'+r.date+'</span>':'')+(r.source==='frozen'?' <span title="previsione congelata pre-evento (verificabile)">❄</span>':'')+'</div>'+
+      '<div class="acc-pred">prev: <b>'+nm(r[pk])+'</b>'+(r.mae_clean!=null?' <span style="color:var(--mut);font-size:10px">MAE '+r.mae_clean+'</span>':'')+'</div>'+
       '<div class="acc-actual '+(hit?'hit-yes':'hit-no')+'">reale: '+nm(r[ak])+'</div>'+
       '<span class="hit-badge '+(hit?'hit-y':'hit-n')+'">'+(hit?'✓':'✗')+'</span></div>';
   }

@@ -1,0 +1,22 @@
+{
+ "race": "Belgian Grand Prix 2026",
+ "stage": "pre-weekend",
+ "frozen_at_utc": "20260706T170001Z",
+ "note": "Primo freeze pubblico - 13 giorni pre-gara",
+ "files": {
+  "Belgian_Grand_Prix_2026_grid.csv": "7f859477c76dba63a68772096b1ab1f95bb1993500665e8612ad97bc10024d1f",
+  "Belgian_Grand_Prix_2026_h2h.csv": "a5fcf44f2aa97e3158d07b0465574e812d3ed09807f8776d117c129cc587b843",
+  "Belgian_Grand_Prix_2026_probabilities.csv": "abcddefe996edc209e630b2099635a69cb9236cbd32b66c21715a1b0881f4bd1",
+  "Belgian_Grand_Prix_2026_quali_grid.csv": "fd933470b75eb8d01a94a47e81b5eb511a59ea89c75573a483969a40fb9c719d",
+  "Belgian_Grand_Prix_2026_quali_probabilities.csv": "6467143eeb08a3839c5cca2cc67c1a23966fe14b3e8f8dd02a83069602ccce12",
+  "Belgian_Grand_Prix_2026_quali_summary.txt": "b7bbcbea321f23734ce3d8780b87f9c4a5bcfd930da96e7aa1e2ff9e9e4de967",
+  "Belgian_Grand_Prix_2026_summary.txt": "98581aa2de0f78ff509b8f156f10b3818bb39bc7f26e74edab24f4c9146c88c0",
+  "Belgian_Grand_Prix_2026_team_points.csv": "f152ffd73ebfb5e1a6213448d1ff77c0266dc33b041e625f92b8003f51013eb5"
+ },
+ "results_db_sha256": "86b76d3fcd011fc177624618ed282087f588739fd36c73c7f81fcc39ab28b07d",
+ "results_db_races": 13,
+ "market_files": {
+  "polymarket_f1_liquid.csv": "55e9b0adb393c02b1ca15a88af10e9594ba0a3fb9b07d3ef742aa38dc68ee893",
+  "polymarket_f1_probs.csv": "5f46c90e4ab14d3645217d92654c15d85899fecdaf0b2acd3b44743b4f86ceef"
+ }
+}

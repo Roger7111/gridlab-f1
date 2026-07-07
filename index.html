@@ -444,7 +444,7 @@ footer p{color:var(--mut);font-size:12px;margin-bottom:5px;max-width:880px}
     <h2 id="sprintRaceTitle">Previsione Sprint Race (sabato) <span class="badge badge-sprint">Sprint</span></h2>
     <p class="lead" id="sprintRaceLead">Ordinata per <b>posizione attesa</b> del modello (media della distribuzione). P(vittoria), P(podio) e punti attesi (8/7/6/5/4/3/2/1) dalla griglia reale della Sprint Qualifying.</p>
     <div class="card"><table>
-      <thead><tr id="sprintRaceHead"><th>Pos</th><th>Pilota</th><th class="hide-sm">Fascia 80%</th><th>P(Vittoria)</th><th class="hide-sm">P(Podio)</th><th>Punti att.</th></tr></thead>
+      <thead><tr id="sprintRaceHead"><th>Pos</th><th>Pilota</th><th class="hide-sm">Fascia 80%</th><th>P(Vittoria)</th><th class="hide-sm">P(Podio)</th><th class="hide-sm">P(DNF)</th><th>Punti att.</th></tr></thead>
       <tbody id="sprintRaceGrid"></tbody>
     </table></div>
   </div>
@@ -1561,6 +1561,7 @@ function renderSprintRace(){
       '<td class="fascia hide-sm">'+(r.fascia||'—')+'</td>'+
       '<td><div class="pbar">'+pb(r.p_win,mx)+'<span class="pct">'+pct(r.p_win)+'</span></div></td>'+
       '<td class="hide-sm"><div class="pbar">'+pb(r.p_podio,1)+'<span class="pct">'+pct(r.p_podio)+'</span></div></td>'+
+      '<td class="hide-sm" style="color:'+((r.p_dnf!=null&&r.p_dnf>0.05)?'#ef6060':'var(--mut)')+'">'+(r.p_dnf!=null?pct(r.p_dnf):'—')+'</td>'+
       '<td style="font-weight:600">'+r.exp_pts.toFixed(1)+'</td></tr>';
   }).join('');
 }
@@ -1594,7 +1595,7 @@ function renderGara(){
   // reset header (previsione gara pre-arrivo)
   if(gtitle) gtitle.textContent='Previsione Gara';
   if(glead)  glead.innerHTML='Ordinata per <b>posizione attesa</b> del modello. P(vittoria), P(podio) e punti attesi; range P10–P90 sotto la barra.';
-  if(ghead)  ghead.innerHTML='<th>Pos</th><th>Pilota</th><th>Modello</th><th class="hide-sm">P(Podio)</th><th class="hide-sm">Punti att.</th>';
+  if(ghead)  ghead.innerHTML='<th>Pos</th><th>Pilota</th><th>Modello</th><th class="hide-sm">P(Podio)</th><th class="hide-sm">P(DNF)</th><th class="hide-sm">Punti att.</th>';
   document.getElementById('raceGrid').innerHTML=rp.map(function(r,i){
     // form dots ultimi 3 GP
     var form=df[r.driver]||{};
@@ -1619,6 +1620,7 @@ function renderGara(){
       '<div class="team-sm">'+r.team+'</div></div></div></td>'+
       '<td><div class="pbar">'+pb(r.p_win,mx)+'<span class="pct">'+pct(r.p_win)+'</span></div>'+rangeStr+'</td>'+
       '<td class="hide-sm"><div class="pbar">'+pb(r.p_podio,1)+'<span class="pct">'+pct(r.p_podio)+'</span></div></td>'+
+      '<td class="hide-sm" style="color:'+((r.p_dnf!=null&&r.p_dnf>0.15)?'#ef6060':'var(--mut)')+'">'+(r.p_dnf!=null?pct(r.p_dnf):'—')+'</td>'+
       '<td class="hide-sm" style="font-variant-numeric:tabular-nums;font-weight:600">'+r.exp_pts.toFixed(1)+'</td></tr>';
   }).join('');
   document.getElementById('lockGara').style.display=rp.length?'none':'flex';

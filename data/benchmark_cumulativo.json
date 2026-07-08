@@ -1,0 +1,61 @@
+{
+ "generato_utc": "2026-07-08T15:03:15Z",
+ "aggregato": null,
+ "scored": [],
+ "pending": [
+  {
+   "race": "Belgian Grand Prix",
+   "stage": "pre-weekend",
+   "divergenze": [
+    {
+     "driver": "HAM",
+     "p_model": 0.1501,
+     "p_market": 0.1149,
+     "delta": 0.0352
+    },
+    {
+     "driver": "VER",
+     "p_model": 0.1197,
+     "p_market": 0.048,
+     "delta": 0.0717
+    },
+    {
+     "driver": "RUS",
+     "p_model": 0.1184,
+     "p_market": 0.2048,
+     "delta": -0.0864
+    },
+    {
+     "driver": "ANT",
+     "p_model": 0.1164,
+     "p_market": 0.4146,
+     "delta": -0.2982
+    },
+    {
+     "driver": "NOR",
+     "p_model": 0.0987,
+     "p_market": 0.0315,
+     "delta": 0.0672
+    },
+    {
+     "driver": "LEC",
+     "p_model": 0.0942,
+     "p_market": 0.1399,
+     "delta": -0.0457
+    }
+   ]
+  }
+ ],
+ "skipped": [
+  {
+   "race": "Barcelona-Catalunya Grand Prix",
+   "stage": "post-quali",
+   "reason": "quote non congelate (freeze pre-feature)"
+  },
+  {
+   "race": "Spanish Grand Prix",
+   "stage": "pre-weekend",
+   "reason": "quote non congelate (freeze pre-feature)"
+  }
+ ]
+}

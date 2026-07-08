@@ -652,6 +652,9 @@ footer p{color:var(--mut);font-size:12px;margin-bottom:5px;max-width:880px}
   <p class="lead">Previsione generata <b>prima</b> di ogni gara, confrontata col risultato reale. Mai modificata a posteriori.</p>
   <div class="stat-grid" id="accStats"></div>
   <p id="accVerify" style="font-size:13px;color:var(--mut);margin:-6px 0 18px"></p>
+  <h2 style="margin-bottom:3px">Modello vs Mercato</h2>
+  <p class="lead" style="margin-bottom:10px">Probabilità del modello vs quote di mercato (Polymarket) <b>congelate prima della gara</b>. Brier/log-loss più bassi = più accurati.</p>
+  <div id="mktBench"><p class="lead" style="color:var(--mut)">Caricamento…</p></div>
   <h2 style="margin-bottom:3px">Gare — Previsto vs Reale</h2>
   <p class="lead" style="margin-bottom:10px">Vincitore previsto (max P(vittoria)) vs vincitore reale. Verde = top-3 previsto coincide col reale.</p>
   <div class="acc-cards" id="raceAccCards"></div>
@@ -1824,10 +1827,39 @@ function renderModello(){
 }
 function stat(n,u,l,s,cls){return '<div class="stat"><div class="num '+cls+'">'+n+'<span style="font-size:18px">'+u+'</span></div><div class="lbl">'+l+'</div><div class="sub">'+s+'</div></div>';}
 
+// ===== Modello vs Mercato (benchmark cumulativo dai freeze; anti-leakage) =====
+async function loadMktBench(){
+  var el = document.getElementById('mktBench'); if(!el) return;
+  try{
+    var r = await fetch('data/benchmark_cumulativo.json?_=' + Date.now(), {cache:'no-store'});
+    var b = await r.json();
+    var a = b.aggregato;
+    if(a && a.n_gare){
+      el.innerHTML = '<div class="card"><div style="font-size:15px">'+
+        '<b>Battiamo il mercato in '+a.gare_modello_batte_mercato+'/'+a.n_gare+' gare.</b> '+
+        'Brier Δ medio '+(a.brier_delta_medio>0?'+':'')+a.brier_delta_medio+' (>0 = modello meglio); '+
+        'log-loss modello '+a.logloss_modello_medio+' vs mercato '+a.logloss_mercato_medio+'.'+
+        '</div></div>';
+    } else {
+      var pend = (b.pending||[])[0];
+      var html = '<div class="card"><b>Primo verdetto a Spa (18 lug).</b> Finché il mercato-vincitore non è liquido, il benchmark parte dal freeze post-qualifiche.';
+      if(pend && pend.divergenze && pend.divergenze.length){
+        html += '<div style="margin-top:10px;font-size:13px">Divergenze già congelate ('+pend.race+'):<br>';
+        pend.divergenze.forEach(function(d){
+          var s = d.delta>0 ? 'modello più alto' : 'mercato più alto';
+          html += '· <b>'+d.driver+'</b> — modello '+(d.p_model*100).toFixed(0)+'% vs mercato '+(d.p_market*100).toFixed(0)+'% ('+s+')<br>';
+        });
+        html += '</div>';
+      }
+      el.innerHTML = html + '</div>';
+    }
+  }catch(e){ el.innerHTML = '<p class="lead" style="color:var(--mut)">Benchmark mercato non ancora disponibile.</p>'; }
+}
+
 // INIT
 renderHero();renderQuali();renderSprint();renderSprintRace();renderGara();renderClassifica();
 renderTitolo();renderH2H();renderFanta();renderPasso();
-renderStorico();renderModello();renderAccCards();renderCalendario();renderDelta();
+renderStorico();renderModello();renderAccCards();renderCalendario();renderDelta();loadMktBench();
 if(Object.keys(ESE_SCENARIOS).length){renderEseCards();setEseScenario("asciutto");}
 // ===== PWA / SERVICE WORKER =====
 let _pwaPrompt = null;

@@ -1,0 +1,6 @@
+{
+ "generato_utc": "2026-07-09T20:11:09Z",
+ "metodo": "backtest Monte Carlo leakage-free, 92 gare 2022-25, previsione vs passo reale",
+ "n_gare": 92,
+ "spearman_pace": 0.737
+}

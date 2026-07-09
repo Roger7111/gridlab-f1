@@ -1,0 +1,23 @@
+{
+ "generato_utc": "2026-07-09T19:27:33Z",
+ "metodo": "backtest Monte Carlo leakage-free, 92 gare 2022-25",
+ "n": 1839,
+ "win": {
+  "brier": 0.032,
+  "baseline": 0.0475,
+  "skill": 0.3275,
+  "base_rate": 0.05
+ },
+ "podium": {
+  "brier": 0.0764,
+  "baseline": 0.1276,
+  "skill": 0.4011,
+  "base_rate": 0.1501
+ },
+ "top10": {
+  "brier": 0.164,
+  "baseline": 0.25,
+  "skill": 0.344,
+  "base_rate": 0.5008
+ }
+}

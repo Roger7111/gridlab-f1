@@ -1833,13 +1833,16 @@ function stat(n,u,l,s,cls){return '<div class="stat"><div class="num '+cls+'">'+
 async function loadPaceSkill(){
   var el=document.getElementById('paceSkill'); if(!el) return;
   try{
-    var r=await fetch('data/pace_skill.json?_='+Date.now(),{cache:'no-store'});
-    var d=await r.json(); var s=d.season||{};
-    if(s.spearman_pace==null) return;
+    var s=((await (await fetch('data/pace_skill.json?_='+Date.now(),{cache:'no-store'})).json()).season)||{};
+    var hist=null; try{ hist=await (await fetch('data/pace_hist.json?_='+Date.now(),{cache:'no-store'})).json(); }catch(e){}
+    if(s.spearman_pace==null && !hist) return;
+    var big = hist ? hist.spearman_pace : s.spearman_pace;
+    var ng  = hist ? hist.n_gare : s.n_gare;
+    var recent = (hist && s.spearman_pace!=null) ? ' Nel 2026 (su '+s.n_gare+' gare, campione più piccolo) è '+s.spearman_pace+'.' : '';
     el.innerHTML='<div class="card" style="border-left:3px solid #4ade80"><div style="font-size:15px">'+
-      '<b>Skill di passo: '+s.spearman_pace+'</b> — su '+s.n_gare+' gare il modello ordina le auto per <b>velocità reale</b> '+
-      '(correlazione di rango col passo gara, fuel-corrected) quasi alla perfezione. Sull’arrivo scende a '+s.spearman_finish+
-      ': quel divario è la varianza della gara (ritiri, strategia), non un errore del modello.</div></div>';
+      '<b>Skill di passo: '+big+'</b> — su <b>'+ng+' gare</b> (4 stagioni) il modello ordina le auto per <b>velocità reale</b> '+
+      '(correlazione di rango col passo gara) quasi alla perfezione.'+recent+
+      ' Sull’arrivo il numero scende: quel divario è la varianza della gara (ritiri, strategia), non un errore del modello.</div></div>';
   }catch(e){}
 }
 

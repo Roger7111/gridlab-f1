@@ -1,0 +1,65 @@
+{
+ "generato_utc": "2026-07-09T12:08:18Z",
+ "metodo": "previsione leakage-free vs passo gara fuel-corrected (DNF-immune), 2026",
+ "season": {
+  "n_gare": 9,
+  "spearman_pace": 0.888,
+  "spearman_finish": 0.614
+ },
+ "gare": [
+  {
+   "race": "Australian Grand Prix",
+   "circuit": "balanced",
+   "spearman_pace": 0.696,
+   "spearman_finish": 0.322
+  },
+  {
+   "race": "Chinese Grand Prix",
+   "circuit": "power",
+   "spearman_pace": 0.773,
+   "spearman_finish": 0.577
+  },
+  {
+   "race": "Japanese Grand Prix",
+   "circuit": "aero",
+   "spearman_pace": 0.888,
+   "spearman_finish": 0.837
+  },
+  {
+   "race": "Miami Grand Prix",
+   "circuit": "balanced",
+   "spearman_pace": 0.942,
+   "spearman_finish": 0.643
+  },
+  {
+   "race": "Canadian Grand Prix",
+   "circuit": "balanced",
+   "spearman_pace": 0.932,
+   "spearman_finish": 0.409
+  },
+  {
+   "race": "Monaco Grand Prix",
+   "circuit": "street",
+   "spearman_pace": 0.9,
+   "spearman_finish": 0.372
+  },
+  {
+   "race": "Barcelona Grand Prix",
+   "circuit": "aero",
+   "spearman_pace": 0.956,
+   "spearman_finish": 0.738
+  },
+  {
+   "race": "Austrian Grand Prix 2026",
+   "circuit": "power",
+   "spearman_pace": 0.946,
+   "spearman_finish": 0.933
+  },
+  {
+   "race": "British Grand Prix",
+   "circuit": "aero",
+   "spearman_pace": 0.958,
+   "spearman_finish": 0.695
+  }
+ ]
+}

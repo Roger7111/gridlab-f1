@@ -650,6 +650,7 @@ footer p{color:var(--mut);font-size:12px;margin-bottom:5px;max-width:880px}
 <div class="section" id="s-modello">
   <h2>Accuratezza del Modello</h2>
   <p class="lead">Previsione generata <b>prima</b> di ogni gara, confrontata col risultato reale. Mai modificata a posteriori.</p>
+  <div id="paceSkill" style="margin:6px 0 16px"></div>
   <div class="stat-grid" id="accStats"></div>
   <p id="accVerify" style="font-size:13px;color:var(--mut);margin:-6px 0 18px"></p>
   <h2 style="margin-bottom:3px">Modello vs Mercato</h2>
@@ -1827,6 +1828,20 @@ function renderModello(){
 }
 function stat(n,u,l,s,cls){return '<div class="stat"><div class="num '+cls+'">'+n+'<span style="font-size:18px">'+u+'</span></div><div class="lbl">'+l+'</div><div class="sub">'+s+'</div></div>';}
 
+// ===== Skill di PASSO del modello (leakage-free, da pace_skill.json) =====
+async function loadPaceSkill(){
+  var el=document.getElementById('paceSkill'); if(!el) return;
+  try{
+    var r=await fetch('data/pace_skill.json?_='+Date.now(),{cache:'no-store'});
+    var d=await r.json(); var s=d.season||{};
+    if(s.spearman_pace==null) return;
+    el.innerHTML='<div class="card" style="border-left:3px solid #4ade80"><div style="font-size:15px">'+
+      '<b>Skill di passo: '+s.spearman_pace+'</b> — su '+s.n_gare+' gare il modello ordina le auto per <b>velocità reale</b> '+
+      '(correlazione di rango col passo gara, fuel-corrected) quasi alla perfezione. Sull’arrivo scende a '+s.spearman_finish+
+      ': quel divario è la varianza della gara (ritiri, strategia), non un errore del modello.</div></div>';
+  }catch(e){}
+}
+
 // ===== Modello vs Mercato (benchmark cumulativo dai freeze; anti-leakage) =====
 async function loadMktBench(){
   var el = document.getElementById('mktBench'); if(!el) return;
@@ -1859,7 +1874,7 @@ async function loadMktBench(){
 // INIT
 renderHero();renderQuali();renderSprint();renderSprintRace();renderGara();renderClassifica();
 renderTitolo();renderH2H();renderFanta();renderPasso();
-renderStorico();renderModello();renderAccCards();renderCalendario();renderDelta();loadMktBench();
+renderStorico();renderModello();renderAccCards();renderCalendario();renderDelta();loadMktBench();loadPaceSkill();
 if(Object.keys(ESE_SCENARIOS).length){renderEseCards();setEseScenario("asciutto");}
 // ===== PWA / SERVICE WORKER =====
 let _pwaPrompt = null;

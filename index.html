@@ -1888,9 +1888,11 @@ async function loadMktBench(){
     var a = b.aggregato;
     if(a && a.n_gare){
       el.innerHTML = '<div class="card"><div style="font-size:15px">'+
-        '<b>Battiamo il mercato in '+a.gare_modello_batte_mercato+'/'+a.n_gare+' gare.</b> '+
-        'Brier Δ medio '+(a.brier_delta_medio>0?'+':'')+a.brier_delta_medio+' (>0 = modello meglio); '+
-        'log-loss modello '+a.logloss_modello_medio+' vs mercato '+a.logloss_mercato_medio+'.'+
+        '<b>Modello vs mercato — '+a.n_gare+' '+(a.n_gare===1?'gara':'gare')+'.</b> '+
+        'Confrontiamo le nostre probabilità con le quote Polymarket <b>congelate prima della gara</b> (niente senno di poi). '+
+        'Brier più basso in '+a.gare_modello_batte_mercato+'/'+a.n_gare+' (Δ medio '+(a.brier_delta_medio>0?'+':'')+a.brier_delta_medio+', >0 = modello più accurato); '+
+        'log-loss '+a.logloss_modello_medio+' vs '+a.logloss_mercato_medio+'. '+
+        '<span style="color:var(--mut)">È un <b>controllo di calibrazione</b> su campione piccolo, non un claim di "battere le quote": il mercato del vincitore in F1 è efficiente e servono molte gare per conclusioni solide.</span>'+
         '</div></div>';
     } else {
       var pend = (b.pending||[])[0];

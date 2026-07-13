@@ -566,6 +566,7 @@ footer p{color:var(--mut);font-size:12px;margin-bottom:5px;max-width:880px}
       <thead><tr><th>Pos</th><th>Pilota</th><th>Passo globale</th><th>Best stint</th><th>Gap leader</th><th class="hide-sm">Δtraffic</th><th class="hide-sm">Giri</th></tr></thead>
       <tbody id="passoGrid"></tbody>
     </table></div>
+    <p id="passoNote" class="lead" style="display:none;margin-top:10px;font-size:13px;color:var(--mut);border-left:2px solid var(--acc2);padding-left:10px"></p>
     <div class="premium-lock" id="lockPasso">
       <div class="badge-premium">★ ACCESSO ANTICIPATO</div>
       <div class="icon">📊</div>
@@ -1732,6 +1733,8 @@ function renderPasso(){
       '<td class="pace-effect hide-sm">'+(te!=null?'+'+te.toFixed(3)+'s':'—')+'</td>'+
       '<td class="hide-sm" style="color:var(--mut);font-size:12px">'+r.laps+'</td></tr>';
   }).join('');
+  var nEl=document.getElementById('passoNote');
+  if(rp.note){nEl.textContent='Nota (pace review): '+rp.note;nEl.style.display='block';}else{nEl.style.display='none';}
   document.getElementById('lockPasso').style.display=drvs.length?'none':'flex';
 }
 

@@ -650,6 +650,16 @@ footer p{color:var(--mut);font-size:12px;margin-bottom:5px;max-width:880px}
 <div class="section" id="s-modello">
   <h2>Accuratezza del Modello</h2>
   <p class="lead">Previsione generata <b>prima</b> di ogni gara, confrontata col risultato reale. Mai modificata a posteriori.</p>
+  <div class="card" style="border-left:3px solid var(--acc);margin:8px 0 18px">
+    <div style="font-size:15px;line-height:1.55">
+      <b>Perché fidarsi</b> — non pronostici gonfiati, ma numeri <b>verificabili</b>. Ogni previsione è
+      <b>congelata prima della gara</b> (hash + commit pubblico su GitHub, non modificabile a posteriori).
+      Su <b>92 gare 2022–25</b> (backtest walk-forward, senza guardare il futuro) il modello ordina le auto
+      per <b>passo reale a ~0.74</b> di correlazione, e le sue <b>probabilità sono ben calibrate</b>
+      (+30–40% di skill sul tasso base per vittoria, podio e top-10).
+      <span style="color:var(--mut)">Il valore è la calibrazione e la trasparenza, non "battere le quote": in F1 il mercato del vincitore è efficiente.</span>
+    </div>
+  </div>
   <div id="paceSkill" style="margin:6px 0 16px"></div>
   <div id="calibSkill" style="margin:6px 0 16px"></div>
   <div class="stat-grid" id="accStats"></div>

@@ -1573,7 +1573,7 @@ function renderSprintRace(){
 
 // GARA
 function renderGara(){
-  var rp=D.race_prediction||[];var mx=rp.length?rp[0].p_win:0.4;
+  var rp=D.race_prediction||[];var mx=rp.length?Math.max(rp[0].p_win*1.5,0.5):0.5;
   var df=D.driver_form||{};
   var gtitle=document.getElementById('garaTitle');
   var glead=document.getElementById('garaLead');
@@ -1599,7 +1599,15 @@ function renderGara(){
   }
   // reset header (previsione gara pre-arrivo)
   if(gtitle) gtitle.textContent='Previsione Gara';
-  if(glead)  glead.innerHTML='Ordinata per <b>posizione attesa</b> del modello. P(vittoria), P(podio) e punti attesi; range P10–P90 sotto la barra.';
+  if(glead){
+    var _ld=rp[0]||{}, _p=(_ld.p_win||0);
+    var _close=rp.filter(function(r){return (_p-(r.p_win||0))<=0.05;}).length;
+    var _rel=!(D.quali_reale && D.quali_reale.length);
+    var _s='Ordinata per <b>posizione attesa</b>. Sono <b>probabilità</b> stimate (Monte Carlo), non un pronostico secco: pesa anche P(podio), la fascia P10–P90 e la <b>calibrazione</b> (sezione Accuratezza).';
+    if(_p>0 && _p<0.25) _s='<b>Gara aperta</b>: il favorito <b>'+nm(_ld.driver)+'</b> è a sole <b>'+pct(_p)+'</b> di P(vittoria)'+(_close>1?(', con '+_close+' piloti entro ~5 punti percentuali'):'')+'. '+_s;
+    if(_rel) _s+=' <span style="color:var(--mut)">Forma relativa (griglia proiettata): si affina dopo le qualifiche reali di sabato.</span>';
+    glead.innerHTML=_s;
+  }
   if(ghead)  ghead.innerHTML='<th>Pos</th><th>Pilota</th><th>Modello</th><th class="hide-sm">P(Podio)</th><th class="hide-sm">P(DNF)</th><th class="hide-sm">Punti att.</th>';
   document.getElementById('raceGrid').innerHTML=rp.map(function(r,i){
     // form dots ultimi 3 GP

@@ -819,9 +819,9 @@
   "model_accuracy": {
     "scorecard": {
       "races": 7,
-      "mae_avg": 3.93,
+      "mae_avg": 4.01,
       "mae_clean_avg": 3.27,
-      "spearman_avg": 0.798,
+      "spearman_avg": 0.804,
       "frozen_count": 0,
       "verify_url": "https://github.com/Roger7111/gridlab-f1/tree/main/track_record"
     },
@@ -940,7 +940,7 @@
           "actual_top3": [
             "ANT",
             "HAM",
-            "HAD"
+            "GAS"
           ],
           "win_hit": true,
           "podium_hit": true,
@@ -948,10 +948,10 @@
           "source": "output",
           "mae": 5.18,
           "mae_clean": 4.0,
-          "spearman": 0.718
+          "spearman": 0.721
         },
         {
-          "race": "Austrian Grand Prix 2026",
+          "race": "Austrian Grand Prix",
           "date": "2026-06-28",
           "pred_winner": "RUS",
           "actual_winner": "RUS",
@@ -992,9 +992,9 @@
           "podium_hit": true,
           "top3_overlap": 2,
           "source": "output",
-          "mae": 3.82,
-          "mae_clean": 3.05,
-          "spearman": 0.847
+          "mae": 4.36,
+          "mae_clean": 3.11,
+          "spearman": 0.886
         }
       ]
     },
@@ -1046,7 +1046,7 @@
           "source": "output"
         },
         {
-          "race": "Austrian Grand Prix 2026",
+          "race": "Austrian Grand Prix",
           "pred_pole": "ANT",
           "actual_pole": "RUS",
           "pole_hit": false,

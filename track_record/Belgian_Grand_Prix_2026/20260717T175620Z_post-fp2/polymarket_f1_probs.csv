@@ -1,0 +1,390 @@
+evento,driver,codice,prob_mercato,volume,data
+Belgian Grand Prix: Practice 2 Fastest Lap,Kimi Antonelli,ANT,0.9995,148.842023,2026-06-20
+F1 Constructors' Champion,Mercedes,,0.85,885899.3006989957,2025-12-09
+Belgian Grand Prix: Driver Podium Finish,Kimi Antonelli,ANT,0.76,1032.710042,2026-06-20
+Will there be a safety car during the 2026 F1 Hungarian Grand Prix?,Will there be a safety car during the 2026 F1 Hungarian Grand Prix?,,0.675,,2026-06-27
+Belgian Grand Prix: Constructor Pole Position,Mercedes,,0.625,26.182185999999998,2026-06-20
+Belgian Grand Prix: Driver Podium Finish,George Russell,RUS,0.62,500.973003,2026-06-20
+F1 Drivers' Champion,Kimi Antonelli,ANT,0.5925,3725871.485636986,2025-12-09
+Belgian Grand Prix: Driver Podium Finish,Max Verstappen,VER,0.58,2508.20226,2026-06-20
+Belgian Grand Prix: Which Constructor Scores 1st?,Mercedes,,0.57,4.98135,2026-06-20
+Belgian Grand Prix: Driver Podium Finish,Lewis Hamilton,HAM,0.525,26.889713999999998,2026-06-20
+Hungarian Grand Prix: Driver Podium Finish,Lewis Hamilton,HAM,0.52,,2026-06-27
+Hungarian Grand Prix: Which Constructor Scores 1st?,Mercedes,,0.515,,2026-06-27
+Hungarian Grand Prix: Driver Podium Finish,Max Verstappen,VER,0.505,,2026-06-27
+Hungarian Grand Prix: Driver Podium Finish,Charles Leclerc,LEC,0.5,,2026-06-27
+Hungarian Grand Prix: Driver Podium Finish,Lando Norris,NOR,0.5,,2026-06-27
+Hungarian Grand Prix: Driver Podium Finish,Kimi Antonelli,ANT,0.5,,2026-06-27
+Hungarian Grand Prix: Driver Podium Finish,Nico Hulkenberg,HUL,0.5,,2026-06-27
+Hungarian Grand Prix: Driver Podium Finish,Oscar Piastri,PIA,0.5,,2026-06-27
+Hungarian Grand Prix: Driver Podium Finish,George Russell,RUS,0.5,,2026-06-27
+Hungarian Grand Prix: Driver Podium Finish,Isack Hadjar,HAD,0.5,,2026-06-27
+Belgian Grand Prix: Constructor Fastest Lap,Aston Martin,,0.495,,2026-06-20
+Belgian Grand Prix: Constructor Fastest Lap,Mercedes,,0.495,,2026-06-20
+Hungarian Grand Prix: Driver Podium Finish,Pierre Gasly,GAS,0.495,,2026-06-27
+Hungarian Grand Prix: Driver Podium Finish,Esteban Ocon,OCO,0.495,,2026-06-27
+Hungarian Grand Prix: Driver Podium Finish,Oliver Bearman,BEA,0.495,,2026-06-27
+Hungarian Grand Prix: Driver Podium Finish,Arvid Lindblad,LIN,0.495,,2026-06-27
+Hungarian Grand Prix: Driver Podium Finish,Liam Lawson,LAW,0.495,,2026-06-27
+Hungarian Grand Prix: Driver Podium Finish,Gabriel Bortoleto,BOR,0.49,,2026-06-27
+Belgian Grand Prix: Constructor Fastest Lap,Alpine,,0.48,,2026-06-20
+Belgian Grand Prix: Driver Pole Position,Kimi Antonelli,ANT,0.475,3206.356031999999,2026-06-20
+Belgian Grand Prix: Constructor Fastest Lap,Ferrari,,0.475,10,2026-06-20
+Belgian Grand Prix: Constructor Fastest Lap,Tgr Haas,,0.475,,2026-06-20
+Belgian Grand Prix: Constructor Fastest Lap,Mclaren Mastercard,,0.475,,2026-06-20
+Belgian Grand Prix: Constructor Fastest Lap,Red Bull,,0.475,,2026-06-20
+Belgian Grand Prix: Constructor Fastest Lap,Racing Bulls,,0.475,,2026-06-20
+Hungarian Grand Prix: Driver Fastest Lap,Pierre Gasly,GAS,0.475,,2026-06-27
+Hungarian Grand Prix: Driver Fastest Lap,Fernando Alonso,ALO,0.475,,2026-06-27
+Hungarian Grand Prix: Driver Fastest Lap,Alexander Albon,ALB,0.475,,2026-06-27
+Hungarian Grand Prix: Driver Fastest Lap,Charles Leclerc,LEC,0.475,,2026-06-27
+Hungarian Grand Prix: Driver Fastest Lap,Max Verstappen,VER,0.475,,2026-06-27
+Hungarian Grand Prix: Driver Fastest Lap,Nico Hulkenberg,HUL,0.475,,2026-06-27
+Hungarian Grand Prix: Practice 2 Fastest Lap,Esteban Ocon,OCO,0.475,,2026-06-27
+Hungarian Grand Prix: Driver Pole Position,Lando Norris,NOR,0.47,,2026-06-27
+Hungarian Grand Prix: Driver Pole Position,Lewis Hamilton,HAM,0.47,,2026-06-27
+Hungarian Grand Prix: Constructor Fastest Lap,Mercedes,,0.47,,2026-06-27
+Hungarian Grand Prix: Driver Pole Position,Pierre Gasly,GAS,0.465,,2026-06-27
+Hungarian Grand Prix: Driver Pole Position,Gabriel Bortoleto,BOR,0.465,,2026-06-27
+Hungarian Grand Prix: Driver Pole Position,Nico Hulkenberg,HUL,0.465,,2026-06-27
+Hungarian Grand Prix: Driver Pole Position,Arvid Lindblad,LIN,0.465,,2026-06-27
+Hungarian Grand Prix: Driver Pole Position,Isack Hadjar,HAD,0.465,,2026-06-27
+Hungarian Grand Prix: Driver Fastest Lap,Kimi Antonelli,ANT,0.465,3.08,2026-06-27
+Hungarian Grand Prix: Driver Pole Position,Charles Leclerc,LEC,0.46,,2026-06-27
+Hungarian Grand Prix: Driver Pole Position,Oscar Piastri,PIA,0.46,,2026-06-27
+Hungarian Grand Prix: Constructor Pole Position,Ferrari,,0.46,,2026-06-27
+Hungarian Grand Prix: Constructor Pole Position,Mercedes,,0.46,,2026-06-27
+Hungarian Grand Prix: Driver Fastest Lap,Esteban Ocon,OCO,0.46,,2026-06-27
+Hungarian Grand Prix: Driver Podium Finish,Carlos Sainz Jr.,SAI,0.46,93.93,2026-06-27
+Hungarian Grand Prix: Practice 2 Fastest Lap,Oliver Bearman,BEA,0.455,,2026-06-27
+Hungarian Grand Prix: Driver Podium Finish,Alexander Albon,ALB,0.455,88.53,2026-06-27
+Hungarian Grand Prix: Driver Fastest Lap,Lando Norris,NOR,0.45,,2026-06-27
+Hungarian Grand Prix: Driver Fastest Lap,George Russell,RUS,0.45,,2026-06-27
+Hungarian Grand Prix: Driver Fastest Lap,Lance Stroll,STR,0.45,,2026-06-27
+Hungarian Grand Prix: Constructor Fastest Lap,Mclaren Mastercard,,0.45,,2026-06-27
+Hungarian Grand Prix: Practice 1 Fastest Lap,Sergio Perez,PER,0.45,,2026-06-27
+Hungarian Grand Prix: Practice 1 Fastest Lap,Esteban Ocon,OCO,0.45,,2026-06-27
+Hungarian Grand Prix: Practice 1 Fastest Lap,Arvid Lindblad,LIN,0.45,,2026-06-27
+Hungarian Grand Prix: Practice 2 Fastest Lap,Pierre Gasly,GAS,0.45,,2026-06-27
+Hungarian Grand Prix: Practice 2 Fastest Lap,Fernando Alonso,ALO,0.45,,2026-06-27
+Hungarian Grand Prix: Practice 2 Fastest Lap,Gabriel Bortoleto,BOR,0.45,,2026-06-27
+Hungarian Grand Prix: Practice 2 Fastest Lap,Carlos Sainz Jr.,SAI,0.45,,2026-06-27
+Hungarian Grand Prix: Practice 2 Fastest Lap,Nico Hulkenberg,HUL,0.45,,2026-06-27
+Hungarian Grand Prix: Practice 2 Fastest Lap,Valtteri Bottas,BOT,0.45,,2026-06-27
+Hungarian Grand Prix: Practice 2 Fastest Lap,Liam Lawson,LAW,0.45,,2026-06-27
+Belgian Grand Prix: Driver Podium Finish,Charles Leclerc,LEC,0.445,676.478972,2026-06-20
+Hungarian Grand Prix: Driver Pole Position,Valtteri Bottas,BOT,0.445,50,2026-06-27
+Hungarian Grand Prix: Driver Pole Position,Oliver Bearman,BEA,0.445,,2026-06-27
+Hungarian Grand Prix: Driver Pole Position,Liam Lawson,LAW,0.445,,2026-06-27
+Hungarian Grand Prix: Driver Fastest Lap,Oliver Bearman,BEA,0.445,,2026-06-27
+Hungarian Grand Prix: Constructor Fastest Lap,Audi Revolut,,0.445,,2026-06-27
+Hungarian Grand Prix: Constructor Fastest Lap,Racing Bulls,,0.445,,2026-06-27
+Hungarian Grand Prix: Practice 2 Fastest Lap,Max Verstappen,VER,0.445,,2026-06-27
+Hungarian Grand Prix: Driver Podium Finish,Sergio Perez,PER,0.445,93.93,2026-06-27
+Hungarian Grand Prix: Driver Podium Finish,Lance Stroll,STR,0.445,94.62,2026-06-27
+Belgian Grand Prix: Practice 3 Fastest Lap,Charles Leclerc,LEC,0.44,,2026-06-20
+Belgian Grand Prix: Practice 3 Fastest Lap,Lewis Hamilton,HAM,0.44,,2026-06-20
+Belgian Grand Prix: Practice 3 Fastest Lap,George Russell,RUS,0.44,,2026-06-20
+Hungarian Grand Prix: Driver Pole Position,Lance Stroll,STR,0.44,50,2026-06-27
+Hungarian Grand Prix: Driver Fastest Lap,Gabriel Bortoleto,BOR,0.44,,2026-06-27
+Hungarian Grand Prix: Driver Fastest Lap,Valtteri Bottas,BOT,0.44,,2026-06-27
+Hungarian Grand Prix: Constructor Fastest Lap,Tgr Haas,,0.44,,2026-06-27
+Hungarian Grand Prix: Practice 1 Fastest Lap,Kimi Antonelli,ANT,0.44,,2026-06-27
+Hungarian Grand Prix: Practice 1 Fastest Lap,Liam Lawson,LAW,0.44,,2026-06-27
+Hungarian Grand Prix: Practice 2 Fastest Lap,Charles Leclerc,LEC,0.44,,2026-06-27
+Hungarian Grand Prix: Practice 2 Fastest Lap,Kimi Antonelli,ANT,0.44,,2026-06-27
+Hungarian Grand Prix: Practice 2 Fastest Lap,Lance Stroll,STR,0.44,,2026-06-27
+Hungarian Grand Prix: Practice 3 Fastest Lap,Charles Leclerc,LEC,0.44,,2026-06-27
+Hungarian Grand Prix: Practice 3 Fastest Lap,Kimi Antonelli,ANT,0.44,,2026-06-27
+Hungarian Grand Prix: Practice 3 Fastest Lap,Max Verstappen,VER,0.44,,2026-06-27
+Hungarian Grand Prix: Practice 3 Fastest Lap,Liam Lawson,LAW,0.44,,2026-06-27
+Hungarian Grand Prix: Driver Podium Finish,Fernando Alonso,ALO,0.44,93.57,2026-06-27
+Hungarian Grand Prix: Driver Podium Finish,Valtteri Bottas,BOT,0.44,93.93,2026-06-27
+Hungarian Grand Prix: Driver Fastest Lap,Arvid Lindblad,LIN,0.435,,2026-06-27
+Hungarian Grand Prix: Constructor Fastest Lap,Red Bull,,0.435,,2026-06-27
+Hungarian Grand Prix: Practice 1 Fastest Lap,Gabriel Bortoleto,BOR,0.435,,2026-06-27
+Hungarian Grand Prix: Practice 1 Fastest Lap,Max Verstappen,VER,0.435,,2026-06-27
+Hungarian Grand Prix: Practice 1 Fastest Lap,Oscar Piastri,PIA,0.435,,2026-06-27
+Hungarian Grand Prix: Practice 1 Fastest Lap,Isack Hadjar,HAD,0.435,,2026-06-27
+Hungarian Grand Prix: Practice 1 Fastest Lap,Lance Stroll,STR,0.435,,2026-06-27
+Hungarian Grand Prix: Practice 2 Fastest Lap,Isack Hadjar,HAD,0.435,,2026-06-27
+Hungarian Grand Prix: Practice 3 Fastest Lap,Sergio Perez,PER,0.435,,2026-06-27
+Hungarian Grand Prix: Practice 3 Fastest Lap,Arvid Lindblad,LIN,0.435,,2026-06-27
+Belgian Grand Prix: Practice 3 Fastest Lap,Lando Norris,NOR,0.43,,2026-06-20
+Belgian Grand Prix: Practice 3 Fastest Lap,Max Verstappen,VER,0.43,,2026-06-20
+Belgian Grand Prix: Practice 3 Fastest Lap,Oscar Piastri,PIA,0.43,,2026-06-20
+Belgian Grand Prix: Practice 3 Fastest Lap,Isack Hadjar,HAD,0.43,,2026-06-20
+Hungarian Grand Prix: Driver Pole Position,Esteban Ocon,OCO,0.43,,2026-06-27
+Hungarian Grand Prix: Driver Pole Position,Carlos Sainz Jr.,SAI,0.43,50,2026-06-27
+Hungarian Grand Prix: Driver Fastest Lap,Oscar Piastri,PIA,0.43,,2026-06-27
+Hungarian Grand Prix: Constructor Fastest Lap,Alpine,,0.43,,2026-06-27
+Hungarian Grand Prix: Constructor Fastest Lap,Aston Martin,,0.43,,2026-06-27
+Hungarian Grand Prix: Constructor Fastest Lap,Cadillac,,0.43,,2026-06-27
+Hungarian Grand Prix: Constructor Fastest Lap,Ferrari,,0.43,,2026-06-27
+Hungarian Grand Prix: Practice 1 Fastest Lap,Franco Colapinto,COL,0.43,,2026-06-27
+Hungarian Grand Prix: Practice 1 Fastest Lap,Nico Hulkenberg,HUL,0.43,,2026-06-27
+Hungarian Grand Prix: Practice 3 Fastest Lap,Lando Norris,NOR,0.43,,2026-06-27
+Hungarian Grand Prix: Practice 3 Fastest Lap,Franco Colapinto,COL,0.43,,2026-06-27
+Hungarian Grand Prix: Practice 3 Fastest Lap,George Russell,RUS,0.43,,2026-06-27
+Hungarian Grand Prix: Practice 3 Fastest Lap,Isack Hadjar,HAD,0.43,,2026-06-27
+Hungarian Grand Prix: Driver Pole Position,Max Verstappen,VER,0.425,,2026-06-27
+Hungarian Grand Prix: Driver Pole Position,George Russell,RUS,0.425,,2026-06-27
+Hungarian Grand Prix: Driver Fastest Lap,Carlos Sainz Jr.,SAI,0.425,,2026-06-27
+Hungarian Grand Prix: Practice 1 Fastest Lap,Charles Leclerc,LEC,0.425,,2026-06-27
+Hungarian Grand Prix: Practice 1 Fastest Lap,Oliver Bearman,BEA,0.425,,2026-06-27
+Hungarian Grand Prix: Practice 2 Fastest Lap,George Russell,RUS,0.425,,2026-06-27
+Hungarian Grand Prix: Practice 2 Fastest Lap,Arvid Lindblad,LIN,0.425,,2026-06-27
+Hungarian Grand Prix: Practice 3 Fastest Lap,Pierre Gasly,GAS,0.425,,2026-06-27
+Hungarian Grand Prix: Practice 3 Fastest Lap,Fernando Alonso,ALO,0.425,,2026-06-27
+Hungarian Grand Prix: Practice 3 Fastest Lap,Alexander Albon,ALB,0.425,,2026-06-27
+Hungarian Grand Prix: Practice 3 Fastest Lap,Esteban Ocon,OCO,0.425,,2026-06-27
+Hungarian Grand Prix: Practice 3 Fastest Lap,Nico Hulkenberg,HUL,0.425,,2026-06-27
+Hungarian Grand Prix: Practice 3 Fastest Lap,Valtteri Bottas,BOT,0.425,,2026-06-27
+Hungarian Grand Prix: Practice 3 Fastest Lap,Lance Stroll,STR,0.425,,2026-06-27
+Belgian Grand Prix: Driver Winner,Kimi Antonelli,ANT,0.42,20805.91675199999,2026-06-20
+Hungarian Grand Prix: Driver Pole Position,Fernando Alonso,ALO,0.42,50,2026-06-27
+Hungarian Grand Prix: Driver Pole Position,Alexander Albon,ALB,0.42,50,2026-06-27
+Hungarian Grand Prix: Driver Pole Position,Sergio Perez,PER,0.42,50,2026-06-27
+Hungarian Grand Prix: Driver Pole Position,Kimi Antonelli,ANT,0.42,,2026-06-27
+Hungarian Grand Prix: Driver Pole Position,Franco Colapinto,COL,0.42,,2026-06-27
+Hungarian Grand Prix: Constructor Pole Position,Mclaren Mastercard,,0.42,,2026-06-27
+Hungarian Grand Prix: Driver Fastest Lap,Sergio Perez,PER,0.42,,2026-06-27
+Hungarian Grand Prix: Practice 1 Fastest Lap,Valtteri Bottas,BOT,0.42,,2026-06-27
+Hungarian Grand Prix: Practice 1 Fastest Lap,George Russell,RUS,0.42,,2026-06-27
+Hungarian Grand Prix: Practice 2 Fastest Lap,Oscar Piastri,PIA,0.42,,2026-06-27
+Hungarian Grand Prix: Practice 3 Fastest Lap,Oliver Bearman,BEA,0.42,,2026-06-27
+Hungarian Grand Prix: Which Constructor Scores 1st?,Alpine,,0.4185,8.72,2026-06-27
+Hungarian Grand Prix: Which Constructor Scores 1st?,Ferrari,,0.415,,2026-06-27
+Hungarian Grand Prix: Constructor Pole Position,Racing Bulls,,0.415,,2026-06-27
+Hungarian Grand Prix: Driver Fastest Lap,Lewis Hamilton,HAM,0.415,,2026-06-27
+Hungarian Grand Prix: Constructor Fastest Lap,Williams,,0.415,,2026-06-27
+Hungarian Grand Prix: Practice 1 Fastest Lap,Pierre Gasly,GAS,0.415,,2026-06-27
+Hungarian Grand Prix: Practice 1 Fastest Lap,Fernando Alonso,ALO,0.415,,2026-06-27
+Hungarian Grand Prix: Practice 1 Fastest Lap,Lando Norris,NOR,0.415,,2026-06-27
+Hungarian Grand Prix: Practice 3 Fastest Lap,Gabriel Bortoleto,BOR,0.415,,2026-06-27
+Belgian Grand Prix: Driver Fastest Lap,Kimi Antonelli,ANT,0.41,94.35815500000001,2026-06-20
+Hungarian Grand Prix: Which Constructor Scores 1st?,Mclaren Mastercard,,0.41,,2026-06-27
+Hungarian Grand Prix: Which Constructor Scores 1st?,Red Bull,,0.41,,2026-06-27
+Hungarian Grand Prix: Which Constructor Scores 1st?,Racing Bulls,,0.41,,2026-06-27
+Hungarian Grand Prix: Driver Fastest Lap,Franco Colapinto,COL,0.41,,2026-06-27
+Hungarian Grand Prix: Practice 1 Fastest Lap,Carlos Sainz Jr.,SAI,0.41,,2026-06-27
+Hungarian Grand Prix: Practice 2 Fastest Lap,Lando Norris,NOR,0.41,,2026-06-27
+Hungarian Grand Prix: Practice 3 Fastest Lap,Lewis Hamilton,HAM,0.41,,2026-06-27
+Hungarian Grand Prix: Constructor Pole Position,Red Bull,,0.405,,2026-06-27
+Hungarian Grand Prix: Driver Fastest Lap,Isack Hadjar,HAD,0.405,,2026-06-27
+Hungarian Grand Prix: Driver Fastest Lap,Liam Lawson,LAW,0.405,,2026-06-27
+Hungarian Grand Prix: Practice 1 Fastest Lap,Lewis Hamilton,HAM,0.405,,2026-06-27
+Hungarian Grand Prix: Practice 2 Fastest Lap,Alexander Albon,ALB,0.405,,2026-06-27
+Hungarian Grand Prix: Practice 2 Fastest Lap,Lewis Hamilton,HAM,0.405,,2026-06-27
+Hungarian Grand Prix: Practice 3 Fastest Lap,Carlos Sainz Jr.,SAI,0.405,,2026-06-27
+Hungarian Grand Prix: Practice 1 Fastest Lap,Alexander Albon,ALB,0.4,,2026-06-27
+Hungarian Grand Prix: Which Constructor Scores 1st?,Williams,,0.395,8.72,2026-06-27
+Hungarian Grand Prix: Practice 2 Fastest Lap,Franco Colapinto,COL,0.395,,2026-06-27
+Hungarian Grand Prix: Practice 3 Fastest Lap,Oscar Piastri,PIA,0.395,,2026-06-27
+Hungarian Grand Prix: Practice 2 Fastest Lap,Sergio Perez,PER,0.39,,2026-06-27
+Hungarian Grand Prix: Which Constructor Scores 1st?,Audi Revolut,,0.385,8.72,2026-06-27
+Will there be a safety car during the 2026 F1 Belgian Grand Prix?,Will there be a safety car during the 2026 F1 Belgian Grand Prix?,,0.38,11.603418999999999,2026-06-20
+Hungarian Grand Prix: Constructor Pole Position,Alpine,,0.38,8.72,2026-06-27
+Hungarian Grand Prix: Constructor Pole Position,Audi Revolut,,0.38,8.72,2026-06-27
+Hungarian Grand Prix: Constructor Pole Position,Tgr Haas,,0.365,8.72,2026-06-27
+Hungarian Grand Prix: Driver Winner,Kimi Antonelli,ANT,0.355,1494.0552240000002,2026-06-27
+Belgian Grand Prix: Practice 3 Fastest Lap,Kimi Antonelli,ANT,0.295,,2026-06-20
+Belgian Grand Prix: Constructor Pole Position,Ferrari,,0.29,9.209457,2026-06-20
+Hungarian Grand Prix: Driver Podium Finish,Franco Colapinto,COL,0.28,2.62,2026-06-27
+Belgian Grand Prix: Practice 3 Fastest Lap,Arvid Lindblad,LIN,0.255,,2026-06-20
+Belgian Grand Prix: Practice 3 Fastest Lap,Liam Lawson,LAW,0.255,,2026-06-20
+Belgian Grand Prix: Which Constructor Scores 1st?,Ferrari,,0.225,302.840816,2026-06-20
+Hungarian Grand Prix: Driver Winner,George Russell,RUS,0.215,1213.7218219999997,2026-06-27
+Belgian Grand Prix: Driver Pole Position,Max Verstappen,VER,0.175,3432.7093669999995,2026-06-20
+Belgian Grand Prix: Driver Pole Position,George Russell,RUS,0.17,1899.8609539999998,2026-06-20
+Belgian Grand Prix: Driver Fastest Lap,George Russell,RUS,0.17,86.4,2026-06-20
+Belgian Grand Prix: Driver Winner,George Russell,RUS,0.165,9542.763013000005,2026-06-20
+Belgian Grand Prix: Driver Fastest Lap,Max Verstappen,VER,0.155,134.079487,2026-06-20
+Belgian Grand Prix: Driver Podium Finish,Oscar Piastri,PIA,0.155,1086.326053,2026-06-20
+Belgian Grand Prix: Driver Winner,Lewis Hamilton,HAM,0.15,9711.132152999999,2026-06-20
+Belgian Grand Prix: Which Constructor Scores 1st?,Red Bull,,0.15,,2026-06-20
+F1 Drivers' Champion,Lewis Hamilton,HAM,0.1475,5030702.56214393,2025-12-09
+F1 Drivers' Champion,George Russell,RUS,0.145,2423994.3319559903,2025-12-09
+Will there be a red flag during the 2026 F1 Hungarian Grand Prix?,Will there be a red flag during the 2026 F1 Hungarian Grand Prix?,,0.14,,2026-06-27
+Belgian Grand Prix: Driver Winner,Max Verstappen,VER,0.1395,30727.164849000026,2026-06-20
+Belgian Grand Prix: Which Constructor Scores 1st?,Mclaren Mastercard,,0.135,,2026-06-20
+Belgian Grand Prix: Constructor Pole Position,Red Bull,,0.135,26.15875,2026-06-20
+Hungarian Grand Prix: Driver Winner,Lewis Hamilton,HAM,0.13,1720.2017079999996,2026-06-27
+F1 Constructors' Champion,Ferrari,,0.12,590677.0268230016,2025-12-09
+Will there be a red flag during the 2026 F1 Belgian Grand Prix?,Will there be a red flag during the 2026 F1 Belgian Grand Prix?,,0.115,99.999997,2026-06-20
+Belgian Grand Prix: Driver Fastest Lap,Lewis Hamilton,HAM,0.11,155.403404,2026-06-20
+Belgian Grand Prix: Driver Winner,Charles Leclerc,LEC,0.105,13217.418925000002,2026-06-20
+Hungarian Grand Prix: Driver Winner,Charles Leclerc,LEC,0.105,1335.1802660000003,2026-06-27
+Belgian Grand Prix: Practice 2 Fastest Lap,Charles Leclerc,LEC,0.1,,2026-06-20
+Belgian Grand Prix: Practice 2 Fastest Lap,Lando Norris,NOR,0.1,,2026-06-20
+Belgian Grand Prix: Practice 2 Fastest Lap,Max Verstappen,VER,0.1,59.347825,2026-06-20
+Belgian Grand Prix: Practice 2 Fastest Lap,Franco Colapinto,COL,0.1,164,2026-06-20
+Belgian Grand Prix: Practice 2 Fastest Lap,Carlos Sainz Jr.,SAI,0.1,164,2026-06-20
+Belgian Grand Prix: Practice 2 Fastest Lap,Oscar Piastri,PIA,0.1,,2026-06-20
+Belgian Grand Prix: Practice 2 Fastest Lap,Isack Hadjar,HAD,0.1,,2026-06-20
+Belgian Grand Prix: Practice 2 Fastest Lap,Esteban Ocon,OCO,0.0985,150,2026-06-20
+Belgian Grand Prix: Practice 2 Fastest Lap,Alexander Albon,ALB,0.0965,150,2026-06-20
+Belgian Grand Prix: Practice 2 Fastest Lap,Nico Hulkenberg,HUL,0.0965,164,2026-06-20
+Belgian Grand Prix: Practice 2 Fastest Lap,Valtteri Bottas,BOT,0.0965,164,2026-06-20
+Belgian Grand Prix: Driver Pole Position,Lewis Hamilton,HAM,0.095,1390.7219659999996,2026-06-20
+Belgian Grand Prix: Practice 2 Fastest Lap,Lewis Hamilton,HAM,0.095,5.263156,2026-06-20
+Belgian Grand Prix: Practice 2 Fastest Lap,George Russell,RUS,0.09,4.899352,2026-06-20
+Hungarian Grand Prix: Driver Winner,Max Verstappen,VER,0.085,1469.537772,2026-06-27
+Belgian Grand Prix: Driver Podium Finish,Lando Norris,NOR,0.08,3769.8345860000004,2026-06-20
+Belgian Grand Prix: Driver Fastest Lap,Oliver Bearman,BEA,0.0765,83.005,2026-06-20
+Belgian Grand Prix: Driver Fastest Lap,Charles Leclerc,LEC,0.075,109.32000000000002,2026-06-20
+Belgian Grand Prix: Practice 2 Fastest Lap,Arvid Lindblad,LIN,0.0745,28,2026-06-20
+Belgian Grand Prix: Driver Pole Position,Charles Leclerc,LEC,0.065,2047.0455279999996,2026-06-20
+Belgian Grand Prix: Driver Fastest Lap,Nico Hulkenberg,HUL,0.056,83.005,2026-06-20
+Hungarian Grand Prix: Driver Winner,Lando Norris,NOR,0.055,1053.5158069999998,2026-06-27
+Hungarian Grand Prix: Driver Winner,Oscar Piastri,PIA,0.055,1691.7278709999998,2026-06-27
+Belgian Grand Prix: Constructor Pole Position,Mclaren Mastercard,,0.05,2.96875,2026-06-20
+Belgian Grand Prix: Driver Fastest Lap,Alexander Albon,ALB,0.0465,83.005,2026-06-20
+Belgian Grand Prix: Driver Fastest Lap,Esteban Ocon,OCO,0.0415,84.007,2026-06-20
+Belgian Grand Prix: Driver Podium Finish,Isack Hadjar,HAD,0.0395,45.877721,2026-06-20
+Belgian Grand Prix: Driver Fastest Lap,Pierre Gasly,GAS,0.0345,78,2026-06-20
+Belgian Grand Prix: Driver Fastest Lap,Oscar Piastri,PIA,0.0315,80.700239,2026-06-20
+Belgian Grand Prix: Driver Fastest Lap,Isack Hadjar,HAD,0.031,42.602809,2026-06-20
+F1 Drivers' Champion,Charles Leclerc,LEC,0.0295,4992000.557111014,2025-12-09
+Belgian Grand Prix: Driver Podium Finish,Arvid Lindblad,LIN,0.028,20.232597,2026-06-20
+Belgian Grand Prix: Driver Podium Finish,Liam Lawson,LAW,0.028,45.878569,2026-06-20
+F1 Drivers' Champion,Max Verstappen,VER,0.0255,5233175.460489018,2025-12-09
+Belgian Grand Prix: Driver Fastest Lap,Lando Norris,NOR,0.025,50.69,2026-06-20
+Belgian Grand Prix: Driver Podium Finish,Pierre Gasly,GAS,0.0245,87.6879,2026-06-20
+F1 Drivers' Champion,Lando Norris,NOR,0.0225,5805710.506864038,2025-12-09
+Belgian Grand Prix: Driver Pole Position,Lando Norris,NOR,0.0225,2404.3683029999997,2026-06-20
+Belgian Grand Prix: Driver Winner,Oscar Piastri,PIA,0.0215,7453.532049,2026-06-20
+Belgian Grand Prix: Driver Fastest Lap,Gabriel Bortoleto,BOR,0.021,124.005,2026-06-20
+Belgian Grand Prix: Driver Fastest Lap,Sergio Perez,PER,0.0205,122.36102399999999,2026-06-20
+Belgian Grand Prix: Driver Fastest Lap,Arvid Lindblad,LIN,0.02,78,2026-06-20
+Belgian Grand Prix: Constructor Fastest Lap,Williams,,0.02,,2026-06-20
+Belgian Grand Prix: Constructor Fastest Lap,Audi Revolut,,0.02,,2026-06-20
+Belgian Grand Prix: Constructor Fastest Lap,Cadillac,,0.02,,2026-06-20
+Belgian Grand Prix: Driver Pole Position,Oscar Piastri,PIA,0.0195,1954.3634509999997,2026-06-20
+Belgian Grand Prix: Driver Podium Finish,Oliver Bearman,BEA,0.0185,103.03613299999999,2026-06-20
+Belgian Grand Prix: Constructor Pole Position,Racing Bulls,,0.018,89.8755,2026-06-20
+Belgian Grand Prix: Driver Winner,Lando Norris,NOR,0.0175,10061.513765,2026-06-20
+Belgian Grand Prix: Driver Fastest Lap,Franco Colapinto,COL,0.017,102.18,2026-06-20
+Belgian Grand Prix: Driver Fastest Lap,Lance Stroll,STR,0.016,105.82000000000001,2026-06-20
+F1 Constructors' Champion,McLaren,,0.0155,1644503.020990992,2025-12-09
+Belgian Grand Prix: Driver Fastest Lap,Fernando Alonso,ALO,0.0155,98.53999999999999,2026-06-20
+Belgian Grand Prix: Driver Fastest Lap,Valtteri Bottas,BOT,0.0155,105.82000000000001,2026-06-20
+Belgian Grand Prix: Driver Fastest Lap,Liam Lawson,LAW,0.0145,78,2026-06-20
+Hungarian Grand Prix: Constructor Pole Position,Williams,,0.0145,8.72,2026-06-27
+Belgian Grand Prix: Driver Fastest Lap,Carlos Sainz Jr.,SAI,0.0135,78,2026-06-20
+Hungarian Grand Prix: Constructor Pole Position,Aston Martin,,0.0135,8.72,2026-06-27
+Hungarian Grand Prix: Constructor Pole Position,Cadillac,,0.0095,58.72,2026-06-27
+Belgian Grand Prix: Driver Podium Finish,Gabriel Bortoleto,BOR,0.009,122.72205,2026-06-20
+F1 Drivers' Champion,Oscar Piastri,PIA,0.0075,5987408.02718302,2025-12-09
+Belgian Grand Prix: Driver Podium Finish,Valtteri Bottas,BOT,0.0065,113.7751,2026-06-20
+Belgian Grand Prix: Which Constructor Scores 1st?,Alpine,,0.006,50,2026-06-20
+Belgian Grand Prix: Which Constructor Scores 1st?,Racing Bulls,,0.006,50,2026-06-20
+Belgian Grand Prix: Practice 3 Fastest Lap,Pierre Gasly,GAS,0.006,50,2026-06-20
+Belgian Grand Prix: Practice 3 Fastest Lap,Alexander Albon,ALB,0.006,50,2026-06-20
+Belgian Grand Prix: Practice 3 Fastest Lap,Gabriel Bortoleto,BOR,0.006,49.9905,2026-06-20
+Belgian Grand Prix: Practice 3 Fastest Lap,Esteban Ocon,OCO,0.006,50,2026-06-20
+Belgian Grand Prix: Practice 3 Fastest Lap,Franco Colapinto,COL,0.006,50,2026-06-20
+Belgian Grand Prix: Practice 3 Fastest Lap,Carlos Sainz Jr.,SAI,0.006,50,2026-06-20
+Belgian Grand Prix: Practice 3 Fastest Lap,Nico Hulkenberg,HUL,0.006,50,2026-06-20
+Belgian Grand Prix: Practice 3 Fastest Lap,Oliver Bearman,BEA,0.006,50,2026-06-20
+Belgian Grand Prix: Driver Podium Finish,Esteban Ocon,OCO,0.006,117.6194,2026-06-20
+Belgian Grand Prix: Driver Podium Finish,Franco Colapinto,COL,0.006,91.71000000000001,2026-06-20
+Belgian Grand Prix: Driver Podium Finish,Nico Hulkenberg,HUL,0.006,115.533409,2026-06-20
+F1 Constructors' Champion,Red Bull Racing,,0.0055,751328.4302939977,2025-12-09
+Belgian Grand Prix: Which Constructor Scores 1st?,Audi Revolut,,0.0055,58.72,2026-06-20
+Belgian Grand Prix: Which Constructor Scores 1st?,Tgr Haas,,0.0055,58.72,2026-06-20
+Belgian Grand Prix: Driver Podium Finish,Alexander Albon,ALB,0.0055,130.1371,2026-06-20
+Hungarian Grand Prix: Which Constructor Scores 1st?,Aston Martin,,0.0055,58.6739,2026-06-27
+Hungarian Grand Prix: Which Constructor Scores 1st?,Tgr Haas,,0.0055,58.6739,2026-06-27
+Belgian Grand Prix: Driver Pole Position,Pierre Gasly,GAS,0.005,432.05633299999994,2026-06-20
+Belgian Grand Prix: Driver Pole Position,Fernando Alonso,ALO,0.005,432.04999999999995,2026-06-20
+Belgian Grand Prix: Driver Pole Position,Alexander Albon,ALB,0.005,432.04999999999995,2026-06-20
+Belgian Grand Prix: Driver Pole Position,Gabriel Bortoleto,BOR,0.005,438.99999999999994,2026-06-20
+Belgian Grand Prix: Driver Pole Position,Arvid Lindblad,LIN,0.005,438.99999999999994,2026-06-20
+Belgian Grand Prix: Driver Pole Position,Isack Hadjar,HAD,0.005,1218.271,2026-06-20
+Belgian Grand Prix: Driver Pole Position,Liam Lawson,LAW,0.005,432.04999999999995,2026-06-20
+Belgian Grand Prix: Driver Podium Finish,Fernando Alonso,ALO,0.005,215.453324,2026-06-20
+Belgian Grand Prix: Driver Podium Finish,Sergio Perez,PER,0.005,209.5423,2026-06-20
+Belgian Grand Prix: Which Constructor Scores 1st?,Aston Martin,,0.0045,238.72,2026-06-20
+Belgian Grand Prix: Driver Pole Position,Carlos Sainz Jr.,SAI,0.0045,415,2026-06-20
+Belgian Grand Prix: Driver Pole Position,Nico Hulkenberg,HUL,0.0045,415,2026-06-20
+Belgian Grand Prix: Driver Pole Position,Oliver Bearman,BEA,0.0045,285,2026-06-20
+Belgian Grand Prix: Driver Pole Position,Lance Stroll,STR,0.0045,432.04999999999995,2026-06-20
+Belgian Grand Prix: Constructor Pole Position,Aston Martin,,0.0045,177.06199999999998,2026-06-20
+Hungarian Grand Prix: Which Constructor Scores 1st?,Cadillac,,0.0045,58.6739,2026-06-27
+Hungarian Grand Prix: Driver Winner,Isack Hadjar,HAD,0.004,1157.3133320000002,2026-06-27
+F1 Constructors' Champion,Racing Bulls,,0.0035,3097673.2157208733,2025-12-09
+Belgian Grand Prix: Driver Winner,Isack Hadjar,HAD,0.0035,5171.423137,2026-06-20
+Belgian Grand Prix: Driver Pole Position,Sergio Perez,PER,0.0035,431.926,2026-06-20
+Belgian Grand Prix: Driver Pole Position,Valtteri Bottas,BOT,0.0035,523.096333,2026-06-20
+Belgian Grand Prix: Constructor Pole Position,Audi Revolut,,0.0035,184.87199999999999,2026-06-20
+Belgian Grand Prix: Which Constructor Scores 1st?,Williams,,0.003,238.72,2026-06-20
+Belgian Grand Prix: Constructor Pole Position,Williams,,0.003,194.87199999999999,2026-06-20
+Belgian Grand Prix: Driver Pole Position,Esteban Ocon,OCO,0.0025,426.98999999999995,2026-06-20
+Belgian Grand Prix: Which Constructor Scores 1st?,Cadillac,,0.002,158.72,2026-06-20
+Belgian Grand Prix: Driver Pole Position,Franco Colapinto,COL,0.002,428.98999999999995,2026-06-20
+F1 Drivers' Champion,Esteban Ocon,OCO,0.0015,9336470.07102741,2025-12-09
+F1 Constructors' Champion,Williams,,0.0015,3787142.635617895,2025-12-09
+F1 Constructors' Champion,Aston Martin,,0.0015,3127777.652286933,2025-12-09
+F1 Constructors' Champion,Haas,,0.0015,3304799.227210928,2025-12-09
+F1 Constructors' Champion,Audi,,0.0015,3224128.421026968,2025-12-09
+F1 Constructors' Champion,Alpine,,0.0015,3334263.948012959,2025-12-09
+F1 Constructors' Champion,Cadillac,,0.0015,3698637.867052828,2025-12-09
+Belgian Grand Prix: Constructor Pole Position,Alpine,,0.0015,185.05749999999998,2026-06-20
+Belgian Grand Prix: Constructor Pole Position,Cadillac,,0.0015,174.1,2026-06-20
+Belgian Grand Prix: Constructor Pole Position,Tgr Haas,,0.0015,174.1,2026-06-20
+Belgian Grand Prix: Practice 3 Fastest Lap,Fernando Alonso,ALO,0.0015,150,2026-06-20
+Belgian Grand Prix: Practice 3 Fastest Lap,Sergio Perez,PER,0.0015,150,2026-06-20
+Belgian Grand Prix: Practice 3 Fastest Lap,Valtteri Bottas,BOT,0.0015,150,2026-06-20
+Belgian Grand Prix: Practice 3 Fastest Lap,Lance Stroll,STR,0.0015,150,2026-06-20
+Belgian Grand Prix: Driver Podium Finish,Carlos Sainz Jr.,SAI,0.0015,99.26415300000001,2026-06-20
+Belgian Grand Prix: Driver Podium Finish,Lance Stroll,STR,0.0015,312.29040000000003,2026-06-20
+F1 Drivers' Champion,Isack Hadjar,HAD,0.0005,9303426.303225275,2025-12-09
+F1 Drivers' Champion,Fernando Alonso,ALO,0.0005,9042289.797374565,2025-12-09
+F1 Drivers' Champion,Lance Stroll,STR,0.0005,11625551.965504644,2025-12-09
+F1 Drivers' Champion,Oliver Bearman,BEA,0.0005,12826077.516555412,2025-12-09
+F1 Drivers' Champion,Nico Hülkenberg,HUL,0.0005,8429472.503715316,2025-12-09
+F1 Drivers' Champion,Gabriel Bortoleto,BOR,0.0005,10864289.201449987,2025-12-09
+F1 Drivers' Champion,Pierre Gasly,GAS,0.0005,11467679.401431503,2025-12-09
+F1 Drivers' Champion,Franco Colapinto,COL,0.0005,12181063.801519148,2025-12-09
+F1 Drivers' Champion,Liam Lawson,LAW,0.0005,10675943.006793084,2025-12-09
+F1 Drivers' Champion,Arvid Lindblad,LIN,0.0005,11988714.045626182,2025-12-09
+F1 Drivers' Champion,Alexander Albon,ALB,0.0005,11812276.220011918,2025-12-09
+F1 Drivers' Champion,Carlos Sainz Jr.,SAI,0.0005,11031546.170266164,2025-12-09
+F1 Drivers' Champion,Valtteri Bottas,BOT,0.0005,12159632.487809611,2025-12-09
+F1 Drivers' Champion,Sergio Pérez,PER,0.0005,11734634.83441024,2025-12-09
+Belgian Grand Prix: Driver Winner,Pierre Gasly,GAS,0.0005,2373.597044,2026-06-20
+Belgian Grand Prix: Driver Winner,Fernando Alonso,ALO,0.0005,2080.8510000000006,2026-06-20
+Belgian Grand Prix: Driver Winner,Alexander Albon,ALB,0.0005,2256.0244880000014,2026-06-20
+Belgian Grand Prix: Driver Winner,Gabriel Bortoleto,BOR,0.0005,485.91,2026-06-20
+Belgian Grand Prix: Driver Winner,Sergio Perez,PER,0.0005,2145.462000000001,2026-06-20
+Belgian Grand Prix: Driver Winner,Esteban Ocon,OCO,0.0005,2040.4940000000004,2026-06-20
+Belgian Grand Prix: Driver Winner,Franco Colapinto,COL,0.0005,2027.325,2026-06-20
+Belgian Grand Prix: Driver Winner,Carlos Sainz Jr.,SAI,0.0005,520.6899999999999,2026-06-20
+Belgian Grand Prix: Driver Winner,Nico Hulkenberg,HUL,0.0005,1978.0690000000002,2026-06-20
+Belgian Grand Prix: Driver Winner,Valtteri Bottas,BOT,0.0005,2296.460039,2026-06-20
+Belgian Grand Prix: Driver Winner,Oliver Bearman,BEA,0.0005,2210.0396380000007,2026-06-20
+Belgian Grand Prix: Driver Winner,Arvid Lindblad,LIN,0.0005,1021.1439999999999,2026-06-20
+Belgian Grand Prix: Driver Winner,Liam Lawson,LAW,0.0005,2112.9450000000006,2026-06-20
+Belgian Grand Prix: Driver Winner,Lance Stroll,STR,0.0005,2034.3130000000006,2026-06-20
+Belgian Grand Prix: Practice 2 Fastest Lap,Pierre Gasly,GAS,0.0005,164,2026-06-20
+Belgian Grand Prix: Practice 2 Fastest Lap,Fernando Alonso,ALO,0.0005,178,2026-06-20
+Belgian Grand Prix: Practice 2 Fastest Lap,Gabriel Bortoleto,BOR,0.0005,164,2026-06-20
+Belgian Grand Prix: Practice 2 Fastest Lap,Sergio Perez,PER,0.0005,164,2026-06-20
+Belgian Grand Prix: Practice 2 Fastest Lap,Oliver Bearman,BEA,0.0005,164,2026-06-20
+Belgian Grand Prix: Practice 2 Fastest Lap,Liam Lawson,LAW,0.0005,173.5959,2026-06-20
+Belgian Grand Prix: Practice 2 Fastest Lap,Lance Stroll,STR,0.0005,164,2026-06-20
+Hungarian Grand Prix: Driver Winner,Pierre Gasly,GAS,0.0005,969.025,2026-06-27
+Hungarian Grand Prix: Driver Winner,Fernando Alonso,ALO,0.0005,524.835,2026-06-27
+Hungarian Grand Prix: Driver Winner,Alexander Albon,ALB,0.0005,522.835,2026-06-27
+Hungarian Grand Prix: Driver Winner,Gabriel Bortoleto,BOR,0.0005,511.83500000000004,2026-06-27
+Hungarian Grand Prix: Driver Winner,Sergio Perez,PER,0.0005,518.835,2026-06-27
+Hungarian Grand Prix: Driver Winner,Esteban Ocon,OCO,0.0005,518.835,2026-06-27
+Hungarian Grand Prix: Driver Winner,Franco Colapinto,COL,0.0005,518.835,2026-06-27
+Hungarian Grand Prix: Driver Winner,Carlos Sainz Jr.,SAI,0.0005,518.835,2026-06-27
+Hungarian Grand Prix: Driver Winner,Nico Hulkenberg,HUL,0.0005,516.835,2026-06-27
+Hungarian Grand Prix: Driver Winner,Valtteri Bottas,BOT,0.0005,499.83500000000004,2026-06-27
+Hungarian Grand Prix: Driver Winner,Oliver Bearman,BEA,0.0005,518.835,2026-06-27
+Hungarian Grand Prix: Driver Winner,Arvid Lindblad,LIN,0.0005,810.726,2026-06-27
+Hungarian Grand Prix: Driver Winner,Liam Lawson,LAW,0.0005,816.726,2026-06-27
+Hungarian Grand Prix: Driver Winner,Lance Stroll,STR,0.0005,498.865,2026-06-27

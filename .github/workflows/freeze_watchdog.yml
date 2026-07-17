@@ -1,0 +1,45 @@
+name: freeze-watchdog
+# Watchdog CLOUD del track record: gira DOPO gli orari attesi dei freeze e apre
+# una Issue se il freeze non e' arrivato sul repo (= il PC di casa ha fallito).
+# Orari UTC (CEST = UTC+2). workflow_dispatch = test manuale.
+on:
+  schedule:
+    - cron: '50 17 * * 5'   # ven 19:50 CEST — atteso freeze post-fp2 di oggi
+    - cron: '50 16 * * 6'   # sab 18:50 CEST — atteso freeze post-quali di oggi
+    - cron: '20 18 * * 0'   # dom 20:20 CEST — atteso benchmark.json post-gara
+  workflow_dispatch: {}
+permissions:
+  issues: write
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: verifica freeze atteso
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          dow=$(date -u +%u); today=$(date -u +%Y%m%d); miss=""
+          case "$dow" in
+            5) ls track_record/*/${today}T*_post-fp2/MANIFEST.json >/dev/null 2>&1 \
+                 || miss="freeze post-fp2 di oggi ($today) ASSENTE sul repo";;
+            6) ls track_record/*/${today}T*_post-quali/MANIFEST.json >/dev/null 2>&1 \
+                 || miss="freeze post-quali di oggi ($today) ASSENTE sul repo (il numero vendibile!)";;
+            7) ts=$(git log -1 --format=%ct -- '*benchmark.json' 2>/dev/null || echo 0)
+               age=$(( $(date +%s) - ts ))
+               [ "$ts" -gt 0 ] && [ "$age" -lt 86400 ] \
+                 || miss="nessun benchmark.json aggiornato nelle ultime 24h (post-race non arrivato)";;
+            *) echo "giorno non presidiato: nulla da verificare"; exit 0;;
+          esac
+          if [ -n "$miss" ]; then
+            echo "PROBLEMA: $miss"
+            gh issue create --repo "$GITHUB_REPOSITORY" \
+              -t "watchdog: $miss" \
+              -b "@Roger7111 il watchdog cloud non ha trovato quello che si aspettava: **$miss**. Controlla il PC (task schedulati, AV, alimentazione) e rilancia lo stage con wk_*.bat. Dettagli: run $GITHUB_RUN_ID."
+            exit 1
+          fi
+          echo "OK: freeze/benchmark presente."

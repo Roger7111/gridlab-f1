@@ -1,0 +1,22 @@
+{
+ "race": "Belgian Grand Prix 2026",
+ "stage": "post-quali",
+ "frozen_at_utc": "20260718T160139Z",
+ "note": "Freeze ufficiale post-qualifiche",
+ "files": {
+  "Belgian_Grand_Prix_2026_grid.csv": "ff38b1612cb2be553978981cdee6ebf4781a017422ddce48d02e5dfab933ac3a",
+  "Belgian_Grand_Prix_2026_h2h.csv": "b7a75920340525a1b5a4ca38a6a214f551c4a0e0450a4fbfb7c8c14bd30e8dde",
+  "Belgian_Grand_Prix_2026_probabilities.csv": "855a2947a5145585a10d072a4113c957636c175ef04d002944761bf7da9f7356",
+  "Belgian_Grand_Prix_2026_quali_grid.csv": "48f29c0120935aa2585e7cf9f966acc962357069c69751e0b670927161dd4b5e",
+  "Belgian_Grand_Prix_2026_quali_probabilities.csv": "7ade7eeca4bb1fc11c7d7b15a3425c866a8d9fbfd093c2cc5f776412a7240f6c",
+  "Belgian_Grand_Prix_2026_quali_summary.txt": "a6c7c2f6375754a0a8ec2d9e2b8ada6e3c50bef21e7565d7ce280477374cc02c",
+  "Belgian_Grand_Prix_2026_summary.txt": "2a64376d08cff1f067c961e47554825c407bbf7e4496f517fed638dfa04f6bc6",
+  "Belgian_Grand_Prix_2026_team_points.csv": "54de7674b378060a2808e8651048b6df0679af304d5cbe6d1b6e09234835dc46"
+ },
+ "results_db_sha256": "113c038f6104e1af06604d2339f597f2d9036b038850b6b48f33579d1b5d0293",
+ "results_db_races": 13,
+ "market_files": {
+  "polymarket_f1_liquid.csv": "7bea7ead9e823d2916b87f98dc7fe1134676286a827eb4d9247a301ba69c05a2",
+  "polymarket_f1_probs.csv": "93b6212aea71da6a10b0b48edbb550487479bbb235ac62f90c56edb229075d51"
+ }
+}

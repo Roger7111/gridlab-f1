@@ -1,10 +1,10 @@
 {
- "generato_utc": "2026-07-09T12:08:18Z",
+ "generato_utc": "2026-07-19T16:31:47Z",
  "metodo": "previsione leakage-free vs passo gara fuel-corrected (DNF-immune), 2026",
  "season": {
   "n_gare": 9,
   "spearman_pace": 0.888,
-  "spearman_finish": 0.614
+  "spearman_finish": 0.602
  },
  "gare": [
   {
@@ -41,16 +41,16 @@
    "race": "Monaco Grand Prix",
    "circuit": "street",
    "spearman_pace": 0.9,
-   "spearman_finish": 0.372
+   "spearman_finish": 0.373
   },
   {
    "race": "Barcelona Grand Prix",
    "circuit": "aero",
    "spearman_pace": 0.956,
-   "spearman_finish": 0.738
+   "spearman_finish": 0.739
   },
   {
-   "race": "Austrian Grand Prix 2026",
+   "race": "Austrian Grand Prix",
    "circuit": "power",
    "spearman_pace": 0.946,
    "spearman_finish": 0.933
@@ -59,7 +59,7 @@
    "race": "British Grand Prix",
    "circuit": "aero",
    "spearman_pace": 0.958,
-   "spearman_finish": 0.695
+   "spearman_finish": 0.589
   }
  ]
 }

@@ -1,51 +1,29 @@
 {
- "generato_utc": "2026-07-19T19:47:18Z",
- "aggregato": null,
- "scored": [],
- "pending": [
+ "generato_utc": "2026-07-19T19:51:39Z",
+ "aggregato": {
+  "n_gare": 1,
+  "brier_delta_medio": -0.0309,
+  "gare_modello_batte_mercato": 0,
+  "logloss_modello_medio": 0.1394,
+  "logloss_mercato_medio": 0.0389
+ },
+ "scored": [
   {
+   "n_drivers": 22,
+   "brier_model": 0.039,
+   "brier_market": 0.0081,
+   "brier_delta": -0.0309,
+   "logloss_model": 0.1394,
+   "logloss_market": 0.0389,
+   "winner_in_set": true,
    "race": "Belgian Grand Prix",
    "stage": "post-quali",
-   "divergenze": [
-    {
-     "driver": "NOR",
-     "p_model": 0.1402,
-     "p_market": 0.0174,
-     "delta": 0.1228
-    },
-    {
-     "driver": "LEC",
-     "p_model": 0.1342,
-     "p_market": 0.0354,
-     "delta": 0.0988
-    },
-    {
-     "driver": "HAM",
-     "p_model": 0.1241,
-     "p_market": 0.0373,
-     "delta": 0.0868
-    },
-    {
-     "driver": "ANT",
-     "p_model": 0.1176,
-     "p_market": 0.6295,
-     "delta": -0.5119
-    },
-    {
-     "driver": "VER",
-     "p_model": 0.0882,
-     "p_market": 0.1787,
-     "delta": -0.0905
-    },
-    {
-     "driver": "RUS",
-     "p_model": 0.0769,
-     "p_market": 0.0823,
-     "delta": -0.0054
-    }
-   ]
+   "winner": "ANT",
+   "beat_market": false,
+   "test": false
   }
  ],
+ "pending": [],
  "skipped": [
   {
    "race": "Barcelona-Catalunya Grand Prix",

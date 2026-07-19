@@ -1,47 +1,47 @@
 {
- "generato_utc": "2026-07-08T15:03:15Z",
+ "generato_utc": "2026-07-19T16:31:15Z",
  "aggregato": null,
  "scored": [],
  "pending": [
   {
    "race": "Belgian Grand Prix",
-   "stage": "pre-weekend",
+   "stage": "post-quali",
    "divergenze": [
     {
-     "driver": "HAM",
-     "p_model": 0.1501,
-     "p_market": 0.1149,
-     "delta": 0.0352
-    },
-    {
-     "driver": "VER",
-     "p_model": 0.1197,
-     "p_market": 0.048,
-     "delta": 0.0717
-    },
-    {
-     "driver": "RUS",
-     "p_model": 0.1184,
-     "p_market": 0.2048,
-     "delta": -0.0864
-    },
-    {
-     "driver": "ANT",
-     "p_model": 0.1164,
-     "p_market": 0.4146,
-     "delta": -0.2982
-    },
-    {
      "driver": "NOR",
-     "p_model": 0.0987,
-     "p_market": 0.0315,
-     "delta": 0.0672
+     "p_model": 0.1402,
+     "p_market": 0.0174,
+     "delta": 0.1228
     },
     {
      "driver": "LEC",
-     "p_model": 0.0942,
-     "p_market": 0.1399,
-     "delta": -0.0457
+     "p_model": 0.1342,
+     "p_market": 0.0354,
+     "delta": 0.0988
+    },
+    {
+     "driver": "HAM",
+     "p_model": 0.1241,
+     "p_market": 0.0373,
+     "delta": 0.0868
+    },
+    {
+     "driver": "ANT",
+     "p_model": 0.1176,
+     "p_market": 0.6295,
+     "delta": -0.5119
+    },
+    {
+     "driver": "VER",
+     "p_model": 0.0882,
+     "p_market": 0.1787,
+     "delta": -0.0905
+    },
+    {
+     "driver": "RUS",
+     "p_model": 0.0769,
+     "p_market": 0.0823,
+     "delta": -0.0054
     }
    ]
   }

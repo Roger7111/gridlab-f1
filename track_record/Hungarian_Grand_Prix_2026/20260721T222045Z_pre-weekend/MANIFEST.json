@@ -1,0 +1,23 @@
+{
+ "race": "Hungarian Grand Prix 2026",
+ "stage": "pre-weekend",
+ "frozen_at_utc": "20260721T222045Z",
+ "note": "",
+ "files": {
+  "Hungarian_Grand_Prix_2026_grid.csv": "f40196e6d7620ed97d9e54f5fa63e9931b15239976cb25ca4b1ea642f831e560",
+  "Hungarian_Grand_Prix_2026_h2h.csv": "e7dd18af61bdebd2555601a753128fb0470d1953ab5b68c4be753c74f0db2a11",
+  "Hungarian_Grand_Prix_2026_probabilities.csv": "e24ed35dd7d2d5c88afd077e31bc9edade60e0bf160e53915ac2ef5b825292ae",
+  "Hungarian_Grand_Prix_2026_quali_grid.csv": "0415d6e7704426df4185adb1794d0ba802729c3bbf233bc3d6f8196f6c848762",
+  "Hungarian_Grand_Prix_2026_quali_probabilities.csv": "c5eb02c4122f96e98e79c6da2276b9648091e222af6f4c2635bcd212feb342f9",
+  "Hungarian_Grand_Prix_2026_quali_summary.txt": "b1dcca5199f14df9a19cf91d2814161d6d94314a432ed96ac014d90229bfc7cb",
+  "Hungarian_Grand_Prix_2026_summary.txt": "14b2370ea09e3d7c8749365308c88f0f9241624a7608cfb6bb04f0f60cad7236",
+  "Hungarian_Grand_Prix_2026_team_points.csv": "f5f5bae0f6ac843e8e9334d9ecc4931780f31a59acb32b138f03d7a766cee551"
+ },
+ "results_db_sha256": "1bdc044b8cdaadd0055809e5d5d9a0324e152a2a480c25f4c5cf8867101725a3",
+ "results_db_races": 14,
+ "git_commit": "9191557bbb89068fe47020b0b84cd738fbcf98ad",
+ "market_files": {
+  "polymarket_f1_liquid.csv": "d7dd131c830e33ced17dd1faa584d2351dbddd469ad436cf2e554dc086b07110",
+  "polymarket_f1_probs.csv": "451042f19edc155338367ab8ed97332a88f77e5db58daf90c408a0fe70420540"
+ }
+}

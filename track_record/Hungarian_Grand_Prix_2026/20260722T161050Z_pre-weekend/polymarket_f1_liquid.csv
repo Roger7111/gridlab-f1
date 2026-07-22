@@ -1,0 +1,122 @@
+evento,tipo,driver,codice,prob_raw,prob_novig,volume,data
+F1 Constructors' Champion,champ_costruttori,Mercedes,,0.875,0.8785,944616.411727996,2025-12-09
+F1 Constructors' Champion,champ_costruttori,Ferrari,,0.1055,0.1059,626255.970771002,2025-12-09
+F1 Constructors' Champion,champ_costruttori,McLaren,,0.0055,0.0055,1664738.1485879922,2025-12-09
+F1 Constructors' Champion,champ_costruttori,Racing Bulls,,0.0035,0.0035,3122027.261346878,2025-12-09
+F1 Constructors' Champion,champ_costruttori,Red Bull Racing,,0.0025,0.0025,781778.4513959984,2025-12-09
+F1 Constructors' Champion,champ_costruttori,Aston Martin,,0.0015,0.0015,3172479.9722869326,2025-12-09
+F1 Constructors' Champion,champ_costruttori,Williams,,0.0005,0.0005,3808138.6626178944,2025-12-09
+F1 Constructors' Champion,champ_costruttori,Haas,,0.0005,0.0005,3315783.1542109284,2025-12-09
+F1 Constructors' Champion,champ_costruttori,Audi,,0.0005,0.0005,3245112.3860269655,2025-12-09
+F1 Constructors' Champion,champ_costruttori,Alpine,,0.0005,0.0005,3344680.476012963,2025-12-09
+F1 Constructors' Champion,champ_costruttori,Cadillac,,0.0005,0.0005,3708316.0570528274,2025-12-09
+F1 Drivers' Champion,champ_piloti,Kimi Antonelli,ANT,0.7445,0.7271,3786593.59373599,2025-12-09
+F1 Drivers' Champion,champ_piloti,Lewis Hamilton,HAM,0.1105,0.1079,5072182.1235209275,2025-12-09
+F1 Drivers' Champion,champ_piloti,George Russell,RUS,0.085,0.083,2479460.36615899,2025-12-09
+F1 Drivers' Champion,champ_piloti,Charles Leclerc,LEC,0.0295,0.0288,5070725.094463014,2025-12-09
+F1 Drivers' Champion,champ_piloti,Max Verstappen,VER,0.0195,0.019,5741377.08944397,2025-12-09
+F1 Drivers' Champion,champ_piloti,Lando Norris,NOR,0.0175,0.0171,6503481.699337976,2025-12-09
+F1 Drivers' Champion,champ_piloti,Oscar Piastri,PIA,0.009,0.0088,6033906.758549013,2025-12-09
+F1 Drivers' Champion,champ_piloti,Esteban Ocon,OCO,0.0015,0.0015,9384280.05302741,2025-12-09
+F1 Drivers' Champion,champ_piloti,Isack Hadjar,HAD,0.0005,0.0005,9357463.933225278,2025-12-09
+F1 Drivers' Champion,champ_piloti,Fernando Alonso,ALO,0.0005,0.0005,9077070.817374565,2025-12-09
+F1 Drivers' Champion,champ_piloti,Lance Stroll,STR,0.0005,0.0005,11677174.165504646,2025-12-09
+F1 Drivers' Champion,champ_piloti,Oliver Bearman,BEA,0.0005,0.0005,12882607.656555412,2025-12-09
+F1 Drivers' Champion,champ_piloti,Nico Hülkenberg,HUL,0.0005,0.0005,8459535.753715318,2025-12-09
+F1 Drivers' Champion,champ_piloti,Gabriel Bortoleto,BOR,0.0005,0.0005,10914767.661449986,2025-12-09
+F1 Drivers' Champion,champ_piloti,Pierre Gasly,GAS,0.0005,0.0005,11500554.141431503,2025-12-09
+F1 Drivers' Champion,champ_piloti,Franco Colapinto,COL,0.0005,0.0005,12213434.021519147,2025-12-09
+F1 Drivers' Champion,champ_piloti,Liam Lawson,LAW,0.0005,0.0005,10707013.946793085,2025-12-09
+F1 Drivers' Champion,champ_piloti,Arvid Lindblad,LIN,0.0005,0.0005,12038759.775626183,2025-12-09
+F1 Drivers' Champion,champ_piloti,Alexander Albon,ALB,0.0005,0.0005,11864633.610011918,2025-12-09
+F1 Drivers' Champion,champ_piloti,Carlos Sainz Jr.,SAI,0.0005,0.0005,11082108.340266168,2025-12-09
+F1 Drivers' Champion,champ_piloti,Valtteri Bottas,BOT,0.0005,0.0005,12192205.107809613,2025-12-09
+F1 Drivers' Champion,champ_piloti,Sergio Pérez,PER,0.0005,0.0005,11786637.034410238,2025-12-09
+Hungarian Grand Prix: Which Constructor Scores 1st?,costruttore_gara,Mercedes,,0.475,0.4211,69.910713,2026-06-27
+Hungarian Grand Prix: Which Constructor Scores 1st?,costruttore_gara,Ferrari,,0.405,0.359,29.91,2026-06-27
+Hungarian Grand Prix: Which Constructor Scores 1st?,costruttore_gara,Mclaren Mastercard,,0.135,0.1197,66.27363299999999,2026-06-27
+Hungarian Grand Prix: Which Constructor Scores 1st?,costruttore_gara,Red Bull,,0.065,0.0576,550.2199999999999,2026-06-27
+Hungarian Grand Prix: Which Constructor Scores 1st?,costruttore_gara,Tgr Haas,,0.0105,0.0093,88.5839,2026-06-27
+Hungarian Grand Prix: Which Constructor Scores 1st?,costruttore_gara,Williams,,0.01,0.0089,118.63,2026-06-27
+Hungarian Grand Prix: Which Constructor Scores 1st?,costruttore_gara,Cadillac,,0.0065,0.0058,88.5839,2026-06-27
+Hungarian Grand Prix: Which Constructor Scores 1st?,costruttore_gara,Racing Bulls,,0.006,0.0053,88.6271,2026-06-27
+Hungarian Grand Prix: Which Constructor Scores 1st?,costruttore_gara,Aston Martin,,0.0055,0.0049,88.5839,2026-06-27
+Hungarian Grand Prix: Which Constructor Scores 1st?,costruttore_gara,Alpine,,0.005,0.0044,93.63,2026-06-27
+Hungarian Grand Prix: Which Constructor Scores 1st?,costruttore_gara,Audi Revolut,,0.0045,0.004,93.63,2026-06-27
+Hungarian Grand Prix: Constructor Pole Position,altro,Mercedes,,0.42,0.3709,183.222219,2026-06-27
+Hungarian Grand Prix: Constructor Pole Position,altro,Ferrari,,0.365,0.3223,85.97968,2026-06-27
+Hungarian Grand Prix: Constructor Pole Position,altro,Mclaren Mastercard,,0.15,0.1325,125.855908,2026-06-27
+Hungarian Grand Prix: Constructor Pole Position,altro,Red Bull,,0.15,0.1325,196.310449,2026-06-27
+Hungarian Grand Prix: Constructor Pole Position,altro,Racing Bulls,,0.0105,0.0093,112.36,2026-06-27
+Hungarian Grand Prix: Constructor Pole Position,altro,Alpine,,0.0095,0.0084,189.4515,2026-06-27
+Hungarian Grand Prix: Constructor Pole Position,altro,Tgr Haas,,0.0075,0.0066,189.452333,2026-06-27
+Hungarian Grand Prix: Constructor Pole Position,altro,Cadillac,,0.0065,0.0057,184.452333,2026-06-27
+Hungarian Grand Prix: Constructor Pole Position,altro,Aston Martin,,0.0045,0.004,189.452333,2026-06-27
+Hungarian Grand Prix: Constructor Pole Position,altro,Williams,,0.0045,0.004,184.452333,2026-06-27
+Hungarian Grand Prix: Constructor Pole Position,altro,Audi Revolut,,0.0045,0.004,189.4515,2026-06-27
+Hungarian Grand Prix: Driver Winner,vincitore_gara,Kimi Antonelli,ANT,0.385,0.3583,17038.656073000002,2026-06-27
+Hungarian Grand Prix: Driver Winner,vincitore_gara,Lewis Hamilton,HAM,0.19,0.1768,3950.615156,2026-06-27
+Hungarian Grand Prix: Driver Winner,vincitore_gara,Charles Leclerc,LEC,0.175,0.1629,2851.4993809999996,2026-06-27
+Hungarian Grand Prix: Driver Winner,vincitore_gara,George Russell,RUS,0.115,0.107,3964.3389460000003,2026-06-27
+Hungarian Grand Prix: Driver Winner,vincitore_gara,Max Verstappen,VER,0.085,0.0791,5183.821045000001,2026-06-27
+Hungarian Grand Prix: Driver Winner,vincitore_gara,Lando Norris,NOR,0.07,0.0651,3065.670566999999,2026-06-27
+Hungarian Grand Prix: Driver Winner,vincitore_gara,Oscar Piastri,PIA,0.037,0.0344,2932.5420809999996,2026-06-27
+Hungarian Grand Prix: Driver Winner,vincitore_gara,Isack Hadjar,HAD,0.0085,0.0079,2542.689939,2026-06-27
+Hungarian Grand Prix: Driver Winner,vincitore_gara,Fernando Alonso,ALO,0.0015,0.0014,1566.4499999999998,2026-06-27
+Hungarian Grand Prix: Driver Winner,vincitore_gara,Liam Lawson,LAW,0.0015,0.0014,1621.2609999999997,2026-06-27
+Hungarian Grand Prix: Driver Winner,vincitore_gara,Pierre Gasly,GAS,0.0005,0.0005,969.025,2026-06-27
+Hungarian Grand Prix: Driver Winner,vincitore_gara,Alexander Albon,ALB,0.0005,0.0005,522.835,2026-06-27
+Hungarian Grand Prix: Driver Winner,vincitore_gara,Gabriel Bortoleto,BOR,0.0005,0.0005,511.83500000000004,2026-06-27
+Hungarian Grand Prix: Driver Winner,vincitore_gara,Sergio Perez,PER,0.0005,0.0005,518.835,2026-06-27
+Hungarian Grand Prix: Driver Winner,vincitore_gara,Esteban Ocon,OCO,0.0005,0.0005,518.835,2026-06-27
+Hungarian Grand Prix: Driver Winner,vincitore_gara,Franco Colapinto,COL,0.0005,0.0005,518.835,2026-06-27
+Hungarian Grand Prix: Driver Winner,vincitore_gara,Carlos Sainz Jr.,SAI,0.0005,0.0005,518.835,2026-06-27
+Hungarian Grand Prix: Driver Winner,vincitore_gara,Nico Hulkenberg,HUL,0.0005,0.0005,516.835,2026-06-27
+Hungarian Grand Prix: Driver Winner,vincitore_gara,Valtteri Bottas,BOT,0.0005,0.0005,499.83500000000004,2026-06-27
+Hungarian Grand Prix: Driver Winner,vincitore_gara,Oliver Bearman,BEA,0.0005,0.0005,518.835,2026-06-27
+Hungarian Grand Prix: Driver Winner,vincitore_gara,Arvid Lindblad,LIN,0.0005,0.0005,810.726,2026-06-27
+Hungarian Grand Prix: Driver Winner,vincitore_gara,Lance Stroll,STR,0.0005,0.0005,498.865,2026-06-27
+Hungarian Grand Prix: Driver Pole Position,altro,Kimi Antonelli,ANT,0.38,0.3416,1133.3169830000002,2026-06-27
+Hungarian Grand Prix: Driver Pole Position,altro,Lewis Hamilton,HAM,0.21,0.1888,555.532575,2026-06-27
+Hungarian Grand Prix: Driver Pole Position,altro,Charles Leclerc,LEC,0.18,0.1618,365.108001,2026-06-27
+Hungarian Grand Prix: Driver Pole Position,altro,George Russell,RUS,0.125,0.1124,1135.4523839999997,2026-06-27
+Hungarian Grand Prix: Driver Pole Position,altro,Lando Norris,NOR,0.069,0.062,1810.2683670000001,2026-06-27
+Hungarian Grand Prix: Driver Pole Position,altro,Max Verstappen,VER,0.06,0.0539,5063.798766000002,2026-06-27
+Hungarian Grand Prix: Driver Pole Position,altro,Oscar Piastri,PIA,0.03,0.027,1909.2463430000003,2026-06-27
+Hungarian Grand Prix: Driver Pole Position,altro,Isack Hadjar,HAD,0.018,0.0162,193.8301,2026-06-27
+Hungarian Grand Prix: Driver Pole Position,altro,Fernando Alonso,ALO,0.0095,0.0085,309.091722,2026-06-27
+Hungarian Grand Prix: Driver Pole Position,altro,Pierre Gasly,GAS,0.0055,0.0049,159.997,2026-06-27
+Hungarian Grand Prix: Driver Pole Position,altro,Nico Hulkenberg,HUL,0.005,0.0045,170.04899999999998,2026-06-27
+Hungarian Grand Prix: Driver Pole Position,altro,Oliver Bearman,BEA,0.005,0.0045,175.05399999999997,2026-06-27
+Hungarian Grand Prix: Driver Pole Position,altro,Arvid Lindblad,LIN,0.002,0.0018,193.9995,2026-06-27
+Hungarian Grand Prix: Driver Pole Position,altro,Alexander Albon,ALB,0.0015,0.0013,166.0695,2026-06-27
+Hungarian Grand Prix: Driver Pole Position,altro,Gabriel Bortoleto,BOR,0.0015,0.0013,141.0695,2026-06-27
+Hungarian Grand Prix: Driver Pole Position,altro,Sergio Perez,PER,0.0015,0.0013,171.0695,2026-06-27
+Hungarian Grand Prix: Driver Pole Position,altro,Esteban Ocon,OCO,0.0015,0.0013,156.3595,2026-06-27
+Hungarian Grand Prix: Driver Pole Position,altro,Franco Colapinto,COL,0.0015,0.0013,154.99699999999999,2026-06-27
+Hungarian Grand Prix: Driver Pole Position,altro,Carlos Sainz Jr.,SAI,0.0015,0.0013,166.0695,2026-06-27
+Hungarian Grand Prix: Driver Pole Position,altro,Valtteri Bottas,BOT,0.0015,0.0013,166.0695,2026-06-27
+Hungarian Grand Prix: Driver Pole Position,altro,Liam Lawson,LAW,0.0015,0.0013,91.0695,2026-06-27
+Hungarian Grand Prix: Driver Pole Position,altro,Lance Stroll,STR,0.0015,0.0013,181.0995,2026-06-27
+Hungarian Grand Prix: Driver Fastest Lap,altro,Kimi Antonelli,ANT,0.38,0.299,857.417431,2026-06-27
+Hungarian Grand Prix: Driver Fastest Lap,altro,Lewis Hamilton,HAM,0.185,0.1456,10.235293,2026-06-27
+Hungarian Grand Prix: Driver Fastest Lap,altro,Charles Leclerc,LEC,0.155,0.122,20.689646,2026-06-27
+Hungarian Grand Prix: Driver Fastest Lap,altro,George Russell,RUS,0.125,0.0983,56.71304500000001,2026-06-27
+Hungarian Grand Prix: Driver Fastest Lap,altro,Max Verstappen,VER,0.085,0.0669,,2026-06-27
+Hungarian Grand Prix: Driver Fastest Lap,altro,Lando Norris,NOR,0.0515,0.0405,18.63,2026-06-27
+Hungarian Grand Prix: Driver Fastest Lap,altro,Oscar Piastri,PIA,0.03,0.0236,,2026-06-27
+Hungarian Grand Prix: Driver Fastest Lap,altro,Isack Hadjar,HAD,0.0295,0.0232,,2026-06-27
+Hungarian Grand Prix: Driver Fastest Lap,altro,Oliver Bearman,BEA,0.02,0.0157,,2026-06-27
+Hungarian Grand Prix: Driver Fastest Lap,altro,Arvid Lindblad,LIN,0.02,0.0157,,2026-06-27
+Hungarian Grand Prix: Driver Fastest Lap,altro,Liam Lawson,LAW,0.02,0.0157,23.6868,2026-06-27
+Hungarian Grand Prix: Driver Fastest Lap,altro,Alexander Albon,ALB,0.016,0.0126,50,2026-06-27
+Hungarian Grand Prix: Driver Fastest Lap,altro,Pierre Gasly,GAS,0.0155,0.0122,50,2026-06-27
+Hungarian Grand Prix: Driver Fastest Lap,altro,Fernando Alonso,ALO,0.0155,0.0122,96.69,2026-06-27
+Hungarian Grand Prix: Driver Fastest Lap,altro,Gabriel Bortoleto,BOR,0.0155,0.0122,50,2026-06-27
+Hungarian Grand Prix: Driver Fastest Lap,altro,Esteban Ocon,OCO,0.0155,0.0122,50,2026-06-27
+Hungarian Grand Prix: Driver Fastest Lap,altro,Franco Colapinto,COL,0.0155,0.0122,84,2026-06-27
+Hungarian Grand Prix: Driver Fastest Lap,altro,Carlos Sainz Jr.,SAI,0.0155,0.0122,50,2026-06-27
+Hungarian Grand Prix: Driver Fastest Lap,altro,Nico Hulkenberg,HUL,0.0155,0.0122,50,2026-06-27
+Hungarian Grand Prix: Driver Fastest Lap,altro,Valtteri Bottas,BOT,0.0155,0.0122,50,2026-06-27
+Hungarian Grand Prix: Driver Fastest Lap,altro,Lance Stroll,STR,0.0155,0.0122,50,2026-06-27
+Hungarian Grand Prix: Driver Fastest Lap,altro,Sergio Perez,PER,0.0145,0.0114,70.69,2026-06-27

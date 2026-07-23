@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GridLab · Live dal database</title>
+<!-- M2.1 (BACKEND_ROADMAP): prova end-to-end del pattern statico + supabase-js.
+     La chiave qui sotto e' la ANON key: PUBBLICA by design, le RLS proteggono i
+     dati (boundary free/pro certificato da certifica_rls.py). NON e' un segreto.
+     ponytail: URL+key inline come da pattern Supabase standard per siti statici. -->
+<style>
+  :root{
+    --acc:#e10600; --bg:#0b0e14; --panel:#141925; --txt:#e8ecf3; --mut:#8b97ad;
+    --line:#2a3142; --gold:#d8b766; --silver:#cdd6e3; --bronze:#c8895b;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--txt);
+       font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+       line-height:1.5;padding:24px 16px}
+  .wrap{max-width:760px;margin:0 auto}
+  h1{font-size:1.4rem;margin:0 0 4px;letter-spacing:.2px}
+  h1 .dot{color:var(--acc)}
+  .sub{color:var(--mut);font-size:.85rem;margin:0 0 20px}
+  .bar-row{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:16px}
+  select{background:var(--panel);color:var(--txt);border:1px solid var(--line);
+          border-radius:8px;padding:8px 12px;font-size:.9rem}
+  .badge{background:var(--panel);border:1px solid var(--line);border-radius:999px;
+         padding:4px 12px;font-size:.75rem;color:var(--mut)}
+  .prov{color:var(--mut);font-size:.72rem;margin:2px 0 18px;font-family:ui-monospace,Menlo,monospace}
+  table{width:100%;border-collapse:collapse;background:var(--panel);
+        border:1px solid var(--line);border-radius:12px;overflow:hidden}
+  th,td{padding:10px 12px;text-align:left;font-size:.88rem;border-bottom:1px solid var(--line)}
+  th{color:var(--mut);font-weight:600;font-size:.72rem;text-transform:uppercase;letter-spacing:.5px}
+  tr:last-child td{border-bottom:none}
+  .pos{color:var(--mut);width:28px}
+  .code{font-weight:700;letter-spacing:.5px}
+  .team{color:var(--mut);font-size:.78rem}
+  .p{position:relative;min-width:120px}
+  .p .fill{position:absolute;left:0;top:0;bottom:0;background:linear-gradient(90deg,rgba(225,6,0,.35),rgba(225,6,0,.08));border-radius:4px}
+  .p .val{position:relative;font-variant-numeric:tabular-nums}
+  .foot{color:var(--mut);font-size:.72rem;margin-top:18px;text-align:center}
+  .err{background:#2a1414;border:1px solid #5a2020;color:#f0b0b0;padding:14px;border-radius:10px}
+  a{color:var(--silver)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>GridLab <span class="dot">·</span> Live</h1>
+  <p class="sub">Previsioni lette in tempo reale dal database (Supabase), non da file statici.</p>
+
+  <div class="bar-row">
+    <select id="race" aria-label="Gran Premio"></select>
+    <span class="badge" id="stage">—</span>
+  </div>
+  <div class="prov" id="prov"></div>
+
+  <div id="out"></div>
+
+  <p class="foot">Dati serviti via <code>supabase-js</code> con chiave anonima · RLS attiva
+     (le previsioni <b>pro</b> non sono leggibili senza login) · <a href="index.html">torna al sito</a></p>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const SB_URL = "https://zakblhuidoiarhahzlsu.supabase.co";
+const SB_ANON = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inpha2JsaHVpZG9pYXJoYWh6bHN1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQyNzgwMjIsImV4cCI6MjA5OTg1NDAyMn0.-pZBLIeZnVObOIIRA4ZXpZsnwk2wPNvtTcqAvWEwEa8";
+const sb = supabase.createClient(SB_URL, SB_ANON);
+const $ = s => document.querySelector(s);
+const pct = v => (isFinite(v) ? (v*100).toFixed(1)+"%" : "—");
+
+// una entry per (race_id): tiene la piu' recente per frozen_at_utc
+function latestPerRace(rows){
+  const by = {};
+  for (const r of rows){
+    const f = (r.payload && r.payload.frozen_at_utc) || r.computed_at || "";
+    if (!by[r.race_id] || f > by[r.race_id]._f){ r._f = f; by[r.race_id] = r; }
+  }
+  return Object.values(by).sort((a,b)=> (b._f>a._f?1:-1));
+}
+
+function drivers(p){
+  const list = p.drivers || p.race_prediction || [];
+  return list.map(d => ({
+    code: d.driver || d.code || "?",
+    team: d.team || "",
+    grid: d.grid ?? d.GridPos ?? "",
+    win:  parseFloat(d.p_win ?? d.P_Win),
+    pod:  parseFloat(d.p_podium ?? d.p_podio ?? d.P_Podium),
+  })).sort((a,b)=> (b.win||0)-(a.win||0));
+}
+
+function render(row){
+  const p = row.payload || {};
+  $("#stage").textContent = (p.stage || row.stage || "").replace("-"," ") || "—";
+  const gc = (p.git_commit||"").slice(0,9);
+  $("#prov").textContent = (p.frozen_at_utc ? "freeze "+p.frozen_at_utc : "") + (gc ? "  ·  commit "+gc : "");
+  const ds = drivers(p);
+  if (!ds.length){ $("#out").innerHTML = '<div class="err">Payload senza griglia piloti.</div>'; return; }
+  const max = Math.max(...ds.map(d=>d.win||0), .01);
+  $("#out").innerHTML = `<table><thead><tr>
+      <th class="pos">#</th><th>Pilota</th><th>Griglia</th><th>P(vittoria)</th><th>P(podio)</th>
+    </tr></thead><tbody>${ds.map((d,i)=>`<tr>
+      <td class="pos">${i+1}</td>
+      <td><span class="code">${d.code}</span> <span class="team">${d.team}</span></td>
+      <td>${d.grid||"—"}</td>
+      <td class="p"><span class="fill" style="width:${((d.win||0)/max*100).toFixed(0)}%"></span><span class="val">${pct(d.win)}</span></td>
+      <td>${pct(d.pod)}</td>
+    </tr>`).join("")}</tbody></table>`;
+}
+
+(async () => {
+  const { data, error } = await sb.from("predictions")
+    .select("race_id,stage,computed_at,payload")
+    .eq("audience","free").eq("prediction_type","race");
+  if (error){ $("#out").innerHTML = `<div class="err">Errore lettura DB: ${error.message}</div>`; return; }
+  if (!data || !data.length){ $("#out").innerHTML = '<div class="err">Nessuna previsione nel database.</div>'; return; }
+  const races = latestPerRace(data);
+  const sel = $("#race");
+  sel.innerHTML = races.map((r,i)=>`<option value="${i}">${(r.payload&&r.payload.race)||r.race_id}</option>`).join("");
+  sel.onchange = () => render(races[+sel.value]);
+  render(races[0]);
+})();
+</script>
+</body>
+</html>

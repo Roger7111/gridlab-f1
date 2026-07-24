@@ -1,0 +1,35 @@
+==============================================================================================
+  🕐  PREVISIONE QUALIFICA: Hungarian Grand Prix 2026
+  Simulazioni MC: 50,000  |  ⚠️  Non influenza la previsione gara/sprint
+  ⚠️  Tempi PROIETTATI sulla baseline Hungarian Grand Prix 2026 (pole~75.5s): gap relativi dalla forma corrente, non ancora dati reali del circuito.
+==============================================================================================
+Pos Driver Team                    Best Lap      Pace  P(Pole) P(Top3)  P(Q3)  P(Q2)   Fascia80%
+----------------------------------------------------------------------------------------------
+  ── Q3 (Top 10) ──
+  1 HAM    Ferrari                 1:15.583  1:15.508   40.6%   80.4%  99.9% 100.0%       P1-P5
+  2 LEC    Ferrari                 1:15.717  1:15.628   30.4%   73.2%  99.7% 100.0%       P1-P5
+  3 VER    Red Bull Racing         1:16.250  1:15.953   11.4%   46.3%  98.4% 100.0%       P1-P7
+  4 NOR    McLaren                 1:16.057  1:16.057    8.0%   38.1%  97.2%  99.9%       P2-P8
+  5 RUS    Mercedes                1:16.442  1:16.157    6.5%   33.0%  96.4%  99.9%       P2-P9
+  6 HAD    Red Bull Racing         1:16.587  1:16.476    1.5%   11.1%  86.0%  99.2%      P3-P11
+  7 LIN    Racing Bulls            1:17.022  1:16.698    0.5%    4.9%  72.6%  97.4%      P4-P13
+  8 HUL    Audi                    1:16.914  1:16.741    0.4%    4.1%  69.2%  96.9%      P5-P13
+  9 PIA    McLaren                 1:16.901  1:16.828    0.3%    3.7%  68.1%  96.5%      P5-P14
+ 10 LAW    Racing Bulls            1:16.823  1:16.823    0.3%    3.5%  66.0%  96.4%      P5-P14
+
+  ── Q2 (P11–P15) ──
+ 11 BOR    Audi                    1:17.149  1:17.103                          89.1%
+ 12 OCO    Haas F1 Team            1:17.322  1:17.285                          80.7%
+ 13 ANT    Mercedes                1:17.458  1:17.379                          83.3%
+ 14 GAS    Alpine                  1:17.537  1:17.488                          71.6%
+ 15 BEA    Haas F1 Team            1:17.703  1:17.703                          55.2%
+
+  ── Eliminati in Q1 (P16–P22) ──
+ 16 ALB    Williams                1:17.766
+ 17 ALO    Aston Martin            1:18.158
+ 18 SAI    Williams                1:18.141
+ 19 BOT    Cadillac                1:18.224
+ 20 PER    Cadillac                1:18.522
+ 21 COL    Alpine                  1:18.776
+ 22 STR    Aston Martin            1:20.237
+==============================================================================================

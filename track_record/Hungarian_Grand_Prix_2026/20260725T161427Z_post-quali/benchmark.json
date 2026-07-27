@@ -1,0 +1,116 @@
+{
+ "race": "Hungarian Grand Prix",
+ "winner": null,
+ "divergenze": [
+  {
+   "driver": "HAM",
+   "p_model": 0.3467,
+   "p_market": 0.1577
+  },
+  {
+   "driver": "NOR",
+   "p_model": 0.3098,
+   "p_market": 0.3242
+  },
+  {
+   "driver": "LEC",
+   "p_model": 0.178,
+   "p_market": 0.2505
+  },
+  {
+   "driver": "ANT",
+   "p_model": 0.1533,
+   "p_market": 0.1994
+  },
+  {
+   "driver": "PIA",
+   "p_model": 0.0119,
+   "p_market": 0.0111
+  },
+  {
+   "driver": "VER",
+   "p_model": 0.0001,
+   "p_market": 0.0264
+  },
+  {
+   "driver": "HAD",
+   "p_model": 0.0001,
+   "p_market": 0.0019
+  },
+  {
+   "driver": "RUS",
+   "p_model": 0.0,
+   "p_market": 0.0176
+  },
+  {
+   "driver": "BOR",
+   "p_model": 0.0,
+   "p_market": 0.0005
+  },
+  {
+   "driver": "GAS",
+   "p_model": 0.0,
+   "p_market": 0.0005
+  },
+  {
+   "driver": "OCO",
+   "p_model": 0.0,
+   "p_market": 0.0005
+  },
+  {
+   "driver": "PER",
+   "p_model": 0.0,
+   "p_market": 0.0005
+  },
+  {
+   "driver": "BEA",
+   "p_model": 0.0,
+   "p_market": 0.0005
+  },
+  {
+   "driver": "STR",
+   "p_model": 0.0,
+   "p_market": 0.0032
+  },
+  {
+   "driver": "LAW",
+   "p_model": 0.0,
+   "p_market": 0.0005
+  },
+  {
+   "driver": "HUL",
+   "p_model": 0.0,
+   "p_market": 0.0005
+  },
+  {
+   "driver": "ALB",
+   "p_model": 0.0,
+   "p_market": 0.0005
+  },
+  {
+   "driver": "SAI",
+   "p_model": 0.0,
+   "p_market": 0.0005
+  },
+  {
+   "driver": "ALO",
+   "p_model": 0.0,
+   "p_market": 0.0023
+  },
+  {
+   "driver": "COL",
+   "p_model": 0.0,
+   "p_market": 0.0005
+  },
+  {
+   "driver": "BOT",
+   "p_model": 0.0,
+   "p_market": 0.0005
+  },
+  {
+   "driver": "LIN",
+   "p_model": 0.0,
+   "p_market": 0.0005
+  }
+ ]
+}

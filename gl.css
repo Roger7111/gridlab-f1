@@ -1,0 +1,49 @@
+/* GridLab — stile condiviso delle pagine account/pro (M2.1-M2.2).
+   Estratto dai token gia' usati in live.html: stessa identita' visiva, un solo posto
+   da toccare. live.html resta con il suo blocco inline (funziona, non si tocca). */
+:root{
+  --acc:#e10600; --bg:#0b0e14; --panel:#141925; --txt:#e8ecf3; --mut:#8b97ad;
+  --line:#2a3142; --gold:#d8b766; --ok:#4ea87a; --warn:#c8895b;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--txt);
+     font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+     line-height:1.5;padding:24px 16px}
+.wrap{max-width:860px;margin:0 auto}
+.narrow{max-width:440px}
+h1{font-size:1.4rem;margin:0 0 4px;letter-spacing:.2px}
+h1 .dot{color:var(--acc)}
+.sub{color:var(--mut);font-size:.85rem;margin:0 0 20px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px;margin-bottom:16px}
+label{display:block;font-size:.75rem;color:var(--mut);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px}
+input[type=email]{width:100%;background:#0b0e14;color:var(--txt);border:1px solid var(--line);
+                  border-radius:8px;padding:11px 13px;font-size:.95rem}
+input[type=email]:focus{outline:none;border-color:var(--acc)}
+button{background:var(--acc);color:#fff;border:0;border-radius:8px;padding:11px 18px;
+       font-size:.9rem;font-weight:600;cursor:pointer;margin-top:12px}
+button:disabled{opacity:.5;cursor:default}
+button.ghost{background:transparent;border:1px solid var(--line);color:var(--mut);font-weight:500}
+.msg{margin-top:14px;padding:12px 14px;border-radius:9px;font-size:.85rem}
+.msg.ok{background:#12281f;border:1px solid #24503c;color:#a8dcc0}
+.msg.err{background:#2a1414;border:1px solid #5a2020;color:#f0b0b0}
+.msg.info{background:#141925;border:1px solid var(--line);color:var(--mut)}
+.badge{display:inline-block;background:#0b0e14;border:1px solid var(--line);border-radius:999px;
+       padding:3px 11px;font-size:.72rem;color:var(--mut);letter-spacing:.4px}
+.badge.pro{border-color:var(--gold);color:var(--gold)}
+.badge.elite{border-color:var(--acc);color:var(--acc)}
+.row{display:flex;justify-content:space-between;align-items:center;gap:12px;
+     padding:11px 0;border-bottom:1px solid var(--line);font-size:.9rem}
+.row:last-child{border-bottom:none}
+.row .k{color:var(--mut);font-size:.8rem}
+table{width:100%;border-collapse:collapse;background:var(--panel);
+      border:1px solid var(--line);border-radius:12px;overflow:hidden}
+th,td{padding:9px 10px;text-align:left;font-size:.83rem;border-bottom:1px solid var(--line);
+      font-variant-numeric:tabular-nums;white-space:nowrap}
+th{color:var(--mut);font-weight:600;font-size:.68rem;text-transform:uppercase;letter-spacing:.5px}
+tr:last-child td{border-bottom:none}
+td.code{font-weight:700;letter-spacing:.5px}
+.scroll{overflow-x:auto;border-radius:12px}
+.foot{color:var(--mut);font-size:.72rem;margin-top:20px;text-align:center}
+a{color:var(--mut)}
+a:hover{color:var(--txt)}
+.nav{display:flex;gap:14px;font-size:.8rem;margin-bottom:18px}

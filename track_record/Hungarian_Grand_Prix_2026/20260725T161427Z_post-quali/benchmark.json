@@ -43,42 +43,12 @@
    "p_market": 0.0176
   },
   {
-   "driver": "BOR",
-   "p_model": 0.0,
-   "p_market": 0.0005
-  },
-  {
-   "driver": "GAS",
-   "p_model": 0.0,
-   "p_market": 0.0005
-  },
-  {
-   "driver": "OCO",
-   "p_model": 0.0,
-   "p_market": 0.0005
-  },
-  {
-   "driver": "PER",
-   "p_model": 0.0,
-   "p_market": 0.0005
-  },
-  {
-   "driver": "BEA",
-   "p_model": 0.0,
-   "p_market": 0.0005
-  },
-  {
    "driver": "STR",
    "p_model": 0.0,
    "p_market": 0.0032
   },
   {
-   "driver": "LAW",
-   "p_model": 0.0,
-   "p_market": 0.0005
-  },
-  {
-   "driver": "HUL",
+   "driver": "COL",
    "p_model": 0.0,
    "p_market": 0.0005
   },
@@ -88,7 +58,12 @@
    "p_market": 0.0005
   },
   {
-   "driver": "SAI",
+   "driver": "PER",
+   "p_model": 0.0,
+   "p_market": 0.0005
+  },
+  {
+   "driver": "GAS",
    "p_model": 0.0,
    "p_market": 0.0005
   },
@@ -98,7 +73,17 @@
    "p_market": 0.0023
   },
   {
-   "driver": "COL",
+   "driver": "BEA",
+   "p_model": 0.0,
+   "p_market": 0.0005
+  },
+  {
+   "driver": "SAI",
+   "p_model": 0.0,
+   "p_market": 0.0005
+  },
+  {
+   "driver": "LIN",
    "p_model": 0.0,
    "p_market": 0.0005
   },
@@ -108,7 +93,22 @@
    "p_market": 0.0005
   },
   {
-   "driver": "LIN",
+   "driver": "LAW",
+   "p_model": 0.0,
+   "p_market": 0.0005
+  },
+  {
+   "driver": "OCO",
+   "p_model": 0.0,
+   "p_market": 0.0005
+  },
+  {
+   "driver": "BOR",
+   "p_model": 0.0,
+   "p_market": 0.0005
+  },
+  {
+   "driver": "HUL",
    "p_model": 0.0,
    "p_market": 0.0005
   }

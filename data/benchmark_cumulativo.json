@@ -1,11 +1,20 @@
 {
- "generato_utc": "2026-07-27T16:45:17Z",
+ "generato_utc": "2026-07-27T16:50:43Z",
  "aggregato": {
-  "n_gare": 1,
-  "brier_delta_medio": -0.0309,
+  "n_gare": 2,
+  "brier_delta_medio": -0.0169,
   "gare_modello_batte_mercato": 0,
-  "logloss_modello_medio": 0.1394,
-  "logloss_mercato_medio": 0.0389
+  "logloss_modello_medio": 0.1145,
+  "logloss_mercato_medio": 0.0621,
+  "brier_delta_ci95": [
+   -0.0309,
+   -0.003
+  ],
+  "claim_soglia": {
+   "n_min": 8,
+   "ci_esclude_zero": false,
+   "claim_ammesso": false
+  }
  },
  "scored": [
   {
@@ -21,52 +30,23 @@
    "winner": "ANT",
    "beat_market": false,
    "test": false
-  }
- ],
- "pending": [
+  },
   {
+   "n_drivers": 22,
+   "brier_model": 0.0296,
+   "brier_market": 0.0266,
+   "brier_delta": -0.003,
+   "logloss_model": 0.0896,
+   "logloss_market": 0.0854,
+   "winner_in_set": true,
    "race": "Hungarian Grand Prix",
    "stage": "post-quali",
-   "divergenze": [
-    {
-     "driver": "HAM",
-     "p_model": 0.3467,
-     "p_market": 0.1577,
-     "delta": 0.189
-    },
-    {
-     "driver": "NOR",
-     "p_model": 0.3098,
-     "p_market": 0.3242,
-     "delta": -0.0144
-    },
-    {
-     "driver": "LEC",
-     "p_model": 0.178,
-     "p_market": 0.2505,
-     "delta": -0.0725
-    },
-    {
-     "driver": "ANT",
-     "p_model": 0.1533,
-     "p_market": 0.1994,
-     "delta": -0.0461
-    },
-    {
-     "driver": "PIA",
-     "p_model": 0.0119,
-     "p_market": 0.0111,
-     "delta": 0.0008
-    },
-    {
-     "driver": "VER",
-     "p_model": 0.0001,
-     "p_market": 0.0264,
-     "delta": -0.0263
-    }
-   ]
+   "winner": "NOR",
+   "beat_market": false,
+   "test": false
   }
  ],
+ "pending": [],
  "skipped": [
   {
    "race": "Barcelona-Catalunya Grand Prix",

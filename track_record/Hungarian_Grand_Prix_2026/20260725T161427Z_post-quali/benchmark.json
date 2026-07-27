@@ -1,116 +1,14 @@
 {
  "race": "Hungarian Grand Prix",
- "winner": null,
- "divergenze": [
-  {
-   "driver": "HAM",
-   "p_model": 0.3467,
-   "p_market": 0.1577
-  },
-  {
-   "driver": "NOR",
-   "p_model": 0.3098,
-   "p_market": 0.3242
-  },
-  {
-   "driver": "LEC",
-   "p_model": 0.178,
-   "p_market": 0.2505
-  },
-  {
-   "driver": "ANT",
-   "p_model": 0.1533,
-   "p_market": 0.1994
-  },
-  {
-   "driver": "PIA",
-   "p_model": 0.0119,
-   "p_market": 0.0111
-  },
-  {
-   "driver": "VER",
-   "p_model": 0.0001,
-   "p_market": 0.0264
-  },
-  {
-   "driver": "HAD",
-   "p_model": 0.0001,
-   "p_market": 0.0019
-  },
-  {
-   "driver": "RUS",
-   "p_model": 0.0,
-   "p_market": 0.0176
-  },
-  {
-   "driver": "GAS",
-   "p_model": 0.0,
-   "p_market": 0.0005
-  },
-  {
-   "driver": "BOR",
-   "p_model": 0.0,
-   "p_market": 0.0005
-  },
-  {
-   "driver": "LAW",
-   "p_model": 0.0,
-   "p_market": 0.0005
-  },
-  {
-   "driver": "BOT",
-   "p_model": 0.0,
-   "p_market": 0.0005
-  },
-  {
-   "driver": "COL",
-   "p_model": 0.0,
-   "p_market": 0.0005
-  },
-  {
-   "driver": "SAI",
-   "p_model": 0.0,
-   "p_market": 0.0005
-  },
-  {
-   "driver": "PER",
-   "p_model": 0.0,
-   "p_market": 0.0005
-  },
-  {
-   "driver": "BEA",
-   "p_model": 0.0,
-   "p_market": 0.0005
-  },
-  {
-   "driver": "STR",
-   "p_model": 0.0,
-   "p_market": 0.0032
-  },
-  {
-   "driver": "HUL",
-   "p_model": 0.0,
-   "p_market": 0.0005
-  },
-  {
-   "driver": "LIN",
-   "p_model": 0.0,
-   "p_market": 0.0005
-  },
-  {
-   "driver": "OCO",
-   "p_model": 0.0,
-   "p_market": 0.0005
-  },
-  {
-   "driver": "ALO",
-   "p_model": 0.0,
-   "p_market": 0.0023
-  },
-  {
-   "driver": "ALB",
-   "p_model": 0.0,
-   "p_market": 0.0005
-  }
- ]
+ "winner": "NOR",
+ "n_drivers": 22,
+ "brier_model": 0.0296,
+ "brier_market": 0.0266,
+ "brier_delta": -0.003,
+ "logloss_model": 0.0896,
+ "logloss_market": 0.0854,
+ "value_bets": 1,
+ "roi": -1.0,
+ "odds_file": "C:\\Users\\andre\\Desktop\\f1_ultima\\track_record\\Hungarian_Grand_Prix_2026\\20260725T161427Z_post-quali\\polymarket_f1_liquid.csv",
+ "model_file": "C:\\Users\\andre\\Desktop\\f1_ultima\\track_record\\Hungarian_Grand_Prix_2026\\20260725T161427Z_post-quali\\Hungarian_Grand_Prix_2026_grid.csv"
 }

@@ -43,62 +43,7 @@
    "p_market": 0.0176
   },
   {
-   "driver": "STR",
-   "p_model": 0.0,
-   "p_market": 0.0032
-  },
-  {
-   "driver": "COL",
-   "p_model": 0.0,
-   "p_market": 0.0005
-  },
-  {
-   "driver": "ALB",
-   "p_model": 0.0,
-   "p_market": 0.0005
-  },
-  {
-   "driver": "PER",
-   "p_model": 0.0,
-   "p_market": 0.0005
-  },
-  {
    "driver": "GAS",
-   "p_model": 0.0,
-   "p_market": 0.0005
-  },
-  {
-   "driver": "ALO",
-   "p_model": 0.0,
-   "p_market": 0.0023
-  },
-  {
-   "driver": "BEA",
-   "p_model": 0.0,
-   "p_market": 0.0005
-  },
-  {
-   "driver": "SAI",
-   "p_model": 0.0,
-   "p_market": 0.0005
-  },
-  {
-   "driver": "LIN",
-   "p_model": 0.0,
-   "p_market": 0.0005
-  },
-  {
-   "driver": "BOT",
-   "p_model": 0.0,
-   "p_market": 0.0005
-  },
-  {
-   "driver": "LAW",
-   "p_model": 0.0,
-   "p_market": 0.0005
-  },
-  {
-   "driver": "OCO",
    "p_model": 0.0,
    "p_market": 0.0005
   },
@@ -108,7 +53,62 @@
    "p_market": 0.0005
   },
   {
+   "driver": "LAW",
+   "p_model": 0.0,
+   "p_market": 0.0005
+  },
+  {
+   "driver": "BOT",
+   "p_model": 0.0,
+   "p_market": 0.0005
+  },
+  {
+   "driver": "COL",
+   "p_model": 0.0,
+   "p_market": 0.0005
+  },
+  {
+   "driver": "SAI",
+   "p_model": 0.0,
+   "p_market": 0.0005
+  },
+  {
+   "driver": "PER",
+   "p_model": 0.0,
+   "p_market": 0.0005
+  },
+  {
+   "driver": "BEA",
+   "p_model": 0.0,
+   "p_market": 0.0005
+  },
+  {
+   "driver": "STR",
+   "p_model": 0.0,
+   "p_market": 0.0032
+  },
+  {
    "driver": "HUL",
+   "p_model": 0.0,
+   "p_market": 0.0005
+  },
+  {
+   "driver": "LIN",
+   "p_model": 0.0,
+   "p_market": 0.0005
+  },
+  {
+   "driver": "OCO",
+   "p_model": 0.0,
+   "p_market": 0.0005
+  },
+  {
+   "driver": "ALO",
+   "p_model": 0.0,
+   "p_market": 0.0023
+  },
+  {
+   "driver": "ALB",
    "p_model": 0.0,
    "p_market": 0.0005
   }

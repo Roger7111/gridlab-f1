@@ -686,8 +686,27 @@ footer p{color:var(--mut);font-size:12px;margin-bottom:5px;max-width:880px}
 
 <footer><div class="wrap">
   <p><b>GridLab</b> — previsioni statistiche sulla Formula 1, a scopo informativo e di intrattenimento.</p>
-  <p>Le previsioni sono prodotte da un modello probabilistico su dati pubblici. Non sono garanzia di alcun risultato. GridLab non è affiliato a FIA, FOM, Formula 1 o ai team.</p>
-  <div class="disc">⚠️ Le sezioni premium sono riservate ai maggiorenni. In Italia la promozione del gioco con vincita in denaro è vietata (D.L. 87/2018). GridLab non promuove scommesse. Soggetto a validazione legale.</div>
+  <p>Le previsioni sono prodotte da un modello probabilistico. Non sono garanzia di alcun risultato.</p>
+  <!-- Disclaimer nel testo LETTERALE richiesto dalle Guidelines FOM (sez. "Internet"):
+       va in footer della home, e non va tradotto né parafrasato. Cantiere legale 28/07/2026. -->
+  <p style="font-size:11px;color:var(--mut)">This website is unofficial and is not associated in any way with the Formula 1 companies. F1, FORMULA ONE, FORMULA 1, FIA FORMULA ONE WORLD CHAMPIONSHIP, GRAND PRIX and related marks are trade marks of Formula One Licensing B.V.</p>
+  <div class="disc">⚠️ GridLab non promuove scommesse né gioco con vincita in denaro, non ospita link ad operatori di gioco e non fornisce consigli di scommessa. In Italia la pubblicità del gioco con vincita in denaro è vietata (art. 9 D.L. 87/2018).</div>
+  <!-- Attribuzione richiesta dalla clausola BY di CC BY-NC-SA 4.0 (jolpica-f1).
+       La dichiarazione "non commerciale" non e' cosmetica: e' la condizione della
+       clausola NC, ed e' anche cio' che ci tiene nella nozione di "Fans" delle
+       Guidelines FOM. Cantiere legale 28/07/2026 — non rimuovere senza rileggere
+       DOSSIER_LEGALE_20260728.md §1.4. -->
+  <p style="margin-top:10px;font-size:11px;color:var(--mut)">
+    <b>Fonti dati:</b>
+    <a href="https://github.com/jolpica/jolpica-f1" target="_blank" rel="noopener">jolpica-f1</a>
+    (<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC&nbsp;BY-NC-SA&nbsp;4.0</a>) ·
+    <a href="https://github.com/theOehrly/Fast-F1" target="_blank" rel="noopener">FastF1</a>
+    · GridLab è un progetto amatoriale <b>non commerciale</b>.
+  </p>
+  <p style="margin-top:6px;font-size:12px">
+    <a href="https://github.com/Roger7111/gridlab-f1" target="_blank" rel="noopener"><b>Track record verificabile →</b></a>
+    <span style="color:var(--mut)">previsioni congelate prima di ogni evento, con hash e commit</span>
+  </p>
   <p style="margin-top:8px;font-size:11px;color:var(--mut)">Aggiornato: <span id="upd">—</span> · Simulazioni: <span id="nsim">—</span></p>
 </div></footer>
 
@@ -1488,17 +1507,27 @@ function renderQuali(){
     // mappa pilota -> posizione prevista dal modello (per il confronto)
     var proj={}; (D.griglia||[]).forEach(function(r){proj[r.driver]=r.pos;});
     var projPole=(D.griglia&&D.griglia[0])?D.griglia[0].driver:'—';
+    // GRIGLIA DI PARTENZA: la quali NON e' la griglia. Le penalita' arrivano ore
+    // dopo (Ungheria 26/07: quali NOR-HAM-LEC-ANT, si partiva NOR-LEC-PIA-VER-HAM).
+    var part={}, nPen=0;
+    (D.griglia_partenza||[]).forEach(function(r){part[r.driver]=r.pos;});
+    D.griglia_reale.forEach(function(r){ if(part[r.driver]!=null && part[r.driver]!==r.pos) nPen++; });
     if(title) title.innerHTML='Qualifica — Risultato reale <span style="color:#39d98a">✓</span>';
-    if(lead)  lead.innerHTML='Classifica reale della qualifica (best giro valido). Previsione pre-quali: pole <b>'+projPole+'</b>.';
-    if(head)  head.innerHTML='<th>Pos</th><th>Pilota</th><th class="hide-sm">Gap pole</th><th>Previsto</th><th class="hide-sm">Δ</th>';
+    if(lead)  lead.innerHTML='Classifica reale della qualifica (best giro valido). Previsione pre-quali: pole <b>'+projPole+'</b>.'
+      + (nPen ? ' <b style="color:#ffb454">La griglia di partenza è diversa</b>: '+nPen+' piloti spostati dalle penalità — colonna <b>Parte</b>.'
+              : '');
+    if(head)  head.innerHTML='<th>Pos</th><th>Pilota</th>'+(nPen?'<th>Parte</th>':'')+'<th class="hide-sm">Gap pole</th><th>Previsto</th><th class="hide-sm">Δ</th>';
     document.getElementById('qualiGrid').innerHTML=D.griglia_reale.map(function(r){
       var gap=(r.gap&&r.gap>0)?('+'+Number(r.gap).toFixed(3)):'<b>POLE</b>';
       var pp=proj[r.driver];
       var delta=(pp!=null)?(pp-r.pos):null;            // >0 = meglio del previsto
       var dtxt=(delta==null)?'—':(delta>0?('▲'+delta):(delta<0?('▼'+(-delta)):'='));
       var dcol=(delta==null||delta===0)?'var(--mut)':(delta>0?'#39d98a':'#ff6b6b');
+      var sp=part[r.driver], mosso=(sp!=null && sp!==r.pos);
+      var spTd=nPen?('<td style="font-weight:600;color:'+(mosso?'#ffb454':'var(--mut)')+'">'
+        +(sp!=null?('P'+sp):'—')+'</td>'):'';
       return '<tr style="cursor:pointer" onclick="openPF(\''+r.driver+'\')">'+
-        '<td class="pos '+pc(r.pos)+'">'+r.pos+'</td>'+drvCell(r.driver,r.team)+
+        '<td class="pos '+pc(r.pos)+'">'+r.pos+'</td>'+drvCell(r.driver,r.team)+spTd+
         '<td class="fascia hide-sm">'+gap+'</td>'+
         '<td style="color:var(--mut)">'+(pp!=null?('P'+pp):'—')+'</td>'+
         '<td class="hide-sm" style="color:'+dcol+';font-weight:600">'+dtxt+'</td></tr>';

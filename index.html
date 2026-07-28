@@ -381,8 +381,11 @@ footer p{color:var(--mut);font-size:12px;margin-bottom:5px;max-width:880px}
 
 <!-- ACCESSO -->
 <div class="section" id="s-accesso">
-  <h2>Accesso Anticipato Premium</h2>
-  <p class="lead">Iscriviti gratis — ti avvisiamo via email quando apriamo le funzioni premium.</p>
+  <h2>Accesso Anticipato</h2>
+  <!-- Copy allineato al carattere non commerciale del progetto (cantiere legale 28/07/2026):
+       ciò che offriamo è vedere PRIMA, gratis — non un abbonamento. Le classi CSS
+       *premium* restano invariate: sono interne e i selettori JS ci si appoggiano. -->
+  <p class="lead">Iscriviti gratis — ti avvisiamo via email quando apriamo le nuove funzioni.</p>
   <div class="accesso-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start">
     <div>
       <div class="card" style="padding:24px;overflow:visible">
@@ -417,7 +420,7 @@ footer p{color:var(--mut);font-size:12px;margin-bottom:5px;max-width:880px}
       </div>
     </div>
     <div>
-      <div style="font-size:13px;font-weight:700;color:var(--premium);margin-bottom:12px">Cosa ottieni con Premium:</div>
+      <div style="font-size:13px;font-weight:700;color:var(--premium);margin-bottom:12px">Cosa ottieni con l'accesso anticipato:</div>
       <div class="perk"><div class="perk-ic">🏎️</div><div><div class="perk-title">Previsione Gara</div><div class="perk-desc">P(vittoria), P(podio) e punti attesi — aggiornata dopo le qualifiche reali</div></div></div>
       <div class="perk"><div class="perk-ic">⚔️</div><div><div class="perk-title">H2H Matrix</div><div class="perk-desc">Probabilità testa a testa tra tutti i 22 piloti — chi batte chi</div></div></div>
       <div class="perk"><div class="perk-ic">🎮</div><div><div class="perk-title">Ottimizzatore FantaF1</div><div class="perk-desc">Lineup ottimale in base al budget — punti attesi massimizzati</div></div></div>
@@ -794,7 +797,7 @@ footer p{color:var(--mut);font-size:12px;margin-bottom:5px;max-width:880px}
 
 <!-- STICKY CTA -->
 <div class="sticky-cta" id="stickyCta">
-  <p>★ <strong>GridLab Premium</strong> — previsioni gara, H2H, FantaF1 e molto altro</p>
+  <p>★ <strong>GridLab — Accesso anticipato</strong> — previsioni gara, H2H, FantaF1 e molto altro</p>
   <button class="btn-cta-sm" onclick="openWaitlist()">Accesso anticipato gratis</button>
   <button class="sticky-close" onclick="closeStickyForever()">×</button>
 </div>

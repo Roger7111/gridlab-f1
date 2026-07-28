@@ -17,8 +17,9 @@ numero è verificabile da terzi. E il posizionamento è onesto: pubblichiamo
 
 Ogni cartella `track_record/<gara>/<timestamp>_<stage>/` è una fotografia
 scattata PRIMA dell'evento (lo stage `post-quali` è quello ufficiale: griglia
-reale, mercato liquido). Contiene la previsione, le quote di mercato del
-momento e un `MANIFEST.json`.
+reale). Contiene la previsione e un `MANIFEST.json`. I freeze **fino al
+28/07/2026** contengono anche le quote di mercato del momento; quelli successivi
+no — vedi la nota in cima. Il metodo di verifica qui sotto vale per entrambi.
 
 **1. Il timestamp non è nostro, è di GitHub.** Guarda la history del commit che
 ha creato la cartella: la data del commit è la prova terza che la previsione
@@ -47,7 +48,8 @@ metriche standard, ricalcolabili a mano dai CSV congelati.
 
 > ⚠️ **Sospeso dal 28/07/2026.** I nuovi freeze non includono più le quote di
 > mercato e la scorecard non pubblica più il confronto modello-vs-mercato.
-> Motivo e conseguenze: **[NOTA_20260728_benchmark.md](NOTA_20260728_benchmark.md)**.
+> Motivo e conseguenze:
+> **[track_record/NOTA_20260728_benchmark.md](track_record/NOTA_20260728_benchmark.md)**.
 > I **freeze già pubblicati non sono stati toccati**: i loro CSV e i relativi
 > SHA256 nel manifest restano validi e verificabili come descritto al punto 2.
 > Il cambiamento vale solo in avanti, e ha una data.
